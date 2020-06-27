@@ -1,0 +1,11 @@
+body {
+    height: 100%;
+    width: 100%;
+}
+#myMainVide {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 80%;
+    min-height: 80%;
+}
