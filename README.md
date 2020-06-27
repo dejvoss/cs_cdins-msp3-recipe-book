@@ -112,7 +112,7 @@ Taking to consideration the above user stories i identified below requirements:
 As a end of the designing my webpage i decide to choose the main image/movie which will be displayed on the main page and then matching colors scheme. 
 I wanted to put a picture that arouses appetite and ecourages cooking. This is what I found.
 
-![Web Page Structure](README_purpose/main_image.PNG)
+![Web Page Structure](README_purpose/main_image.png)
 
 #### Colours
 
@@ -123,7 +123,7 @@ Based on the main pictures and using the Huesnap tool[Huesnap.com] I selected be
 3. #a57255
 4. #0a0904
 
-![Web Page Structure](README_purpose/color_scheme.PNG)
+![Web Page Structure](README_purpose/color_scheme.png)
 
 #### Fonts
 
