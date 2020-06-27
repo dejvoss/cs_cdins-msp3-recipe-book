@@ -1,13 +1,13 @@
 # cdins-msp3-recipe-book - Code Institute Milestone Project 3 - Recipe Book
 
 
-Recipe book is a project of website with meals recipes added by users of webpage. 
+Recipe book is a project of website with meals recipes. Project is a practicing the skills of python, flask and mongoDB during my study of Full Stack Web Development in Code Institiute.
 
 ## UX
 
 ### Strategy
 
-The main goal of this project is to give for the users nice modern look website with meals recipes. I have done research and below user stories describe the user needs for my webpage. 
+The main goal of this project is to give for the users nice modern look website with meals recipes. Other goal is to give possibility for users to add the meals recipes which will be displayed on a webpage. I have done research and below user stories describe the user needs for my webpage. 
 
 #### User Stories:
 
@@ -59,8 +59,8 @@ Taking to consideration the above user stories i identified below requirements:
 #### Design Requirements:
 
 1. Main page should display big photo or video of cooking meal as background. 
-2. On the front of page needs to be big button with find recipe text which is going to move user to middle of webiste.
-3. In middle of website should be displayed recipes in 2 columns.
+2. On the front of page needs to be big button with find recipe text which is going to move user to middle of webiste - where the recipes will be.
+3. In middle of website should be displayed recipes in 2 or 3 columns in big screens and 1 column on the small screens.
 4. Recipes needs to be displayed with photo, title and icons for preparation time and portions quantity.
 5. By clicking on meal image is turning in to the ingredients list and preparation steps with button to open recipe in new window.
 6. Menu needs to be small but visible.
@@ -78,7 +78,16 @@ Taking to consideration the above user stories i identified below requirements:
     * ingredient measure (grams, pieces, spoons, )
     * image
 2. Best recipes needs to be displayed on main page.
-3. Meals has to be organized by different categories.
+3. Meals has to be organized by different types:
+    * by preparation time
+    * by quantity of portion
+    * by quntity of ingredients
+4. Meals has to be organized by different categories:
+    * Soups
+    * Breakfasts
+    * Dinners
+    * Cakes
+    * Drinks
 
 ### Structure
 
@@ -97,6 +106,48 @@ Taking to consideration the above user stories i identified below requirements:
 ![Web Page Structure](README_purpose/mb_insert_recipe_wfr.PNG)
 
 ### Surface
+
+#### Main picture
+
+As a end of the designing my webpage i decide to choose the main image/movie which will be displayed on the main page and then matching colors scheme. 
+I wanted to put a picture that arouses appetite and ecourages cooking. This is what I found.
+
+![Web Page Structure](README_purpose/main_image.PNG)
+
+#### Colours
+
+Based on the main pictures and using the Huesnap tool[Huesnap.com] I selected below color scheme for my website.
+
+1. #5e8b4a
+2. #ca2545
+3. #a57255
+4. #0a0904
+
+![Web Page Structure](README_purpose/color_scheme.PNG)
+
+#### Fonts
+
+I choose two combinaion of fonts which i like before creating a webpage. I take to consideration that it could look different in the end effect than i imagined. 
+
+<link href="https://fonts.googleapis.com/css?family=Archivo+Black|Judson:400,700" rel="stylesheet">
+body {
+ font-family: 'Judson', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+ font-family: 'Archivo Black', sans-serif;
+}
+
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Roboto:300,700" rel="stylesheet">
+body {
+ font-family: 'Roboto', sans-serif;
+ font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+ font-family: 'Abril Fatface', serif;
+}
+
 
 ## Features
 
