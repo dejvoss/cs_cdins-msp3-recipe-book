@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!-- Full screen movie in web header -->
+<header>
+    <video autoplay muted id="myMainVide">
+        <source src="{{url_for('static', filename='video/main_video.mp4')}}" type="video/mp4">
+    </video>
+</header>
 {% endblock %}
