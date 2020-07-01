@@ -1,6 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="row">
+    <div class="input-field col s12 m6 l4">
+        <select multiple>
+            <outgroup label="meal time">
+                <option value="1">Breakfast></option>
+                <option value="2">Lunch</option>
+                <option value="3">Dinner</option>
+                <option value="4">Supper</option>
+            </outgroup>
+            <outgroup label="meal type">
+                <option value="5">Main meal</option>
+                <option value="6">Soups</option>
+                <option value="7">Appetizers</option>
+                <option value="8">Desserts</option>
+                <option value="9">Drinks</option>
+            </outgroup>
+        </select>
+    </div>
+    <div class="col s12 m6 l4">
+        <p class="range-field">
+            <input type="range" id="prep_time" min="0" max="120" />
+        </p>
+    </div>
+
+</div>
+
 <div class="row text-center">
     <form class="col s12">
         <div class="row">
@@ -9,7 +35,43 @@
                 <label for="recipe_name">Recipe name</label>
             </div>
         </div>
+        <div class="row">
+            <div class="input-field col s12 m6 l6">
+                <input placeholder="Type the meal description" id="recipe_descr" type="text">
+                <label for="recipe_descr">Meal description</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6 l6">
+                <input placeholder="Type the meal description" id="recipe_descr" type="text">
+                <label for="recipe_descr">Meal description</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 m8 l6">
+                <input placeholder="Ingredients:" id="ingredient_1" type="text">
+                <label for="ingredient_1">Ingredient</label>
+            </div>
+            <div class="input-field col s4 m4 l6">
+                <input placeholder="Ingredient qty" id="ingredient_qty_1" type="text">
+                <label for="ingredient_qty_1">qty</label>
+            </div>
+        </div>
     </form>
 </div>
 
 {% endblock %}
+
+
+<!-- * selecting category from list
+    * selecting preparation time from list
+    * selecting portions quantity from list
+    * typing meal name
+    * description, but not required
+    * typing ingredients
+    * type ingredients quantity
+    * select measure (grams, pieces, spoons, )
+    * 5 fields in default and plus button for more ingredients fields
+    * preparation typed in steps with 3 default and button for adding next step
+    * button for uploading image
+    * save button -->
