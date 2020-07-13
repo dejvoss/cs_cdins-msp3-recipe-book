@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- link to main css style -->
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/mainStyle.css')}}">
+
 </head>
 <body>
 {% block content %}
@@ -19,9 +20,15 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 <script>
     M.AutoInit();
     var instance = M.FormSelect.getInstance(elem);
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, options);
+  });
+
 </script>
 </body>
 </html>
