@@ -28,9 +28,21 @@
         <div class="row">
             <div class="col">
                 <p class="range-field">
-                    <label for="portions">For how many portion is the recipe?</label>
+                    <label for="portions">Amount of portions</label>
                     <input type="range" id="portions" min="1" max="10" />
                   </p>
+            </div>
+            <div class="col">
+                <p class="range-field">
+                <label for="prep_time">Preparation time (minutes)</label>
+                <input type="range" id="prep_time" min="5" max="180" />
+            </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="meal_img">Add meal picture</label>
+                <input type="file" id="meal_img" name="meal_img" accept="image/*">
             </div>
         </div>
 
@@ -168,20 +180,23 @@
 </li>
 </ul>
     </form>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Add Recipe
+        <i class="material-icons right">send</i>
+    </button>
 </div>
 
 {% endblock %}
 
 
-<!-- * selecting category from list
+<!--selecting category from list
     * selecting preparation time from list
-    * selecting portions quantity from list
-    * typing meal name
-    * description, but not required
-    * typing ingredients
-    * type ingredients quantity
-    * select measure (grams, pieces, spoons, )
-    * 5 fields in default and plus button for more ingredients fields
-    * preparation typed in steps with 3 default and button for adding next step
-    * button for uploading image
+    selecting portions quantity from 
+    typing meal name
+    description, but not required
+    typing ingredients
+    type ingredients quantity
+    select measure (grams, pieces, spoons, )
+    5 fields in default and plus button for more ingredients fields
+    preparation typed in steps with 3 default and button for adding next step
+    button for uploading image
     * save button -->
