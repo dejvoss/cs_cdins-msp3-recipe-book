@@ -3,10 +3,10 @@
 <h3>Welcome in the creator part!</h3>
 <p>Here you can add your meal or drink recipe. Recipe will be automatically visible on the home website.</p>
 <div class="row">
-    <form class="col s12">
+    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
         <div class="row">
             <div class="input-field col s12">
-                <select>
+                <select id="category" name="category">
                     <option value="" disabled selected>Choose the type of meal</option>
                     <option value="1">Hot Meal</option>
                     <option value="2">Drink</option>
@@ -16,12 +16,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s12 m6 l6">
-                <input placeholder="Type your own name for the recipe" id="recipe_name" type="text">
+            <div class="input-field col s12 m6 l4">
+                <input placeholder="Type your own name for the recipe" id="recipe_name" type="text" name="recipe_title">
                 <label for="recipe_name">Recipe name</label>
             </div>
-            <div class="input-field col s12 m6 l5">
-                <textarea id="meal_description" class="materialize-textarea"></textarea>
+            <div class="input-field col s12 m6 l8">
+                <textarea id="meal_description" class="materialize-textarea" name="description"></textarea>
                 <label for="meal_description">Meal description</label>
             </div>
         </div>
@@ -29,20 +29,20 @@
             <div class="col">
                 <p class="range-field">
                     <label for="portions">Amount of portions</label>
-                    <input type="range" id="portions" min="1" max="10" />
+                    <input type="range" id="portions" min="1" max="10" name="portions"/>
                   </p>
             </div>
             <div class="col">
                 <p class="range-field">
                 <label for="prep_time">Preparation time (minutes)</label>
-                <input type="range" id="prep_time" min="5" max="180" />
+                <input type="range" id="prep_time" min="5" max="180" name="prep_time(min)" />
             </p>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="meal_img">Add meal picture</label>
-                <input type="file" id="meal_img" name="meal_img" accept="image/*">
+                <input type="file" id="meal_img" name="meal_img" accept="image/*" name="meal_img">
             </div>
         </div>
 
@@ -52,15 +52,15 @@
             <div class="collapsible-body">
         <div class="row">
             <div class="col">
-                <input placeholder="Ingredient" id="Ingredient1" type="text">
+                <input placeholder="Ingredient" id="Ingredient1" type="text" name="ingredient1">
                 <label for="Ingredient">Ingredient</label>
             </div>
             <div class="col">
-                <input placeholder="Amount" id="amount1" type="number">
+                <input placeholder="Amount" id="amount1" type="number" name="ingredient_amount1">
                 <label for="Amount">Amount</label>
             </div>
             <div class="col">
-                <select>
+                <select id="measure1" name="measure1">
                     <option value="" disabled selected>Choose the measure</option>
                     <option value="1">grams</option>
                     <option value="2">glasses</option>
@@ -73,15 +73,15 @@
         </div>
         <div class="row">
             <div class="col">
-                <input placeholder="Ingredient" id="Ingredient1" type="text">
+                <input placeholder="Ingredient" id="Ingredient1" type="text" name="ingredient2">
                 <label for="Ingredient">Ingredient</label>
             </div>
             <div class="col">
-                <input placeholder="Amount" id="amount1" type="number">
+                <input placeholder="Amount" id="amount1" type="number" name="ingredient_amount2">
                 <label for="Amount">Amount</label>
             </div>
             <div class="col">
-                <select>
+                <select id="measure2" name="measure2">
                     <option value="" disabled selected>Choose the measure</option>
                     <option value="1">grams</option>
                     <option value="2">glasses</option>
@@ -94,15 +94,15 @@
         </div>
         <div class="row">
             <div class="col">
-                <input placeholder="Ingredient" id="Ingredient1" type="text">
+                <input placeholder="Ingredient" id="Ingredient1" type="text" name="ingredient3">
                 <label for="Ingredient">Ingredient</label>
             </div>
             <div class="col">
-                <input placeholder="Amount" id="amount1" type="number">
+                <input placeholder="Amount" id="amount1" type="number" name="ingredient_amount3">
                 <label for="Amount">Amount</label>
             </div>
             <div class="col">
-                <select>
+                <select id="measure3" name="measure3">
                     <option value="" disabled selected>Choose the measure</option>
                     <option value="1">grams</option>
                     <option value="2">glasses</option>
@@ -115,15 +115,15 @@
         </div>
         <div class="row">
             <div class="col">
-                <input placeholder="Ingredient" id="Ingredient1" type="text">
+                <input placeholder="Ingredient" id="Ingredient1" type="text" name="ingredient4">
                 <label for="Ingredient">Ingredient</label>
             </div>
             <div class="col">
-                <input placeholder="Amount" id="amount1" type="number">
+                <input placeholder="Amount" id="amount1" type="number" name="ingredient_amount4">
                 <label for="Amount">Amount</label>
             </div>
             <div class="col">
-                <select>
+                <select id="measure4" name="measure4">
                     <option value="" disabled selected>Choose the measure</option>
                     <option value="1">grams</option>
                     <option value="2">glasses</option>
@@ -136,15 +136,15 @@
         </div>
         <div class="row">
             <div class="col">
-                <input placeholder="Ingredient" id="Ingredient1" type="text">
+                <input placeholder="Ingredient" id="Ingredient1" type="text" name="ingredient5">
                 <label for="Ingredient">Ingredient</label>
             </div>
             <div class="col">
-                <input placeholder="Amount" id="amount1" type="number">
+                <input placeholder="Amount" id="amount1" type="number" name="ingredient_amount5">
                 <label for="Amount">Amount</label>
             </div>
             <div class="col">
-                <select>
+                <select id="measure5" name="measure5">
                     <option value="" disabled selected>Choose the measure</option>
                     <option value="1">grams</option>
                     <option value="2">glasses</option>
@@ -158,7 +158,7 @@
 
         </div>
         <p>
-            add more
+            add another ingredient
         <a class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">add</i></a>
     </p>
     </div>
@@ -166,30 +166,33 @@
 <li>
     <h5 class="collapsible-header">Preparation</h5>
     <div class="collapsible-body">
-            <textarea id="prepStep1" class="materialize-textarea"></textarea>
+            <textarea id="prepStep1" class="materialize-textarea" name="prep_step_1"></textarea>
             <label for="prepStep1">Step 1</label>
-            <textarea id="prepStep2" class="materialize-textarea"></textarea>
+            <textarea id="prepStep2" class="materialize-textarea" name="prep_step_2"></textarea>
             <label for="prepStep1">Step 2</label>
-            <textarea id="prepStep3" class="materialize-textarea"></textarea>
+            <textarea id="prepStep3" class="materialize-textarea" name="prep_step_3"></textarea>
             <label for="prepStep1">Step 3</label>
             <p>
-                add more
+                add another step 
             <a class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">add</i></a>
         </p>
         </div>
 </li>
 </ul>
+<div class="row">
+<button class="btn waves-effect waves-light" type="submit" name="action">Add Recipe
+    <i class="material-icons right">send</i>
+</button>
+</div>
     </form>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Add Recipe
-        <i class="material-icons right">send</i>
-    </button>
+
 </div>
 
 {% endblock %}
 
 
 <!--selecting category from list
-    * selecting preparation time from list
+    selecting preparation time from list
     selecting portions quantity from 
     typing meal name
     description, but not required
@@ -199,4 +202,10 @@
     5 fields in default and plus button for more ingredients fields
     preparation typed in steps with 3 default and button for adding next step
     button for uploading image
-    * save button -->
+    save button 
+* autocomplete
+* add functionality for it
+* add functionality for + buttons in ingrediendts and preparation parts
+* add comments to html code with explanation
+* add style
+-->
