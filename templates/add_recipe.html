@@ -1,11 +1,21 @@
+<!-- Page for adding recipe - it is extend the base.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h3>Welcome in the creator part!</h3>
-<p>Here you can add your meal or drink recipe. Recipe will be automatically visible on the home website.</p>
-<div class="row">
+<h3>Share your meal recipe with others.</h3>
+<p>It is so easy, fill in all fields and press submit button. Your recipe will be accesibly in recipe book immediatly.</p>
+<!-- Inserting recipe form -->
+<div class="container">
     <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
+        <!-- First row for recipe name -->
         <div class="row">
             <div class="input-field col s12">
+                <input placeholder="Type your own name for the recipe" id="recipe_name" type="text" name="recipe_title">
+                <label for="recipe_name">Recipe name</label>
+            </div>
+        </div>
+        <!-- Second row with 3 fields(category, preparation time and portion quantity) in 3 columns -->
+        <div class="row">
+            <div class="input-field col s12 m4">
                 <select id="category" name="category">
                     <option value="" disabled selected>Choose the type of meal</option>
                     <option value="1">Hot Meal</option>
@@ -14,29 +24,24 @@
                 </select>
                 <label>For what type of meal you want to add recipe?</label>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12 m6 l4">
-                <input placeholder="Type your own name for the recipe" id="recipe_name" type="text" name="recipe_title">
-                <label for="recipe_name">Recipe name</label>
-            </div>
-            <div class="input-field col s12 m6 l8">
-                <textarea id="meal_description" class="materialize-textarea" name="description"></textarea>
-                <label for="meal_description">Meal description</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
+            <div class="col s12 m4">
                 <p class="range-field">
                     <label for="portions">Amount of portions</label>
                     <input type="range" id="portions" min="1" max="10" name="portions"/>
                   </p>
             </div>
-            <div class="col">
+            <div class="col s12 m4">
                 <p class="range-field">
                 <label for="prep_time">Preparation time (minutes)</label>
                 <input type="range" id="prep_time" min="5" max="180" name="prep_time(min)" />
             </p>
+            </div>
+        </div>
+        <!-- 3rd row with field for meal description -->
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="meal_description" class="materialize-textarea" name="description"></textarea>
+                <label for="meal_description">Meal description</label>
             </div>
         </div>
         <div class="row">
@@ -45,21 +50,23 @@
                 <input type="file" id="meal_img" name="meal_img" accept="image/*" name="meal_img">
             </div>
         </div>
-
+<!-- collapsible part for typing ingredients -->
         <ul class="ingred collapsible">
             <li>
+                <!-- ingredient header - visible part of collapsible, show the fields for ingredients when click on it -->
             <h5 class="collapsible-header">Ingredients</h5>
             <div class="collapsible-body">
+                <!-- collapsed fields for ingredients, each row splitted in to 3 columns -->
         <div class="row">
-            <div class="col">
+            <div class="col s8">
                 <input placeholder="Ingredient" id="Ingredient1" type="text" name="ingredient1">
                 <label for="Ingredient">Ingredient</label>
             </div>
-            <div class="col">
+            <div class="col s2">
                 <input placeholder="Amount" id="amount1" type="number" name="ingredient_amount1">
                 <label for="Amount">Amount</label>
             </div>
-            <div class="col">
+            <div class="col s2">
                 <select id="measure1" name="measure1">
                     <option value="" disabled selected>Choose the measure</option>
                     <option value="1">grams</option>
@@ -72,15 +79,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col s8">
                 <input placeholder="Ingredient" id="Ingredient1" type="text" name="ingredient2">
                 <label for="Ingredient">Ingredient</label>
             </div>
-            <div class="col">
+            <div class="col s2">
                 <input placeholder="Amount" id="amount1" type="number" name="ingredient_amount2">
                 <label for="Amount">Amount</label>
             </div>
-            <div class="col">
+            <div class="col s2">
                 <select id="measure2" name="measure2">
                     <option value="" disabled selected>Choose the measure</option>
                     <option value="1">grams</option>
@@ -93,15 +100,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col s8">
                 <input placeholder="Ingredient" id="Ingredient1" type="text" name="ingredient3">
                 <label for="Ingredient">Ingredient</label>
             </div>
-            <div class="col">
+            <div class="col s2">
                 <input placeholder="Amount" id="amount1" type="number" name="ingredient_amount3">
                 <label for="Amount">Amount</label>
             </div>
-            <div class="col">
+            <div class="col s2">
                 <select id="measure3" name="measure3">
                     <option value="" disabled selected>Choose the measure</option>
                     <option value="1">grams</option>
@@ -114,15 +121,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col s8">
                 <input placeholder="Ingredient" id="Ingredient1" type="text" name="ingredient4">
                 <label for="Ingredient">Ingredient</label>
             </div>
-            <div class="col">
+            <div class="col s2">
                 <input placeholder="Amount" id="amount1" type="number" name="ingredient_amount4">
                 <label for="Amount">Amount</label>
             </div>
-            <div class="col">
+            <div class="col s2">
                 <select id="measure4" name="measure4">
                     <option value="" disabled selected>Choose the measure</option>
                     <option value="1">grams</option>
@@ -135,15 +142,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col s8">
                 <input placeholder="Ingredient" id="Ingredient1" type="text" name="ingredient5">
                 <label for="Ingredient">Ingredient</label>
             </div>
-            <div class="col">
+            <div class="col s2">
                 <input placeholder="Amount" id="amount1" type="number" name="ingredient_amount5">
                 <label for="Amount">Amount</label>
             </div>
-            <div class="col">
+            <div class="col s2">
                 <select id="measure5" name="measure5">
                     <option value="" disabled selected>Choose the measure</option>
                     <option value="1">grams</option>
@@ -157,15 +164,19 @@
             </div>
 
         </div>
+        <div class="row">
         <p>
             add another ingredient
         <a class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">add</i></a>
     </p>
+</div>
     </div>
 </li>
 <li>
+    <!-- preparation header - when click it shows the fields for typing preparation steps  -->
     <h5 class="collapsible-header">Preparation</h5>
     <div class="collapsible-body">
+        <!-- Collapsed fields for typing meal preparation steps -->
             <textarea id="prepStep1" class="materialize-textarea" name="prep_step_1"></textarea>
             <label for="prepStep1">Step 1</label>
             <textarea id="prepStep2" class="materialize-textarea" name="prep_step_2"></textarea>
