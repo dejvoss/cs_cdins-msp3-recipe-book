@@ -1,6 +1,14 @@
 body {
     height: 100%;
     width: 100%;
+    font-family: 'Judson', serif; 
+    background-color: #a57255;;
+    color: #0a0904;
+
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    font-family: 'Archivo Black', sans-serif; 
 }
 #myMainVide {
     position: fixed;
@@ -9,4 +17,7 @@ body {
     min-width: 50%;
     min-height: 50%;
 }
-
+/* #5e8b4a
+#ca2545
+#a57255
+#0a0904 */
