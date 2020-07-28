@@ -26,14 +26,47 @@ h1, h2, h3, h4, h5, h6 {
     width: 80%;
     right: 10%;
     left: auto;
-    background-color: rgba(165, 114, 85, 0.5);
     text-align: center;
     padding: 5%;
+    color: #5e8b4a;
 }
 
-nav {
+.video-content h1, .video-content p {
+    background-color: white;
+    margin: -1%;
+    padding: 1%;
+}
+
+.video-content p {
+    padding-bottom: 4%;
+}
+
+.my-btn-class {
+    background-color: #74000A;
+    margin: -2%;
+    color: #0a0904;
+    font-size: 2rem;
+}
+
+
+/* overwright bootstrap a class */
+a:not([href]) {
+    color: #ffffff;
+    text-decoration: none;
+}
+a:not([href]):hover {
+    background-color: #ffffff;
+    color: #74000A;
+}
+
+.main-navbar {
     background-color: #5e8b4a;
 }
+
+.main-navbar a:hover {
+    color: #74000A;
+}
+
 
 .logo-img {
     height: 64px;
@@ -47,7 +80,9 @@ nav {
 /* #5e8b4a
 #ca2545
 #a57255 rgba(165, 114, 85, 0.1)
-#0a0904 */
+#0a0904 
+new red #74000A
+*/
 
 
 @media (max-width: 600px) {
