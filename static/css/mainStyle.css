@@ -49,23 +49,38 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* overwright bootstrap a class */
+/* overwright bootstrap a class to change colors of go to recipe button */
 a:not([href]) {
     color: #ffffff;
-    text-decoration: none;
+    background-color: #74000A;
 }
 a:not([href]):hover {
     background-color: #ffffff;
     color: #74000A;
 }
 
+a:hover {
+    color: #ffffff;
+    background-color: #74000A;
+    text-decoration: none;
+}
+
 .main-navbar {
     background-color: #5e8b4a;
 }
 
-.main-navbar a:hover {
-    color: #74000A;
+
+.main-navbar ul a {
+    text-transform: uppercase;
+    font-size: 1.5rem;
 }
+
+.main-navbar ul a:hover {
+    background-color: #74000A;
+    color: #ffffff;
+    text-decoration: none;
+}
+
 
 
 .logo-img {
