@@ -104,10 +104,3 @@ new red #74000A
         display: none;
     }
 }
-
-@media (max-width: 835px) {
-    .video-content {
-        position: static;
-        width: 100%;
-    }
-}
