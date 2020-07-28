@@ -6,12 +6,14 @@
     <video autoplay muted id="myMainVideo" >
         <source src="{{url_for('static', filename='video/main_video.mp4')}}" type="video/mp4">
     </video>
+    <div class="video-filter"></div>
     <div class="video-content">
         <h1 class="display-4">No idea for dinner!? No problem!</h1>
         <p class="lead">Find delicious meal, print recipe and cook it!</p>
+        <a class="btn btn-large my-btn-class">Go to recipes</a>
         <hr class="my-4">
-        <p>You have recipe to share with others?! Click below button and add it to the webpage.</p>
+        <!-- <p>You have recipe to share with others?! Click below button and add it to the webpage.</p>
         <a class="btn btn-primary btn-lg" href="#" role="button">Add recipe</a>
-      </div>
+      </div> -->
 </header>
 {% endblock %}
