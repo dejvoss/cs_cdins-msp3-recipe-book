@@ -1,3 +1,4 @@
+/* style for base.html and index.html webpages */
 body {
     height: 100%;
     width: 100%;
@@ -10,14 +11,20 @@ body {
 h1, h2, h3, h4, h5, h6 { 
     font-family: 'Archivo Black', sans-serif; 
 }
-#myMainVide {
+
+#myMainVideo {
     position: fixed;
     right: 0;
-    bottom: 0;
-    min-width: 50%;
-    min-height: 50%;
+    top: 6.5%;
+    max-width: 100%;
+    height: auto;
+    z-index: -1;
+}
+
+nav {
+    background-color: #5e8b4a;
 }
 /* #5e8b4a
 #ca2545
-#a57255
+#a57255 rgba(165, 114, 85, 0.1)
 #0a0904 */

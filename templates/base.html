@@ -12,6 +12,8 @@
     <!-- import font archivo black and judson from google fonts -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Judson&display=swap" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Judson:wght@700&display=swap" rel="stylesheet">
+    <!-- import bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- link to main css style -->
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/mainStyle.css')}}">
     <!-- link to my addRecipeStyle file -->
@@ -19,6 +21,26 @@
 
 </head>
 <body>
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">
+              <img src="../static/images/logo-img-2.jpg" width="60" height="60" class="d-inline-block align-top" alt="">
+              Cook book
+          </a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+          </ul>
+        </div>
+      </nav>
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
 {% block content %}
 
 {% endblock %}
