@@ -23,7 +23,9 @@ h1, h2, h3, h4, h5, h6 {
 .video-content {
     position: fixed;
     bottom: 20%;
-    width: 100%;
+    width: 80%;
+    right: 10%;
+    left: auto;
     background-color: rgba(165, 114, 85, 0.5);
     text-align: center;
     padding: 5%;
@@ -58,11 +60,19 @@ nav {
     }
     .video-content {
         position: static;
+        width: 100%;
     }
 }
 
 @media (max-width : 350px) {
     .logo-caption {
         display: none;
+    }
+}
+
+@media (max-width: 835px) {
+    .video-content {
+        position: static;
+        width: 100%;
     }
 }
