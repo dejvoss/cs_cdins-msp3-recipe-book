@@ -24,13 +24,13 @@
     <div class="navbar-fixed">
     <nav class="main-navbar">
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">
+          <a href="{{ url_for('home') }}" class="brand-logo">
               <img src="../static/images/logo-img-2.jpg" class="logo-img" alt="logo picture with cooker hanging book">
               <h5 class=logo-caption>Cook book</h5>
           </a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
+            <li><a href="{{url_for('add_recipe')}}">Add recipe</a></li>
             <li><a href="badges.html">Components</a></li>
             <li><a href="collapsible.html">JavaScript</a></li>
           </ul>
