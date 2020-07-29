@@ -50,6 +50,17 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 2rem;
 }
 
+/* features */
+.features {
+    position: fixed;
+    bottom: 0;
+}
+
+.features .col {
+    background-color: #ffffff;
+
+}
+
 
 /* overwright bootstrap a class to change colors of go to recipe button */
 a:not([href]) {
@@ -60,6 +71,9 @@ a:not([href]):hover {
     background-color: #ffffff;
     color: #74000A;
 }
+
+
+/* navigation bar style */
 
 a:hover {
     color: #ffffff;
@@ -94,6 +108,8 @@ a:hover {
     display: inline;
 }
 
+/* navigation bar style  */
+
 /* #5e8b4a
 #ca2545
 #a57255 rgba(165, 114, 85, 0.1)
@@ -113,6 +129,9 @@ new red #74000A
     .video-content {
         position: static;
         width: 100%;
+    }
+    .features {
+        position: static;
     }
 }
 
