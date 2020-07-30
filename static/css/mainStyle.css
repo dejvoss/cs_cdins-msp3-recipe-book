@@ -68,11 +68,12 @@ header {
 
 .stick-btn {
     position: fixed;
-    bottom: 10%;
+    bottom: 15%;
     right:2%;
     background-color: #5e8b4a;
-    
-    color: #0a0904;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
     border: solid 2px #74000A;
 }
 
