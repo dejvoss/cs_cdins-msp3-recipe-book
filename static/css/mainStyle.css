@@ -46,11 +46,22 @@ h1, h2, h3, h4, h5, h6 {
 .my-btn-class {
     background-color: #74000A;
     margin: -2%;
-    color: #0a0904;
+    color: #ffffff;
     font-size: 2rem;
     height: 64px;
-    color: #ffffff;
+    
 }
+.my-btn-class:hover {
+    background-color: #ffffff;
+    color: #74000A;
+}
+.my-btn-class:focus {
+    background-color: #ffffff;
+    color: #74000A;
+    outline: .5px solid #74000A;
+}
+
+
 
 .stick-btn {
     position: fixed;
@@ -66,11 +77,7 @@ h1, h2, h3, h4, h5, h6 {
     outline: none;
     background-color: #a57255;
 }
-/* overwright bootstrap a class to change colors of go to recipe button */
-.my-btn-class:hover {
-    background-color: #ffffff;
-    color: #74000A;
-}
+
 
 /* navigation bar style */
 
