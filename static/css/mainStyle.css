@@ -1,3 +1,4 @@
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ MAIN BASE STYLE ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 /* style for base.html and index.html webpages */
 body {
     height: 100%;
@@ -11,7 +12,7 @@ body {
 h1, h2, h3, h4, h5, h6 { 
     font-family: 'Archivo Black', sans-serif; 
 }
-
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ HEADER ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 header {
     margin-bottom: 0;
     padding-bottom: 0;
@@ -48,7 +49,7 @@ header {
 .my-4 {
     margin-top: 2.5rem!important;
 }
-
+/* button displayed on top of video */
 .my-btn-class {
     background-color: #74000A;
     margin: -2%;
@@ -68,7 +69,7 @@ header {
 }
 
 
-
+/* button sticked to the window for adding new recipe */
 .stick-btn {
     position: fixed;
     bottom: 15%;
@@ -85,7 +86,7 @@ header {
     background-color: #a57255;
 }
 
-
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 /* navigation bar style */
 
 a:hover {
@@ -111,7 +112,7 @@ a:hover {
 }
 
 
-
+/* logo in navigation bar */
 .logo-img {
     height: 64px;
     width: 64px;
@@ -122,16 +123,7 @@ a:hover {
 }
 
 
-/* navigation bar style  */
-
-/* #5e8b4a
-#ca2545
-#a57255 rgba(165, 114, 85, 0.1)
-#0a0904 
-new red #74000A
-*/
-/* section */
-
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR IN SECTION ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 .nav-pills .nav-link {
     margin: 0;
     height: 100%;
@@ -148,26 +140,26 @@ new red #74000A
 section ul li {
     border: 1px solid #a57255;
 }
-
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ FOOTER ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 footer {
     background-color: #a57255;
 }
-
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ MEDIA STYLE ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
+/* change logo size to fit in navigation bar */
 @media (max-width: 600px) {
     .logo-img {
         height: 56px;
         width: 56px;
     }
-
+/* display video captions below vide on mobile */
     .video-content {
         position: static;
         width: 100%;
     }
     .features {
-        position: static;
-    }
-}
 
+}
+/* hide logo caption in mobile view */
 @media (max-width : 350px) {
     .logo-caption {
         display: none;
