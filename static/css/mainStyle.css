@@ -3,7 +3,7 @@ body {
     height: 100%;
     width: 100%;
     font-family: 'Judson', serif; 
-    background-color: #a57255;;
+    background-color: #ffffff;;
     color: #0a0904;
 
 }
@@ -12,7 +12,10 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Archivo Black', sans-serif; 
 }
 
-
+header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
 
 #myMainVideo {
     position: static;
@@ -128,7 +131,22 @@ a:hover {
 #0a0904 
 new red #74000A
 */
+/* section */
 
+.nav-pills .nav-link {
+    margin: 0;
+    height: 100%;
+    margin: 0;
+    font-size: 1.8rem
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #74000A;
+}
+
+section ul li {
+    border: 1px solid #a57255;
+}
 
 @media (max-width: 600px) {
     .logo-img {
