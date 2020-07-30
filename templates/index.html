@@ -10,7 +10,7 @@
 
         <h1 class="display-4">No idea for dinner!? No problem!</h1>
         <p class="lead">Find delicious meal, print recipe and cook it!</p>
-        <a class="btn btn-large my-btn-class">Go to recipes</a>
+        <a class="btn btn-large my-btn-class" href="#myTab">Go to recipes</a>
         <hr class="my-4">
         <!-- <p>You have recipe to share with others?! Click below button and add it to the webpage.</p>
         <a class="btn btn-primary btn-lg" href="#" role="button">Add recipe</a>
@@ -22,6 +22,72 @@
 
 <button type="button" class="btn-lg btn-rounded stick-btn">Add recipe!</button>
 
-
+<!-- Nav pills -->
+<ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link active"
+        id="home-tab"
+        data-toggle="tab"
+        href="#home"
+        role="tab"
+        aria-controls="home"
+        aria-selected="true"
+        >Home</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="profile-tab"
+        data-toggle="tab"
+        href="#profile"
+        role="tab"
+        aria-controls="profile"
+        aria-selected="false"
+        >Profile</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="messages-tab"
+        data-toggle="tab"
+        href="#messages"
+        role="tab"
+        aria-controls="messages"
+        aria-selected="false"
+        >Messages</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="settings-tab"
+        data-toggle="tab"
+        href="#settings"
+        role="tab"
+        aria-controls="settings"
+        aria-selected="false"
+        >Settings</a
+      >
+    </li>
+  </ul>
+  
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      ...
+    </div>
+    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      tab 2
+    </div>
+    <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+      .tab 3..
+    </div>
+    <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+      ...
+    </div>
+  </div>
 
 {% endblock %}

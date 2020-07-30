@@ -15,15 +15,15 @@ h1, h2, h3, h4, h5, h6 {
 
 
 #myMainVideo {
-    position: fixed;
-    right: 0;
+    position: static;
+    margin: 0;
     width: 100%;
     height: auto;
     z-index: -1;
 }
 
 .video-content {
-    position: fixed;
+    position: absolute;
     top: 20%;
     width: 80%;
     right: 10%;
@@ -48,6 +48,8 @@ h1, h2, h3, h4, h5, h6 {
     margin: -2%;
     color: #0a0904;
     font-size: 2rem;
+    height: 64px;
+    color: #ffffff;
 }
 
 .stick-btn {
@@ -65,15 +67,10 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #a57255;
 }
 /* overwright bootstrap a class to change colors of go to recipe button */
-a:not([href]) {
-    color: #ffffff;
-    background-color: #74000A;
-}
-a:not([href]):hover {
+.my-btn-class:hover {
     background-color: #ffffff;
     color: #74000A;
 }
-
 
 /* navigation bar style */
 
@@ -131,9 +128,7 @@ new red #74000A
         height: 56px;
         width: 56px;
     }
-    #myMainVideo {
-        position: static;
-    }
+
     .video-content {
         position: static;
         width: 100%;
