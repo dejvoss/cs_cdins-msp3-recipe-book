@@ -50,18 +50,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 2rem;
 }
 
-/* features */
-.features {
-    position: fixed;
-    bottom: 0;
-}
-
-.features .col-md-3 {
-    background-color: #ffffff;
-
-}
-
-
 /* overwright bootstrap a class to change colors of go to recipe button */
 a:not([href]) {
     color: #ffffff;
