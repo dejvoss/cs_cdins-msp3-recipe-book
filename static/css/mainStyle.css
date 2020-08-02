@@ -13,6 +13,9 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Archivo Black', sans-serif; 
 }
 
+.lg-hide {
+    display: none;
+}
 
 /*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ HEADER ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 header {
@@ -142,6 +145,7 @@ a:hover {
 section ul li {
     border: 1px solid #a57255;
 }
+
 /*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ FOOTER ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 .my-footer-class {
     background-color: #a57255;
@@ -158,14 +162,27 @@ section ul li {
         position: static;
         width: 100%;
     }
-    .stick-btn {
+    /* class to hide elements in small devices */
+    .sm-hide {
         visibility: hidden;
     }
-
+    /* show drop button instead of all buttons as navigation in section */
+    .sm-show {
+        display: block;
+    }
+    #myTab {
+        display: block;
+    }
 }
 /* hide logo caption in mobile view */
 @media (max-width : 350px) {
     .logo-caption {
         display: none;
+    }
+}
+
+@media (min-width: 601px) {
+    .collapse:not(.show) {
+        display: block;
     }
 }
