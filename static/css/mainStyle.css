@@ -72,6 +72,23 @@ header {
     color: #74000A;
     outline: .5px solid #74000A;
 }
+/* video control button */
+
+.headVideo {
+    position: relative;
+}
+
+.video-control {
+    position: absolute;
+    top: calc(50% - 28px);
+    left: calc(50% - 31.5px);
+    color: #5e8b4a;
+}
+
+#myVideoBtn:hover {
+    color: #74000A;
+    background-color: transparent;
+}
 
 
 /* button sticked to the window for adding new recipe */
@@ -84,6 +101,7 @@ header {
     text-transform: uppercase;
     color: #ffffff;
     border: solid 2px #74000A;
+    z-index: 10;
 }
 
 .stick-btn:focus {

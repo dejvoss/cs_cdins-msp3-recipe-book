@@ -4,15 +4,21 @@
 <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ HEADER WITH VIDEO AND CAPTIONS ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
 <header>
   <button type="button" class="btn-lg btn-rounded stick-btn sm-hide">Add recipe!</button>
-    <video autoplay muted id="myMainVideo" >
+  <div class="headVideo">  
+  <video autoplay muted id="myMainVideo" >
         <source src="{{url_for('static', filename='video/main_video.mp4')}}" type="video/mp4">
     </video>
+    <div class="video-control">
+    <a id="myVideoBtn" onclick="myFunction()"><i class="medium material-icons">pause_circle_filled</i></a>
+  </div>
+  </div>
     <div class="video-content">
 
         <h1 class="display-4">No idea for dinner!? No problem!</h1>
         <p class="lead">Find delicious meal, print recipe or read on your device and cook it!</p>
         <a class="btn btn-lg my-btn-class" href="#home">Go to recipes</a>
         <hr class="my-4">
+        
     </div>
     
     

@@ -69,7 +69,26 @@
 
   <script>
     M.AutoInit();
+// Get the video
+var mainVideo = document.getElementById("myMainVideo");
 
+// Get the button
+var VideoBtn = document.getElementById("myVideoBtn");
+
+mainVideo.addEventListener('ended', function(){
+  VideoBtn.innerHTML = '<i class="medium material-icons">play_circle_filled</i>';
+})
+
+// Pause and play the video, and change the button text
+function myFunction() {
+  if (mainVideo.paused) {
+    mainVideo.play();
+    VideoBtn.innerHTML = '<i class="medium material-icons">pause_circle_filled</i>';
+  } else {
+    mainVideo.pause();
+    VideoBtn.innerHTML = '<i class="medium material-icons">play_circle_filled</i>';
+  }
+}
 
   </script>
 </body>
