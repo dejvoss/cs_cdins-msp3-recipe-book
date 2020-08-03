@@ -35,7 +35,7 @@
 <body>
   <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR BY MATERIALIZE ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
   <div class="navbar-fixed">
-    <nav class="main-navbar">
+    <nav class="main-navbar main-nav-def" id="main-nav-bar">
       <div class="nav-wrapper">
         <a href="{{ url_for('home') }}" class="brand-logo">
           <img src="../static/images/logo-img-2.jpg" class="logo-img" alt="logo picture with cooker hanging book">
@@ -89,7 +89,20 @@ function myFunction() {
     VideoBtn.innerHTML = '<i class="medium material-icons">play_circle_filled</i>';
   }
 }
+// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+window.onscroll = function() {scrollFunction()};
 
+function scrollFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementById("main-nav-bar").classList.remove("main-nav-def");
+    
+    
+  } else {
+    document.getElementById("main-nav-bar").classList.add("main-nav-def");
+    
+    
+  }
+}
   </script>
 </body>
 

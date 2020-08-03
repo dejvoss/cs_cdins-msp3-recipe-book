@@ -24,19 +24,19 @@ header {
 }
 
 #myMainVideo {
-    position: static;
-    margin: 0 auto 0 auto;
-    width: 100%;
-    max-height: 80vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
     z-index: -1;
 }
 
 .video-content {
-    position: absolute;
-    top: 20%;
+    margin-top:10%;
     width: 80%;
-    right: 10%;
-    left: auto;
+    margin-right: auto;
+    margin-left: auto;
     text-align: center;
     padding: 5%;
     color: #5e8b4a;
@@ -73,21 +73,20 @@ header {
     outline: .5px solid #74000A;
 }
 /* video control button */
-
+/* 
 .headVideo {
     position: relative;
-}
+} */
 
 .video-control {
-    position: absolute;
-    top: calc(50% - 28px);
-    left: calc(50% - 31.5px);
     color: #5e8b4a;
+
 }
 
 #myVideoBtn:hover {
     color: #74000A;
     background-color: transparent;
+    cursor: pointer;
 }
 
 
@@ -111,16 +110,23 @@ header {
 
 /*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 /* navigation bar style */
-
-a:hover {
-    color: #ffffff;
-    background-color: #74000A;
-    text-decoration: none;
-}
+/* default style for navigation bar */
 
 .main-navbar {
     background-color: #5e8b4a;
+    height: 64px;
+    padding: 1px;
+    transition: 0.4s;
 }
+
+.main-nav-def {
+    background-color: transparent;
+    padding: 20px;
+    transition: 0.4s;
+    height: 100px;
+    color: #74000A;
+}
+
 
 
 .main-navbar ul a {
@@ -129,8 +135,8 @@ a:hover {
 }
 
 .main-navbar ul a:hover {
-    background-color: #74000A;
-    color: #ffffff;
+    background-color: transparent;
+    color: #74000A;
     text-decoration: none;
 }
 
@@ -143,6 +149,11 @@ a:hover {
 }
 .logo-caption {
     display: inline;
+}
+
+.brand-logo:hover {
+    color: #74000A;
+    text-decoration: none;
 }
 
 
