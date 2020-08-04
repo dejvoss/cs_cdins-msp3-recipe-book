@@ -69,27 +69,8 @@
 
   <script>
     M.AutoInit();
-// Get the video
-var mainVideo = document.getElementById("myMainVideo");
 
-// Get the button
-var VideoBtn = document.getElementById("myVideoBtn");
 
-mainVideo.addEventListener('ended', function(){
-  VideoBtn.innerHTML = '<i class="medium material-icons">play_circle_filled</i>';
-})
-
-// Pause and play the video, and change the button text
-function myFunction() {
-  if (mainVideo.paused) {
-    mainVideo.play();
-    VideoBtn.innerHTML = '<i class="medium material-icons">pause_circle_filled</i>';
-  } else {
-    mainVideo.pause();
-    VideoBtn.innerHTML = '<i class="medium material-icons">play_circle_filled</i>';
-  }
-}
-// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
@@ -103,6 +84,33 @@ function scrollFunction() {
     
   }
 }
+
+if (document.getElementById("myMainVideo") != null) {
+  var mainVideo = document.getElementById("myMainVideo");
+  var VideoBtn = document.getElementById("myVideoBtn");
+mainVideo.addEventListener('ended', function(){
+  VideoBtn.innerHTML = '<i class="medium material-icons">play_circle_filled</i>';
+})
+}
+
+// Pause and play the video, and change the button text
+function myFunction() {
+  if (mainVideo.paused) {
+    mainVideo.play();
+    VideoBtn.innerHTML = '<i class="medium material-icons">pause_circle_filled</i>';
+  } else {
+    mainVideo.pause();
+    VideoBtn.innerHTML = '<i class="medium material-icons">play_circle_filled</i>';
+  }
+}
+// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+
+
+function addMoreIngredient() {
+  var newIngreRow = '<div class="row"><div class="col s8"><input placeholder="Ingredient name" id="Ingredient1" type="text" name="ingredient5"><label for="Ingredient">Ingredient</label></div><div class="col s2"><input placeholder="number" id="amount1" type="number" name="ingredient_amount5"><label for="Amount">Amount</label></div><div class="col s2"><select id="measure5" name="measure5"><option value="" disabled selected>Choose the measure</option><option value="1">grams</option><option value="2">glasses</option><option value="3">pieces</option><option value="4">spoons</option><option value="5">tea spoons</option></select></div></div>';
+  document.getElementById("ingredients-rows").innerHTML += newIngreRow;
+}
+
   </script>
 </body>
 
