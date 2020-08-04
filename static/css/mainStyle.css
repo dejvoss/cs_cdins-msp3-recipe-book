@@ -121,7 +121,7 @@ header {
 
 .main-nav-def {
     background-color: transparent;
-    padding: 20px;
+    padding: 15px;
     transition: 0.4s;
     height: 100px;
     color: #74000A;
@@ -212,7 +212,7 @@ section ul li {
         background-color: #ffffff;
         color: #74000A;
     }
-}
+
 /* hide logo caption in mobile view */
 @media (max-width : 350px) {
     .logo-caption {
