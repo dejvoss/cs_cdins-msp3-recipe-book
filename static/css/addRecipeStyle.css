@@ -1,5 +1,14 @@
 .add_recipe_container {
     text-align: center;
+    height: 200vh;
+    background-image: url("../images/addRecipeBack.jpg");
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-position: center;
+
+
 }
 
 
