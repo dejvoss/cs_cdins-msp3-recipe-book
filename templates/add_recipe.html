@@ -2,10 +2,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="add_recipe_container">
-
-<h3>Share your meal recipe with others.</h3>
+<div class="menushadow"></div>
+<div class="head-captions">
+<h2>Share your meal recipe with others.</h2>
 <p>It is so easy, fill in all fields and press submit button. Your recipe will be accesibly in recipe book immediatly.</p>
-
+</div>
 <!-- Inserting recipe form -->
 <div class="container">
     <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
