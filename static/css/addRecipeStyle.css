@@ -1,13 +1,12 @@
-.add_recipe_container {
-    text-align: center;
-    height: 200vh;
+.background-image {
+     height: 100%;
     background-image: url("../images/addRecipeBack.jpg");
     background-size: cover;
     position: absolute;
     top: 0;
     width: 100%;
     background-position: center;
-
+    z-index:-1;
 
 }
 
@@ -20,6 +19,7 @@
 }
 
 .head-captions {
+    text-align: center;
     margin-top: 150px;
     text-transform: uppercase;
 }
