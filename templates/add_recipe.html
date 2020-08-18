@@ -9,11 +9,87 @@
 <p>It is so easy, fill in all fields and press submit button. Your recipe will be accesibly in recipe book immediatly.</p>
 </div>
 <!-- Inserting recipe form -->
-
-    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
-        
+<div class="container">
+    <form action="{{ url_for('insert_recipe') }}" method="POST">
+        <div class="mb-3 row">
+            <div class="col-sm-12">
+            <label for="recipe_title" class="form-label">Recipe name</label>
+                <input type="text" class="form-control form-control-lg" id="recipe_title" name="recipe_title">
+            </div>
+          </div>
+          <div class="mb-3 row">
+              <div class="col-sm-12 col-md-4">
+            <label for="meal_type" class="form-label">Meal type</label>
+            <input class="form-control" list="meal_type_list" id="meal_type" name="meal_type" placeholder="Type to search meal type">
+            <datalist id="meal_type_list">
+                <option value="Hot meal">
+                <option value="Cold meal">
+            </datalist>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <label for="prep_time" class="form-label">Preparation time (minutes)</label>
+            <input type="range" class="form-range" min="5" max="240" step="5" id="prep_time" name="prep_time" value="60">
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <label for="portion_qty" class="form-label">Number of portions</label>
+            <input type="range" class="form-range" min="1" max="10" step="1" id="portion_qty" name="portion_qty" value="4">
+        </div>
+          </div>
+          <div class="mb-3 row">
+              <div class="col-sm-12">
+                  <label for="meal_description" class="form-label">Meal description</label>
+                  <textarea class="form-control" id="meal_description" name="meal_description" rows="3" placeholder="Your meal description"></textarea>
+              </div>
+          </div>
+          <div class="mb-3 row">
+              <div class="col-sm-6">
+                  <label for="ingredients" class="form-label">Ingredients</label>
+                  <input class="form-control" list="ingredients_list" id="ingredient" placeholder="Type to search ingredients">
+                  <datalist id="ingredients_list">
+                      <option value="carrot">
+                  </datalist>
+              </div>
+              <div class="col-sm-2">
+                <label for="measure" class="form-label">Measure</label>
+                  <select class="form-select" aria-label=".form-select-lg" id="ingred_measure">
+                      <option selected>Choose measure</option>
+                      <option value="1">grams</option>
+                      <option value="2">pieces</option>
+                      <option value="3">glasses</option>
+                      <option value="4">spoons</option>
+                      <option value="5">tea spoons</option>
+                      <option value="6">pinch</option>
+                  </select>
+              </div>
+              <div class="col-sm-2">
+                  <label for="amount" class="form-label">Amount</label>
+                  <input type="number" class="form-control" id="ingred_amount">
+              </div>
+              <div class="col-sm-2">
+                  <label for="add" class="form-label">Press to add</label>
+                <button onclick="addIngredient()"><span><i class="medium material-icons">add</i></span></button>
+              </div>
+          </div>
+          <div class="mb-3 row">
+              <div class="col-sm-6">
+            <label for="added_ingredients" class="form-label">Ingredient</label>
+            <input type="text" readonly class="form-control-plaintext" id="ingredient1" name="ingredient1" value="Carrot">
+        </div>
+        <div class="col-sm-2">
+            <label for="added_ingredients_measure" class="form-label">Measure</label>
+            <input type="text" readonly class="form-control-plaintext" id="ingredient1_measure" name="ingredient1_measure" value="pieces">
+        </div>
+        <div class="col-sm-2">
+            <label for="added_ingredients_amount" class="form-label">Amount</label>
+            <input type="number" readonly class="form-control-plaintext" id="ingredient1_amount" name="ingredient1_amount" value="2">
+        </div>
+        <div class="col-sm-2">
+            <label for="add" class="form-label">Press to remove</label>
+          <button onclick="addIngredient()"><span><i class="medium material-icons">add</i></span></button>
+        </div>
+          </div>
     </form>
-
+</div>
 
 {% endblock %}
 
