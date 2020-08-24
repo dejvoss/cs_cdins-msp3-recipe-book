@@ -127,8 +127,16 @@ function myFunction() {
 // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
 
 
-function addIngredient() {
-
+function addIngredientField() {
+  var child_counter = document.getElementById("ingredient_list").childElementCount;
+  var ingredient_counter = child_counter / 3;
+  var new_ingr_nr = ingredient_counter + 1;
+  var html_ingredient = '<div class="col-sm-6"><label for="ingredients" class="form-label">Ingredient</label><input class="form-control" list="ingredients_list" placeholder="Type to search ingredients" id="ingredient_' + new_ingr_nr + '" name="ingredient_' + new_ingr_nr + '"><datalist id="ingredients_list"><option value="carrot"></datalist></div>';
+  var html_measure = '<div class="col-sm-2"><label for="measure" class="form-label">Measure</label><select class="form-select" aria-label=".form-select-lg" id="ingred_measure_' + new_ingr_nr + '" name="ingred_measure_' + new_ingr_nr + '"><option selected>Choose measure</option><option value="grams">grams</option><option value="pieces">pieces</option><option value="glasses">glasses</option><option value="spoons">spoons</option><option value="tea spoons">tea spoons</option><option value="pinch">pinch</option></select></div>';
+  var html_amount = '<div class="col-sm-2"><label for="amount" class="form-label">Amount</label><input type="number" class="form-control" id="ingred_amount_' + new_ingr_nr + '" name="ingred_amount_' + new_ingr_nr + '"></div>'
+  var html_ingr_full = html_ingredient + html_measure + html_amount;
+  document.getElementById("ingredient_list").innerHTML += html_ingr_full;
+  
 }
 
   </script>

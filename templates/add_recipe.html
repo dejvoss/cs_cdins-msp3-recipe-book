@@ -14,7 +14,7 @@
         <div class="mb-3 row">
             <div class="col-sm-12">
             <label for="recipe_title" class="form-label">Recipe name</label>
-                <input type="text" class="form-control form-control-lg" id="recipe_title" name="recipe_title">
+                <input type="text" class="form-control form-control-lg" id="recipe_title" name="recipe_title" placeholder="Your meal name">
             </div>
           </div>
           <div class="mb-3 row">
@@ -41,33 +41,34 @@
                   <textarea class="form-control" id="meal_description" name="meal_description" rows="3" placeholder="Your meal description"></textarea>
               </div>
           </div>
-          <div class="mb-3 row">
+          <div class="mb-3 row" id="ingredient_list">
               <div class="col-sm-6">
-                  <label for="ingredients" class="form-label">Ingredients</label>
-                  <input class="form-control" list="ingredients_list" id="ingredient" placeholder="Type to search ingredients">
+                  <label for="ingredients" class="form-label">Ingredient</label>
+                  <input class="form-control" list="ingredients_list" placeholder="Type to search ingredients" id="ingredient_1" name="ingredient_1">
                   <datalist id="ingredients_list">
                       <option value="carrot">
                   </datalist>
               </div>
               <div class="col-sm-2">
                 <label for="measure" class="form-label">Measure</label>
-                  <select class="form-select" aria-label=".form-select-lg" id="ingred_measure">
+                  <select class="form-select" aria-label=".form-select-lg" id="ingred_measure_1" name="ingred_measure_1">
                       <option selected>Choose measure</option>
-                      <option value="1">grams</option>
-                      <option value="2">pieces</option>
-                      <option value="3">glasses</option>
-                      <option value="4">spoons</option>
-                      <option value="5">tea spoons</option>
-                      <option value="6">pinch</option>
+                      <option value="grams">grams</option>
+                      <option value="pieces">pieces</option>
+                      <option value="glasses">glasses</option>
+                      <option value="spoons">spoons</option>
+                      <option value="tea spoons">tea spoons</option>
+                      <option value="pinch">pinch</option>
                   </select>
               </div>
               <div class="col-sm-2">
                   <label for="amount" class="form-label">Amount</label>
-                  <input type="number" class="form-control" id="ingred_amount">
+                  <input type="number" class="form-control" id="ingred_amount_1" name="ingred_amount_1">
               </div>
           </div>
-
+<a class="btn" onclick="addIngredientField()">Add ingredient</a>
     </form>
+
 </div>
 
 {% endblock %}
