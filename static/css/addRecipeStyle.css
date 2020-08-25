@@ -21,6 +21,19 @@
     text-transform: uppercase;
 }
 
+.insert_recipe_form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5%;
+}
+
+.preview_image {
+    width: 200px;
+    height: 200px;
+}
+
+.meal_image_div {
+    height: 100%;
+}
 
 /* #5e8b4a
 #ca2545

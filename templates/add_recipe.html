@@ -11,7 +11,7 @@
     </div>
     <!-- Inserting recipe form -->
     <div class="container">
-        <form action="{{ url_for('insert_recipe') }}" method="POST">
+        <form action="{{ url_for('insert_recipe') }}" method="POST" class="insert_recipe_form">
             <div class="mb-3 row">
                 <div class="col-sm-12">
                     <label for="recipe_title" class="form-label">Recipe name</label>
@@ -40,14 +40,14 @@
                         value="4">
                 </div>
             </div>
-            <div class="mb-3 row">
+            <div class="mb-5 row">
                 <div class="col-sm-12">
                     <label for="meal_description" class="form-label">Meal description</label>
                     <textarea class="form-control" id="meal_description" name="meal_description" rows="3"
                         placeholder="Your meal description"></textarea>
                 </div>
             </div>
-            <hr>
+            <hr class="mb-5">
             <div class="mb-3 row" id="ingredient_list">
                 <div class="mb-3 row">
                     <div class="col-sm-6">
@@ -160,10 +160,10 @@
                             class="form-control" id="ingred_amount_5" name="ingred_amount_5"></div>
                 </div>
                 </div>
-                <div class="mb-3 row text-center">
+                <div class="mb-5 row text-center">
                 <a class="btn" onclick="addIngredientField()">Add ingredient<i class="material-icons">add</i></a>
             </div>
-            <hr>
+            <hr class="mb-5">
             <div id="preparation_steps">
                 <div class="mb-3 row">
                     <label for="preparation_1" class="col-sm-2 col-form-label">Step 1</label>
@@ -187,17 +187,22 @@
                     </div>
                 </div>
             </div>
-                <div class="mb-3 row text-center">
+                <div class="mb-5 row">
                     <a class="btn" onclick="addStepField()">Add another step<i class="material-icons">add</i></a>
                 </div>
-                <div class="form-file form-file-lg mb-3">
-                    <img id="uploadPreview" style="width: 100px; height: 100px;" />
+                <hr class="mb-5">
+                <div class="form-file form-file-lg mb-5 row meal_image_div">                  
+                    <div class="col text-center">
                     <input type="file" class="form-file-input" id="meal_image" onchange="PreviewImage()">
-                    <label class="form-file-label" for="meal_image">
-                        <span class="form-file-text">Choose file with meal picture...</span>
-                        <span class="form-file-button">Browse</span>
+                    <label class="lbl_for_img_btn" for="meal_image">
+                        <span class="form-file-button">Insert meal picture</span>
                     </label>
-                </div>
+
+
+                <img id="uploadPreview" class="preview_image"/>
+
+        </div>
+
                 
         </form>
 
