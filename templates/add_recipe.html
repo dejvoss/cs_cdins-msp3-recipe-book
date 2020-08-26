@@ -11,7 +11,7 @@
     </div>
     <!-- Inserting recipe form -->
     <div class="container">
-        <form action="{{ url_for('insert_recipe') }}" method="POST" class="insert_recipe_form">
+        <form action="{{ url_for('insert_recipe') }}" method="POST" enctype="multipart/form-data" class="insert_recipe_form">
             <div class="mb-3 row">
                 <div class="col-sm-12">
                     <label for="recipe_title" class="form-label">Recipe name</label>
@@ -193,7 +193,7 @@
                 <hr class="mb-5">
                 <div class="form-file form-file-lg mb-5 row meal_image_div">                  
                     <div class="col text-center">
-                    <input type="file" class="form-file-input" id="meal_image" name="meal_image" onchange="PreviewImage()">
+                    <input type="file" class="form-file-input" id="meal_image" name="meal_image" accept="image/*" onchange="PreviewImage()">
                     <label class="lbl_for_img_btn" for="meal_image">
                         <span class="form-file-button">Insert meal picture</span>
                     </label>
