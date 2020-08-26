@@ -19,9 +19,9 @@ app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif', '.JPG', '.PNG', '.GIF
 mongo = PyMongo(app)
 
 @app.route('/')
-@app.route('/home')
+@app.route('/home/get_recipes')
 def home():
-    return render_template("index.html")
+    return render_template("index.html", recipes=mongo.db.recipes.find())
 
 @app.route('/add_recipe')
 def add_recipe():

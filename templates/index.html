@@ -23,6 +23,17 @@
     
 </header>
 
-
+<section>
+  {% for recipes in recipes %}
+  <h1>{{recipes.recipe_title}}</h1>
+  <p>{{recipes.meal_description}}</p>
+  
+  {% for key, value in recipes.items() %}
+  <ul>
+  <li>{{key}}: {{value}}</li>
+</ul>
+{%endfor%}
+  {% endfor %}
+</section>
 
 {% endblock %}
