@@ -25,6 +25,8 @@
 
 <section>
   {% for recipes in recipes %}
+  <div class="row">
+    <div class="col-4">
   <h1>{{recipes.recipe_title}}</h1>
   <p>{{recipes.meal_description}}</p>
   
@@ -33,6 +35,8 @@
   <li>{{key}}: {{value}}</li>
 </ul>
 {%endfor%}
+</div>
+</div>
   {% endfor %}
 </section>
 

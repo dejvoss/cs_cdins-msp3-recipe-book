@@ -24,16 +24,17 @@ header {
 }
 
 #myMainVideo {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     min-width: 100%;
-    min-height: 100%;
+    max-height: 100vh;
     z-index: -1;
 }
 
 .video-content {
     margin-top:10%;
+    margin-bottom: 15%;
     width: 80%;
     margin-right: auto;
     margin-left: auto;
@@ -114,20 +115,24 @@ header {
 
 .main-navbar {
     background-color: #5e8b4a;
-    height: 64px;
     padding: 1px;
-    transition: 0.4s;
+    height: 64px;
+    width: 100%;
     position: fixed;
     top: 0;
-    width: 100%;
+    transition: 0.8s;
+    
 }
 
 .main-nav-def {
     background-color: transparent;
-    padding: 15px;
-    transition: 0.4s;
+    padding: 15px;  
     height: 100px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     color: #74000A;
+    transition: 1s;
 }
 
 .navbar-expand-lg {
@@ -136,7 +141,7 @@ header {
 }
 
 .brand-logo{
-    position: fixed;
+    position: absolute;
     left: 5px;
 }
 
