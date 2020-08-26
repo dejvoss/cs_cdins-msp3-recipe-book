@@ -13,9 +13,8 @@ app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'recipe_book'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
-app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif', '.JPG', '.PNG', '.GIF']
-app.config["IMAGE_UPLOADS"] = "static/images/uploads"
+
 
 mongo = PyMongo(app)
 
