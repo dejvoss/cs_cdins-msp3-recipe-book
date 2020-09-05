@@ -36,14 +36,14 @@
         <img src="../static/images/logo-img-2.jpg"  class="d-inline-block align-top logo-img" alt="" loading="lazy">
         <h5 class="logo-caption">Cookbook</h5>
       </a>
-        
+        <div class="nav-links">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('add_recipe')}}">Add recipe</a>
           </li>
           
         </ul>
-
+      </div>
 </div>
   </nav>
 
@@ -144,11 +144,7 @@ function addStepField() {
   let step_counter = document.getElementById("preparation_steps").childElementCount;
   let new_step_nr = step_counter + 1;
   let html_step_field = '<label for="preparation_' + new_step_nr + '" class="col-sm-2 col-form-label">Step ' + new_step_nr + '</label><div class="col-sm-10"><textarea class="form-control" id="preparation_' + new_step_nr + '" name="preparation_' + new_step_nr + '" rows="4"placeholder="Type the preparation steps here"></textarea></div>';
-  let fieldDivEl = document.createElement("div");
-  fieldDivEl.innerHtml = html_step_field;
-  fieldDivEl.setAttribute("class", "mb-3 row");
   document.getElementById('preparation_steps').insertAdjacentHTML('beforeend', '<div class="mb-3 row">' +  html_step_field + '</div>');
-  // document.getElementById("preparation_steps").appendChild(fieldDivEl);
 }
 function PreviewImage() {
         var oFReader = new FileReader();
