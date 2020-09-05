@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home/get_recipes')
 def home():
-    return render_template("index.html", recipes=mongo.db.recipes.find())
+    return render_template("index.html", recipes = mongo.db.recipes.find())
 
 @app.route('/add_recipe')
 def add_recipe():
@@ -39,6 +39,10 @@ def insert_recipe():
     mongo.save_file(my_img_name, request.files["meal_image"]) # save img meal file to the mongo database
     recipe_object['meal_image'] = my_img_name #change the name of recipe image to own name created above(my_img_name)
     recipe.insert_one(recipe_object) #insert recipe_object to the database
+    ingredient_base = mongo.db.ingredients_list
+    filtered_recipe_object = {k:v for k,v in recipe_object.items() if "ingredient" in k}
+    for k,v in filtered_recipe_object.items():
+        ingredient_base.insert_one({"name": v})
     return redirect(url_for('home'))
 
 if __name__ == "__main__":
