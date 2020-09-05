@@ -128,20 +128,27 @@ function myFunction() {
 
 
 function addIngredientField() {
-  var ingredient_counter = document.getElementById("ingredient_list").childElementCount;
-  var new_ingr_nr = ingredient_counter + 1;
-  var html_ingredient = '<div class="mb-3 row"><div class="col-sm-6"><label for="ingredients" class="form-label">Ingredient</label><input class="form-control" list="ingredients_list" placeholder="Type to search ingredients" id="ingredient_' + new_ingr_nr + '" name="ingredient_' + new_ingr_nr + '"><datalist id="ingredients_list"><option value="carrot"></datalist></div>';
-  var html_measure = '<div class="col-6 col-sm-4"><label for="measure" class="form-label">Measure</label><select class="form-select" aria-label=".form-select-lg" id="ingred_measure_' + new_ingr_nr + '" name="ingred_measure_' + new_ingr_nr + '"><option selected>Choose measure</option><option value="grams">grams</option><option value="pieces">pieces</option><option value="glasses">glasses</option><option value="spoons">spoons</option><option value="tea spoons">tea spoons</option><option value="pinch">pinch</option></select></div>';
-  var html_amount = '<div class="col-6 col-sm-2"><label for="amount" class="form-label">Amount</label><input type="number" class="form-control" id="ingred_amount_' + new_ingr_nr + '" name="ingred_amount_' + new_ingr_nr + '"></div></div>'
-  var html_ingr_full = html_ingredient + html_measure + html_amount;
-  document.getElementById("ingredient_list").innerHTML += html_ingr_full;
+  let ingredient_counter = document.getElementById("ingredient_list").childElementCount;
+  let new_ingr_nr = ingredient_counter + 1;
+  let html_ingredient = '<div class="col-sm-6"><label for="ingredients" class="form-label">Ingredient</label><input class="form-control" list="ingredients_list" placeholder="Type to search ingredients" id="ingredient_' + new_ingr_nr + '" name="ingredient_' + new_ingr_nr + '"><datalist id="ingredients_list"><option value="carrot"></datalist></div>';
+  let html_measure = '<div class="col-6 col-sm-4"><label for="measure" class="form-label">Measure</label><select class="form-select" aria-label=".form-select-lg" id="ingred_measure_' + new_ingr_nr + '" name="ingred_measure_' + new_ingr_nr + '"><option selected>Choose measure</option><option value="grams">grams</option><option value="decagrams">decagrams</option><option value="pieces">pieces</option><option value="glasses">glasses</option><option value="spoons">spoons</option><option value="tea spoons">tea spoons</option><option value="pinch">pinch</option></select></div>';
+  let html_amount = '<div class="col-6 col-sm-2"><label for="amount" class="form-label">Amount</label><input type="number" min="0" step="0.5" class="form-control" id="ingred_amount_' + new_ingr_nr + '" name="ingred_amount_' + new_ingr_nr + '"></div>'
+  let html_ingr_full = html_ingredient + html_measure + html_amount; //create a variable which contain all new html code for ingredient field
+  let divChildEl = document.createElement("div"); // create div element for new ingredient field
+  divChildEl.setAttribute("class", "mb-3 row");
+  divChildEl.innerHTML = html_ingr_full;
+  document.getElementById("ingredient_list").appendChild(divChildEl); // add div elemenet for new ingredient field
+  // document.getElementById("ingredient_list").lastChild.classList.add("mb-3");
+  
+
+  // document.getElementById("ingredient_list").innerHTML += html_ingr_full;
   
 }
 
 function addStepField() {
-  var step_counter = document.getElementById("preparation_steps").childElementCount;
-  var new_step_nr = step_counter + 1
-  var html_step_field = ' <div class="mb-3 row"><label for="preparation_' + new_step_nr + '" class="col-sm-2 col-form-label">Step ' + new_step_nr + '</label><div class="col-sm-10"><textarea class="form-control" id="preparation_' + new_step_nr + '" name="preparation_' + new_step_nr + '" rows="4"placeholder="Type the preparation steps here"></textarea></div></div>';
+  let step_counter = document.getElementById("preparation_steps").childElementCount;
+  let new_step_nr = step_counter + 1
+  let html_step_field = ' <div class="mb-3 row"><label for="preparation_' + new_step_nr + '" class="col-sm-2 col-form-label">Step ' + new_step_nr + '</label><div class="col-sm-10"><textarea class="form-control" id="preparation_' + new_step_nr + '" name="preparation_' + new_step_nr + '" rows="4"placeholder="Type the preparation steps here"></textarea></div></div>';
   document.getElementById("preparation_steps").innerHTML += html_step_field;
 }
 function PreviewImage() {
