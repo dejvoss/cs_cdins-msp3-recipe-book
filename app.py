@@ -25,7 +25,7 @@ def home():
 
 @app.route('/add_recipe')
 def add_recipe():
-    return render_template("add_recipe.html", ingredient_list = mongo.db.ingredients_list.find())
+    return render_template("add_recipe.html", pyingredient_list = mongo.db.ingredients_list.find())
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
