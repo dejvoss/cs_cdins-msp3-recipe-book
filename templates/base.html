@@ -138,18 +138,17 @@ function addIngredientField() {
   divChildEl.setAttribute("class", "mb-3 row");
   divChildEl.innerHTML = html_ingr_full;
   document.getElementById("ingredient_list").appendChild(divChildEl); // add div elemenet for new ingredient field
-  // document.getElementById("ingredient_list").lastChild.classList.add("mb-3");
-  
-
-  // document.getElementById("ingredient_list").innerHTML += html_ingr_full;
-  
 }
 
 function addStepField() {
   let step_counter = document.getElementById("preparation_steps").childElementCount;
-  let new_step_nr = step_counter + 1
-  let html_step_field = ' <div class="mb-3 row"><label for="preparation_' + new_step_nr + '" class="col-sm-2 col-form-label">Step ' + new_step_nr + '</label><div class="col-sm-10"><textarea class="form-control" id="preparation_' + new_step_nr + '" name="preparation_' + new_step_nr + '" rows="4"placeholder="Type the preparation steps here"></textarea></div></div>';
-  document.getElementById("preparation_steps").innerHTML += html_step_field;
+  let new_step_nr = step_counter + 1;
+  let html_step_field = '<label for="preparation_' + new_step_nr + '" class="col-sm-2 col-form-label">Step ' + new_step_nr + '</label><div class="col-sm-10"><textarea class="form-control" id="preparation_' + new_step_nr + '" name="preparation_' + new_step_nr + '" rows="4"placeholder="Type the preparation steps here"></textarea></div>';
+  let fieldDivEl = document.createElement("div");
+  fieldDivEl.innerHtml = html_step_field;
+  fieldDivEl.setAttribute("class", "mb-3 row");
+  document.getElementById('preparation_steps').insertAdjacentHTML('beforeend', '<div class="mb-3 row">' +  html_step_field + '</div>');
+  // document.getElementById("preparation_steps").appendChild(fieldDivEl);
 }
 function PreviewImage() {
         var oFReader = new FileReader();
