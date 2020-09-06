@@ -5,23 +5,33 @@ from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from werkzeug.utils import secure_filename
 import datetime
+import base64
+from base64 import b64encode
+
+
 
 if os.path.exists("env.py"):
     import env
 
 app = Flask(__name__)
-
+app.jinja_env.filters['b64d'] = lambda u: b64encode(u).decode()
 app.config["MONGO_DBNAME"] = 'recipe_book'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif', '.JPG', '.PNG', '.GIF']
 
 
 mongo = PyMongo(app)
+db = mongo.db.recipes
 
 @app.route('/')
 @app.route('/home/get_recipes')
 def home():
     return render_template("index.html", recipes = mongo.db.recipes.find())
+# def ImgURL(url):
+#     img = urllib.urlopen(url).read()
+#     encoded_string = base64.b64encode(img)
+#     return encoded_string
+
 
 @app.route('/add_recipe')
 def add_recipe():
