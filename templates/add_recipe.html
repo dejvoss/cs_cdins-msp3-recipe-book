@@ -3,227 +3,230 @@
 {% block content %}
 <div class="menushadow"></div>
 <div class="background-image">
-<div class="head-captions">
-   <h2>Share your meal recipe with others.</h2>
-   <p>It is so easy, fill in all fields and press submit button. Your recipe will be accesibly in recipe book
-      immediatly.
-   </p>
-</div>
-<!-- Inserting recipe form -->
-<div class="container">
-   <form action="{{ url_for('insert_recipe') }}" method="POST" enctype="multipart/form-data" class="insert_recipe_form">
-      <div class="mb-3 row">
-         <div class="col-sm-12">
-            <label for="recipe_title" class="form-label">Recipe name</label>
-            <input type="text" class="form-control form-control-lg" id="recipe_title" name="recipe_title"
-               placeholder="Your meal name">
+   <div class="head-captions">
+      <h2>Share your meal recipe with others.</h2>
+      <p>It is so easy, fill in all fields and press submit button. Your recipe will be accesibly in recipe book
+         immediatly.
+      </p>
+   </div>
+   <!-- Inserting recipe form -->
+   <div class="container">
+      <form action="{{ url_for('insert_recipe') }}" method="POST" enctype="multipart/form-data"
+         class="insert_recipe_form">
+         <div class="mb-3 row">
+            <div class="col-sm-12">
+               <label for="recipe_title" class="form-label">Recipe name</label>
+               <input type="text" class="form-control form-control-lg" id="recipe_title" name="recipe_title"
+                  placeholder="Your meal name">
+            </div>
          </div>
-      </div>
-      <div class="mb-3 row">
-         <div class="col-sm-12 col-md-4">
-            <label for="meal_type" class="form-label">Meal type</label>
-            <input class="form-control" list="meal_type_list" id="meal_type" name="meal_type"
-               placeholder="Type to search meal type">
-            <datalist id="meal_type_list">
-               <option value="Hot meal">
-               <option value="Cold meal">
-            </datalist>
+         <div class="mb-3 row">
+            <div class="col-sm-12 col-md-4">
+               <label for="meal_type" class="form-label">Meal type</label>
+               <select class="form-select" aria-label="meal_type" name="meal_type">
+                  <option selected>Open this select meal type</option>
+                  <option value="Warm meal">Warm meal</option>
+                  <option value="Cold meal">Cold meal</option>
+                  <option value="Drink">Drink</option>
+               </select>
+            </div>
+            <div class="col-sm-12 col-md-4">
+               <label for="prep_time" class="form-label">Preparation time (minutes)</label>
+               <input type="range" class="form-range" min="5" max="240" step="5" id="prep_time" name="prep_time"
+                  value="60">
+            </div>
+            <div class="col-sm-12 col-md-4">
+               <label for="portion_qty" class="form-label">Number of portions</label>
+               <input type="range" class="form-range" min="1" max="10" step="1" id="portion_qty" name="portion_qty"
+                  value="4">
+            </div>
          </div>
-         <div class="col-sm-12 col-md-4">
-         <label for="prep_time" class="form-label">Preparation time (minutes)</label>
-         <input type="range" class="form-range" min="5" max="240" step="5" id="prep_time" name="prep_time"
-            value="60">
+         <div class="mb-5 row">
+            <div class="col-sm-12">
+               <label for="meal_description" class="form-label">Meal description</label>
+               <textarea class="form-control" id="meal_description" name="meal_description" rows="3"
+                  placeholder="Your meal description"></textarea>
+            </div>
          </div>
-         <div class="col-sm-12 col-md-4">
-         <label for="portion_qty" class="form-label">Number of portions</label>
-         <input type="range" class="form-range" min="1" max="10" step="1" id="portion_qty" name="portion_qty"
-            value="4">
+         <hr class="mb-5">
+         <div class="mb-3 row" id="ingredient_list">
+            <div class="mb-3 row">
+               <div class="col-sm-6">
+                  <label for="ingredients" class="form-label">Ingredient</label>
+                  <input class="form-control" list="ingredients_list1" placeholder="Type to search ingredients"
+                     id="ingredient_1" name="ingredient_1">
+                  <datalist id="ingredients_list1">
+                     {% for ingredient in pyingredient_list %}
+                     <option value="{{ingredient.name}}">
+                     </option>
+                     {% endfor %}
+                  </datalist>
+               </div>
+               <div class="col-6 col-sm-4">
+                  <label for="measure" class="form-label">Measure</label>
+                  <select class="form-select" aria-label=".form-select-lg" id="ingred_measure_1"
+                     name="ingred_measure_1">
+                     <option selected="">Choose measure</option>
+                     <option value="grams">grams</option>
+                     <option value="decagrams">decagrams</option>
+                     <option value="pieces">pieces</option>
+                     <option value="glasses">glasses</option>
+                     <option value="spoons">spoons</option>
+                     <option value="tea spoons">tea spoons</option>
+                     <option value="pinch">pinch</option>
+                  </select>
+               </div>
+               <div class="col -6 col-sm-2">
+                  <label for="amount" class="form-label">Amount</label>
+                  <input type="number" min="0" step="0.5" class="form-control" id="ingred_amount_1"
+                     name="ingred_amount_1">
+               </div>
+            </div>
+            <div class="mb-3 row">
+               <div class="col-sm-6"><label for="ingredients" class="form-label">Ingredient</label><input
+                     class="form-control" list="ingredients_list2" placeholder="Type to search ingredients"
+                     id="ingredient_2" name="ingredient_2">
+                  <datalist id="ingredients_list2">
+                     {% for ingredient2 in ingredient_list %}
+                     <option value="{{ingredient2.name}}">
+                     </option>
+                     {% endfor %}
+                  </datalist>
+               </div>
+               <div class="col-6 col-sm-4"><label for="measure" class="form-label">Measure</label><select
+                     class="form-select" aria-label=".form-select-lg" id="ingred_measure_2" name="ingred_measure_2">
+                     <option selected="">Choose measure</option>
+                     <option value="grams">grams</option>
+                     <option value="decagrams">decagrams</option>
+                     <option value="pieces">pieces</option>
+                     <option value="glasses">glasses</option>
+                     <option value="spoons">spoons</option>
+                     <option value="tea spoons">tea spoons</option>
+                     <option value="pinch">pinch</option>
+                  </select></div>
+               <div class="col-6 col-sm-2"><label for="amount" class="form-label">Amount</label><input type="number"
+                     min="0" step="0.5" class="form-control" id="ingred_amount_2" name="ingred_amount_2"></div>
+            </div>
+            <div class="mb-3 row">
+               <div class="col-sm-6">
+                  <label for="ingredients" class="form-label">Ingredient</label>
+                  <input class="form-control" list="ingredients_list3" placeholder="Type to search ingredients"
+                     id="ingredient_3" name="ingredient_3">
+                  <datalist id="ingredients_list3">
+                     {% for ingredient_list in ingredient_list %}
+                     <option value="{{ingredient_list.name}}">
+                     </option>
+                     {% endfor %}
+                  </datalist>
+               </div>
+               <div class="col-6 col-sm-4"><label for="measure" class="form-label">Measure</label>
+                  <select class="form-select" aria-label=".form-select-lg" id="ingred_measure_3"
+                     name="ingred_measure_3">
+                     <option selected="">Choose measure</option>
+                     <option value="grams">grams</option>
+                     <option value="decagrams">decagrams</option>
+                     <option value="pieces">pieces</option>
+                     <option value="glasses">glasses</option>
+                     <option value="spoons">spoons</option>
+                     <option value="tea spoons">tea spoons</option>
+                     <option value="pinch">pinch</option>
+                  </select></div>
+               <div class="col-6 col-sm-2"><label for="amount" class="form-label">Amount</label><input type="number"
+                     min="0" step="0.5" class="form-control" id="ingred_amount_3" name="ingred_amount_3"></div>
+            </div>
+            <div class="mb-3 row">
+               <div class="col-sm-6"><label for="ingredients" class="form-label">Ingredient</label><input
+                     class="form-control" list="ingredients_list4" placeholder="Type to search ingredients"
+                     id="ingredient_4" name="ingredient_4"><datalist id="ingredients_list4">
+                     {% for ingredient_list in pyingredient_list %}
+                     <option value="{{ingredient_list.name}}">
+                     </option>
+                     {% endfor %}
+                  </datalist></div>
+               <div class="col-6 col-sm-4"><label for="measure" class="form-label">Measure</label><select
+                     class="form-select" aria-label=".form-select-lg" id="ingred_measure_4" name="ingred_measure_4">
+                     <option selected="">Choose measure</option>
+                     <option value="grams">grams</option>
+                     <option value="decagrams">decagrams</option>
+                     <option value="pieces">pieces</option>
+                     <option value="glasses">glasses</option>
+                     <option value="spoons">spoons</option>
+                     <option value="tea spoons">tea spoons</option>
+                     <option value="pinch">pinch</option>
+                  </select></div>
+               <div class="col-6 col-sm-2"><label for="amount" class="form-label">Amount</label><input type="number"
+                     min="0" step="0.5" class="form-control" id="ingred_amount_4" name="ingred_amount_4"></div>
+            </div>
+            <div class="mb-3 row">
+               <div class="col-sm-6"><label for="ingredients" class="form-label">Ingredient</label>
+                  <input class="form-control" list="ingredients_list5" placeholder="Type to search ingredients"
+                     id="ingredient_5" name="ingredient_5">
+                  <datalist id="ingredients_list5">
+                     {% for ingredient_list in ingredient_list %}
+                     <option value="{{ingredient_list.name}}">
+                     </option>
+                     {% endfor %}
+                  </datalist>
+               </div>
+               <div class="col-6 col-sm-4"><label for="measure" class="form-label">Measure</label><select
+                     class="form-select" aria-label=".form-select-lg" id="ingred_measure_5" name="ingred_measure_5">
+                     <option selected="">Choose measure</option>
+                     <option value="grams">grams</option>
+                     <option value="decagrams">decagrams</option>
+                     <option value="pieces">pieces</option>
+                     <option value="glasses">glasses</option>
+                     <option value="spoons">spoons</option>
+                     <option value="tea spoons">tea spoons</option>
+                     <option value="pinch">pinch</option>
+                  </select></div>
+               <div class="col-6 col-sm-2"><label for="amount" class="form-label">Amount</label><input type="number"
+                     min="0" step="0.5" class="form-control" id="ingred_amount_5" name="ingred_amount_5"></div>
+            </div>
          </div>
-      </div>
-      <div class="mb-5 row">
-      <div class="col-sm-12">
-      <label for="meal_description" class="form-label">Meal description</label>
-      <textarea class="form-control" id="meal_description" name="meal_description" rows="3"
-         placeholder="Your meal description"></textarea>
-      </div>
-      </div>
-      <hr class="mb-5">
-      <div class="mb-3 row" id="ingredient_list">
-      <div class="mb-3 row">
-      <div class="col-sm-6">
-      <label for="ingredients" class="form-label">Ingredient</label>
-      <input class="form-control" list="ingredients_list1" placeholder="Type to search ingredients"
-         id="ingredient_1" name="ingredient_1">
-      <datalist id="ingredients_list1">
-      {% for ingredient in pyingredient_list %}
-      <option value="{{ingredient.name}}">
-      </option>
-      {% endfor %}
-      </datalist>
-      </div>
-      <div class="col-6 col-sm-4">
-      <label for="measure" class="form-label">Measure</label>
-      <select class="form-select" aria-label=".form-select-lg" id="ingred_measure_1"
-         name="ingred_measure_1">
-      <option selected="">Choose measure</option>
-      <option value="grams">grams</option>
-      <option value="decagrams">decagrams</option>
-      <option value="pieces">pieces</option>
-      <option value="glasses">glasses</option>
-      <option value="spoons">spoons</option>
-      <option value="tea spoons">tea spoons</option>
-      <option value="pinch">pinch</option>
-      </select>
-      </div>
-      <div class="col -6 col-sm-2">
-      <label for="amount" class="form-label">Amount</label>
-      <input type="number" min="0" step="0.5" class="form-control" id="ingred_amount_1" name="ingred_amount_1">
-      </div>
-      </div>
-      <div class="mb-3 row">
-      <div class="col-sm-6"><label for="ingredients" class="form-label">Ingredient</label><input
-         class="form-control" list="ingredients_list2" placeholder="Type to search ingredients"
-         id="ingredient_2" name="ingredient_2">
-      <datalist id="ingredients_list2">
-      {% for ingredient2 in ingredient_list %}
-      <option value="{{ingredient2.name}}">
-      </option>
-      {% endfor %}
-      </datalist>
-      </div>
-      <div class="col-6 col-sm-4"><label for="measure" class="form-label">Measure</label><select
-         class="form-select" aria-label=".form-select-lg" id="ingred_measure_2"
-         name="ingred_measure_2">
-      <option selected="">Choose measure</option>
-      <option value="grams">grams</option>
-      <option value="decagrams">decagrams</option>
-      <option value="pieces">pieces</option>
-      <option value="glasses">glasses</option>
-      <option value="spoons">spoons</option>
-      <option value="tea spoons">tea spoons</option>
-      <option value="pinch">pinch</option>
-      </select></div>
-      <div class="col-6 col-sm-2"><label for="amount" class="form-label">Amount</label><input type="number" min="0" step="0.5"
-         class="form-control" id="ingred_amount_2" name="ingred_amount_2"></div>
-      </div>
-      <div class="mb-3 row">
-      <div class="col-sm-6">
-      <label for="ingredients" class="form-label">Ingredient</label>
-      <input class="form-control" list="ingredients_list3" placeholder="Type to search ingredients" id="ingredient_3" name="ingredient_3">
-      <datalist id="ingredients_list3">
-      {% for ingredient_list in ingredient_list %}
-      <option value="{{ingredient_list.name}}">
-      </option>
-      {% endfor %}
-      </datalist>
-      </div>
-      <div class="col-6 col-sm-4"><label for="measure" class="form-label">Measure</label>
-      <select class="form-select" aria-label=".form-select-lg" id="ingred_measure_3"
-         name="ingred_measure_3">
-      <option selected="">Choose measure</option>
-      <option value="grams">grams</option>
-      <option value="decagrams">decagrams</option>
-      <option value="pieces">pieces</option>
-      <option value="glasses">glasses</option>
-      <option value="spoons">spoons</option>
-      <option value="tea spoons">tea spoons</option>
-      <option value="pinch">pinch</option>
-      </select></div>
-      <div class="col-6 col-sm-2"><label for="amount" class="form-label">Amount</label><input type="number" min="0" step="0.5"
-         class="form-control" id="ingred_amount_3" name="ingred_amount_3"></div>
-      </div>
-      <div class="mb-3 row">
-      <div class="col-sm-6"><label for="ingredients" class="form-label">Ingredient</label><input
-         class="form-control" list="ingredients_list4" placeholder="Type to search ingredients"
-         id="ingredient_4" name="ingredient_4"><datalist id="ingredients_list4">
-      {% for ingredient_list in pyingredient_list %}
-      <option value="{{ingredient_list.name}}">
-      </option>
-      {% endfor %}
-      </datalist></div>
-      <div class="col-6 col-sm-4"><label for="measure" class="form-label">Measure</label><select
-         class="form-select" aria-label=".form-select-lg" id="ingred_measure_4"
-         name="ingred_measure_4">
-      <option selected="">Choose measure</option>
-      <option value="grams">grams</option>
-      <option value="decagrams">decagrams</option>
-      <option value="pieces">pieces</option>
-      <option value="glasses">glasses</option>
-      <option value="spoons">spoons</option>
-      <option value="tea spoons">tea spoons</option>
-      <option value="pinch">pinch</option>
-      </select></div>
-      <div class="col-6 col-sm-2"><label for="amount" class="form-label">Amount</label><input type="number" min="0" step="0.5"
-         class="form-control" id="ingred_amount_4" name="ingred_amount_4"></div>
-      </div>
-      <div class="mb-3 row">
-      <div class="col-sm-6"><label for="ingredients" class="form-label">Ingredient</label>
-      <input class="form-control" list="ingredients_list5" placeholder="Type to search ingredients" id="ingredient_5" name="ingredient_5">
-      <datalist id="ingredients_list5">
-      {% for ingredient_list in ingredient_list %}
-      <option value="{{ingredient_list.name}}">
-      </option>
-      {% endfor %}
-      </datalist>
-      </div>
-      <div class="col-6 col-sm-4"><label for="measure" class="form-label">Measure</label><select
-         class="form-select" aria-label=".form-select-lg" id="ingred_measure_5"
-         name="ingred_measure_5">
-      <option selected="">Choose measure</option>
-      <option value="grams">grams</option>
-      <option value="decagrams">decagrams</option>
-      <option value="pieces">pieces</option>
-      <option value="glasses">glasses</option>
-      <option value="spoons">spoons</option>
-      <option value="tea spoons">tea spoons</option>
-      <option value="pinch">pinch</option>
-      </select></div>
-      <div class="col-6 col-sm-2"><label for="amount" class="form-label">Amount</label><input type="number" min="0" step="0.5"
-         class="form-control" id="ingred_amount_5" name="ingred_amount_5"></div>
-      </div>
-      </div>
 
-         <a class="btn btn-outline-info" onclick="addIngredientField()">More ingredients<i class="material-icons">add</i></a>
+         <a class="btn btn-outline-info" onclick="addIngredientField()">More ingredients<i
+               class="material-icons">add</i></a>
 
-      <hr class="mb-5">
-      <div id="preparation_steps">
-         <div class="mb-3 row">
-            <label for="preparation_1" class="col-sm-2 col-form-label">Step 1</label>
-            <div class="col-sm-10">
-               <textarea class="form-control" id="preparation_1" name="preparation_1" rows="4"
-                  placeholder="Type the preparation steps here"></textarea>
+         <hr class="mb-5">
+         <div id="preparation_steps">
+            <div class="mb-3 row">
+               <label for="preparation_1" class="col-sm-2 col-form-label">Step 1</label>
+               <div class="col-sm-10">
+                  <textarea class="form-control" id="preparation_1" name="preparation_1" rows="4"
+                     placeholder="Type the preparation steps here"></textarea>
+               </div>
+            </div>
+            <div class="mb-3 row">
+               <label for="preparation_2" class="col-sm-2 col-form-label">Step 2</label>
+               <div class="col-sm-10">
+                  <textarea class="form-control" id="preparation_2" name="preparation_2" rows="4"
+                     placeholder="Type the preparation steps here"></textarea>
+               </div>
+            </div>
+            <div class="mb-3 row">
+               <label for="preparation_3" class="col-sm-2 col-form-label">Step 3</label>
+               <div class="col-sm-10">
+                  <textarea class="form-control" id="preparation_3" name="preparation_3" rows="4"
+                     placeholder="Type the preparation steps here"></textarea>
+               </div>
             </div>
          </div>
-         <div class="mb-3 row">
-            <label for="preparation_2" class="col-sm-2 col-form-label">Step 2</label>
-            <div class="col-sm-10">
-               <textarea class="form-control" id="preparation_2" name="preparation_2" rows="4"
-                  placeholder="Type the preparation steps here"></textarea>
-            </div>
-         </div>
-         <div class="mb-3 row">
-            <label for="preparation_3" class="col-sm-2 col-form-label">Step 3</label>
-            <div class="col-sm-10">
-               <textarea class="form-control" id="preparation_3" name="preparation_3" rows="4"
-                  placeholder="Type the preparation steps here"></textarea>
-            </div>
-         </div>
-      </div>
 
          <a class="btn btn-outline-info" onclick="addStepField()">More steps<i class="material-icons">add</i></a>
-      
-      <hr class="mb-5">
-      <div class="form-file form-file-lg mb-5 row meal_image_div">
-         <div class="col text-center">
-            <input type="file" class="form-file-input" id="meal_image" name="meal_image" accept="image/*" onchange="PreviewImage()">
-            <label class="lbl_for_img_btn" for="meal_image">
-            <span class="form-file-button">Insert meal picture</span>
-            </label>
-            <img id="uploadPreview" class="preview_image"/>
-         </div>
+
+         <hr class="mb-5">
+         <div class="form-file form-file-lg mb-5 row meal_image_div">
+            <div class="col text-center">
+               <input type="file" class="form-file-input" id="meal_image" name="meal_image" accept="image/*"
+                  onchange="PreviewImage()">
+               <label class="lbl_for_img_btn" for="meal_image">
+                  <span class="form-file-button">Insert meal picture</span>
+               </label>
+               <img id="uploadPreview" class="preview_image" />
+            </div>
          </div>
          <button type="submit" class="btn btn-lg btn-success">Insert recipe</button>
-   </form>
+      </form>
    </div>
 </div>
 {% endblock %}
