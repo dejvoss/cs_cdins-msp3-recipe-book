@@ -24,10 +24,12 @@
 </header>
 
 <section id="recipes">
-  {% for recipes in recipes %}
+  <div class="container">
   <div class="row">
+  {% for recipes in recipes %}
+  
     <div class="col-4">
-  <h1>{{recipes.recipe_title}}</h1>
+  <h2>{{recipes.recipe_title}}</h2>
   {% if recipes.meal_image == "" %}
   <img class="meal_image" src="{{url_for('static', filename='images/def_meal_img.jpg')}}" alt="meal image">
   {% else %}
@@ -59,18 +61,29 @@
 
   {% endif %}
 
-  
-
   <p>{{recipes.meal_description}}</p>
-  
-  {% for key, value in recipes.items() %}
-  <ul>
-  <li>{{key}}: {{value}}</li>
-</ul>
-{%endfor%}
+
+  <ul class="ingredients_list">
+    {% for k, v in recipes.items() %}
+    {% if "amount" in k %}
+        <li class="ingr_amount">{{v}}</li>
+    {% elif "measure" in k %}
+        <li class="ingr_measure">{{v}}</li>
+    {% elif "ingredient" in k %}
+        <li class ="ingr_name"> {{v}}</li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+
+  <ol class="preparation_steps_list">
+
+  </ol>
+
 </div>
-</div>
+
   {% endfor %}
+</div>
+</div>
 </section>
 
 {% endblock %}
