@@ -1,4 +1,4 @@
-!-- Page for adding recipe - it is extend the base.html -->
+<!-- Page for adding recipe - it is extend the base.html -->
 {% extends 'base.html' %}
 {% block content %}
 <div class="menushadow"></div>
@@ -85,11 +85,10 @@
          class="form-control" list="ingredients_list2" placeholder="Type to search ingredients"
          id="ingredient_2" name="ingredient_2">
       <datalist id="ingredients_list2">
-          {{ pthlist }}
-      <!-- {% for ingredient2 in ingredient_list %}
+      {% for ingredient2 in ingredient_list %}
       <option value="{{ingredient2.name}}">
       </option>
-      {% endfor %} -->
+      {% endfor %}
       </datalist>
       </div>
       <div class="col-6 col-sm-4"><label for="measure" class="form-label">Measure</label><select
@@ -183,9 +182,9 @@
          class="form-control" id="ingred_amount_5" name="ingred_amount_5"></div>
       </div>
       </div>
-      <div class="mb-5 row text-center">
-         <a class="btn" onclick="addIngredientField()">Add ingredient<i class="material-icons">add</i></a>
-      </div>
+
+         <a class="btn btn-outline-info" onclick="addIngredientField()">More ingredients<i class="material-icons">add</i></a>
+
       <hr class="mb-5">
       <div id="preparation_steps">
          <div class="mb-3 row">
@@ -210,9 +209,9 @@
             </div>
          </div>
       </div>
-      <div class="mb-5 row">
-         <a class="btn" onclick="addStepField()">Add another step<i class="material-icons">add</i></a>
-      </div>
+
+         <a class="btn btn-outline-info" onclick="addStepField()">More steps<i class="material-icons">add</i></a>
+      
       <hr class="mb-5">
       <div class="form-file form-file-lg mb-5 row meal_image_div">
          <div class="col text-center">
@@ -222,7 +221,8 @@
             </label>
             <img id="uploadPreview" class="preview_image"/>
          </div>
-         <button type="submit" class="btn btn-primary">Insert recipe</button>
+         </div>
+         <button type="submit" class="btn btn-lg btn-success">Insert recipe</button>
    </form>
    </div>
 </div>
