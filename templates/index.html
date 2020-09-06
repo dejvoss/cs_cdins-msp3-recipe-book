@@ -63,22 +63,6 @@
 
   <p>{{recipes.meal_description}}</p>
 
-  <ul class="ingredients_list">
-    {% for k, v in recipes.items() %}
-    {% if "amount" in k %}
-        <li class="ingr_amount">{{v}}</li>
-    {% elif "measure" in k %}
-        <li class="ingr_measure">{{v}}</li>
-    {% elif "ingredient" in k %}
-        <li class ="ingr_name"> {{v}}</li>
-    {% endif %}
-    {% endfor %}
-  </ul>
-
-  <ol class="preparation_steps_list">
-
-  </ol>
-
 </div>
 
   {% endfor %}
