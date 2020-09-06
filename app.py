@@ -39,6 +39,7 @@ def add_recipe():
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
+    # create uniq name for meal image and store as decoded object in mongodb
     todaysDate = datetime.datetime.now()    #today date and time for imange file name
     string_date = todaysDate.strftime("%Y%m%d %H:%M:%S") # convert date, time to string
     recipe = mongo.db.recipes # database collection
