@@ -36,7 +36,7 @@
         <img src="../static/images/logo-img-2.jpg"  class="d-inline-block align-top logo-img" alt="" loading="lazy">
         <h5 class="logo-caption">Cookbook</h5>
       </a>
-      <a class="icon mobile_menu_btn">
+      <a class="icon mobile_menu_btn" onclick="openNav()">
         <i class="fa fa-bars"></i>
       </a>
         <div class="nav-links">
@@ -49,6 +49,15 @@
       </div>
 </div>
   </nav>
+  <div class="mobile_fs_nav" id="mobile_nav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="mobile_nav_content">
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
 
   {% block content %}
 
@@ -157,6 +166,15 @@ function PreviewImage() {
             document.getElementById("uploadPreview").src = oFREvent.target.result;
         };
     };
+    /* Open when someone clicks on the span element */
+function openNav() {
+  document.getElementById("mobile_nav").style.width = "100%";
+}
+
+/* Close when someone clicks on the "x" symbol inside the overlay */
+function closeNav() {
+  document.getElementById("mobile_nav").style.width = "0%";
+}
   </script>
 </body>
 
