@@ -20,13 +20,14 @@ app.jinja_env.filters['b64d'] = lambda u: b64encode(u).decode()
 app.config["MONGO_DBNAME"] = 'recipe_book'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif', '.JPG', '.PNG', '.GIF']
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 
 mongo = PyMongo(app)
 db = mongo.db.recipes
 
 class InsertRecipeForm(FlaskForm):
-    recipe_name = StringField('recipe_name', validators=[InputRequired()])
+    recipe_name = StringField('Recipe name', validators=[InputRequired()])
     # meal_type = SelectField('meal_type', choices=[('Warm meal', 'warm_meal'), ('Cold meal', 'cold_meal'), ('drink', 'drink')], validators=[DataRequired()])
     # preparation_time = IntegerField('preparation_time', validators=[InputRequired(), NumberRange(min=5, max=180)])
     # portions = IntegerField('portions', validators=[DataRequired(), NumberRange(min=1, max=6)])
@@ -46,7 +47,7 @@ def home():
 @app.route('/add_recipe')
 def add_recipe():
     form = InsertRecipeForm()
-    return render_template("add_recipe.html")
+    return render_template("add_recipe.html", form=form)
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
