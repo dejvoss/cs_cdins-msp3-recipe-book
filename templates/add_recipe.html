@@ -20,6 +20,28 @@
                {{ form.recipe_name(class_='form-control form-control-lg', place_holder='Type recipe name here') }}
             </div>
          </div>
+         <div class="mb-3 row">
+            <div class="col-sm-12 col-md-4">
+               {{ form.meal_type.label(class_='form-label') }}
+               {{ form.meal_type(class_='form-select') }}
+            </div>
+            <div class="col-sm-12 col-md-4">
+               {{ form.preparation_time.label(class_='form-label') }}
+               {{ form.preparation_time(type='range', class_='form-range', min='5', max='180', step='5')}}
+            </div>
+            <div class="col-sm-12 col-md-4">
+               {{ form.portions.label(class_='form-label') }}
+               {{ form.portions(type='range', class_='form-range', min='1', max='6', step='1') }}
+               
+            </div>
+
+         </div>
+         <div class="mb-5 row">
+            <div class="col-sm-12">
+               {{ form.meal_description.label(class_='form-label') }}
+               {{ form.meal_description(class_='form-control', rows='3', placeholder='Write here your own meal description') }}
+            </div>
+         </div>
          </form>
    </div>
 </div>

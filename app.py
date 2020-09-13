@@ -28,10 +28,10 @@ db = mongo.db.recipes
 
 class InsertRecipeForm(FlaskForm):
     recipe_name = StringField('Recipe name', validators=[InputRequired()])
-    # meal_type = SelectField('meal_type', choices=[('Warm meal', 'warm_meal'), ('Cold meal', 'cold_meal'), ('drink', 'drink')], validators=[DataRequired()])
-    # preparation_time = IntegerField('preparation_time', validators=[InputRequired(), NumberRange(min=5, max=180)])
-    # portions = IntegerField('portions', validators=[DataRequired(), NumberRange(min=1, max=6)])
-    # meal_description = TextAreaField('meal_description', validators=[Optional])
+    meal_type = SelectField('Meal type', choices=[('warm_meal', 'Warm meal'), ('cold_meal', 'Cold meal'), ('drink', 'Drink')], validators=[DataRequired()])
+    preparation_time = IntegerField('Preparation time (minutes)', validators=[DataRequired(), NumberRange(min=5, max=180)])
+    portions = IntegerField('Amount of portions', validators=[DataRequired(), NumberRange(min=1, max=6)])
+    meal_description = TextAreaField('Meal description', validators=[Optional()])
 
 
 @app.route('/')
