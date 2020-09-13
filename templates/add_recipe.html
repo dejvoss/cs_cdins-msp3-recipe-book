@@ -3,14 +3,16 @@
 {% block content %}
 <div class="menushadow"></div>
 <div class="background-image">
-   <div class="head-captions">
-      <h2>Share your meal recipe with others.</h2>
-      <p>It is so easy, fill in all fields and press submit button. Your recipe will be accesibly in recipe book
-         immediatly.
-      </p>
-   </div>
+</div>
+   
    <!-- Inserting recipe form -->
-   <div class="container">
+   <div class="container my-form-container">
+      <div class="head-captions">
+         <h2>Share your meal recipe with others.</h2>
+         <p>It is so easy, fill in all fields and press submit button. Your recipe will be accesibly in recipe book
+            immediatly.
+         </p>
+      </div>
       <form action="{{ url_for('insert_recipe') }}" method="POST" enctype="multipart/form-data"
          class="insert_recipe_form">
          
@@ -43,15 +45,30 @@
             </div>
          </div>
          <hr class="mb-5">
-         <div class="mb-3 row" id="ingredient_list">
          <h5>Ingredients list</h5>
-        {{ form.ingredient_1(class_='table ingredient_table') }}
-        {{ form.ingredient_2(class_='table ingredient_table') }}
-        {{ form.ingredient_3(class_='table ingredient_table') }}
-        {{ form.ingredient_4(class_='table ingredient_table') }}
-        {{ form.ingredient_5(class_='table ingredient_table') }}
-         </div>
+         <div class="mb-3 row" id="ingredient_list">
          
+
+         {% for l in form.ingredient %}
+         <div class="row">
+         <div class="col-sm-6">
+         {{ l.form.name.label(class_='form-label') }}
+         {{ l.form.name(class_='form-control')}}
+         </div>
+         <div class="col-6 col-sm-2">
+         {{ l.form.amount.label(class_='form-label') }}
+         {{ l.form.amount(type='number', min='0.5', step='0.5', class_='form-control') }}   
+         </div>
+         <div class="col-6 col-sm-4">
+            {{ l.form.measure.label(class_='form-label') }}
+            {{ l.form.measure(class_='form-select') }}
+         </div>
+      </div>
+         {% endfor %}
+         
+
+         </div>
+         <a class="btn btn-outline-info" onclick="addIngredientField()">More steps<i class="material-icons">add</i></a>
          <div class="mb-3 row" id="preparation_steps">
             <h5>Preparation steps</h5>
             {{ form.prep_step_1.label(class_='col-sm-2 col-form-label') }}
@@ -61,5 +78,5 @@
          </div>
          </form>
    </div>
-</div>
+
 {% endblock %}

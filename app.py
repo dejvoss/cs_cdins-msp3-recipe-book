@@ -8,7 +8,7 @@ import datetime
 import base64
 from base64 import b64encode
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, DecimalField, SubmitField, TextAreaField, FileField, SelectField, IntegerField, FormField, Form, FloatField
+from wtforms import StringField, BooleanField, DecimalField, SubmitField, TextAreaField, FileField, SelectField, IntegerField, FormField, Form, FloatField, FieldList
 from wtforms.validators import DataRequired, InputRequired, NumberRange, Optional
 
 
@@ -30,7 +30,7 @@ measureList=[('g', 'grams'), ('dec', 'decagrams')]
 
 class Ingredients(Form):
     name = StringField('Ingredient name')
-    amount = FloatField('Amount')
+    amount = DecimalField('Amount')
     measure = SelectField('Measure', choices=measureList)
 
 class InsertRecipeForm(FlaskForm):
@@ -39,11 +39,7 @@ class InsertRecipeForm(FlaskForm):
     preparation_time = IntegerField('Preparation time (minutes)', validators=[DataRequired(), NumberRange(min=5, max=180)])
     portions = IntegerField('Amount of portions', validators=[DataRequired(), NumberRange(min=1, max=6)])
     meal_description = TextAreaField('Meal description', validators=[Optional()])
-    ingredient_1 = FormField(Ingredients)
-    ingredient_2 = FormField(Ingredients)
-    ingredient_3 = FormField(Ingredients)
-    ingredient_4 = FormField(Ingredients)
-    ingredient_5 = FormField(Ingredients)
+    ingredient = FieldList(FormField(Ingredients), min_entries=5, max_entries=15)
     prep_step_1 = TextAreaField("Step 1")
 
 @app.route('/')
