@@ -140,7 +140,7 @@ function myFunction() {
 function addIngredientField() {
   let ingredient_counter = document.getElementById("ingredient_list").childElementCount;
   let new_ingr_nr = ingredient_counter + 1;
-  let pernament_field_id = "ingredient-" + ingredient_counter + "-";
+  let pernament_field_id = "ingredients-" + ingredient_counter + "-";
   let field_id_name = pernament_field_id + "name";
   let field_id_amount = pernament_field_id + "amount";
   let field_id_measure = pernament_field_id + "measure";
@@ -156,9 +156,9 @@ function addIngredientField() {
 
 function addStepField() {
   let step_counter = document.getElementById("preparation_steps").childElementCount;
-  let new_step_nr = step_counter + 1;
-  let html_step_field = '<label for="preparation_' + new_step_nr + '" class="col-sm-2 col-form-label">Step ' + new_step_nr + '</label><div class="col-sm-10"><textarea class="form-control" id="preparation_' + new_step_nr + '" name="preparation_' + new_step_nr + '" rows="4"placeholder="Type the preparation steps here"></textarea></div>';
-  document.getElementById('preparation_steps').insertAdjacentHTML('beforeend', '<div class="mb-3 row">' +  html_step_field + '</div>');
+  let field_id = "preparation-" + step_counter + "-step"
+  let html_step_field = '<label class="col-sm-2 col-form-label" for="' + field_id + '">Preparation step</label><div class="col-sm-10"><textarea class="form-control" id="' + field_id + '" name="' + field_id + '" placeholder="Type the preparation step here" rows="4"></textarea></div>';
+  document.getElementById('preparation_steps').insertAdjacentHTML('beforeend', '<div class="row mb-3">' +  html_step_field + '</div>');
 }
 function PreviewImage() {
         var oFReader = new FileReader();
