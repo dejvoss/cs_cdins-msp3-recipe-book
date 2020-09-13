@@ -49,7 +49,7 @@
          <div class="mb-3 row" id="ingredient_list">
          
 
-         {% for l in form.ingredient %}
+         {% for l in form.ingredients %}
          <div class="row">
          <div class="col-sm-6">
          {{ l.form.name.label(class_='form-label') }}
@@ -65,18 +65,26 @@
          </div>
       </div>
          {% endfor %}
-         
-
-         </div>
-         <a class="btn btn-outline-info" onclick="addIngredientField()">More steps<i class="material-icons">add</i></a>
-         <div class="mb-3 row" id="preparation_steps">
-            <h5>Preparation steps</h5>
-            {{ form.prep_step_1.label(class_='col-sm-2 col-form-label') }}
-            <div class="col-sm-10">
-            {{ form.prep_step_1(class_='form-control', rows='4', placeholder='Type the preparation steps here') }}
-         </div>
-         </div>
-         </form>
    </div>
+
+         
+         <a class="btn btn-outline-info" onclick="addIngredientField()">More steps<i class="material-icons">add</i></a>
+         <h5>Preparation steps</h5>
+         <div class="mb-3 row" id="preparation_steps">
+            
+            {% for l in form.preparation %}
+            <div class="row mb-3">
+               {{ l.form.step.label(class_='col-sm-2 col-form-label') }}
+               <div class="col-sm-10">
+                  {{ l.form.step(class_='form-control', rows='4', placeholder='Type the preparation step here' )}}
+                  
+               </div>
+            </div>
+            {% endfor %}
+         </div>
+
+         </form>
+      </div>
+   
 
 {% endblock %}

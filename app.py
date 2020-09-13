@@ -33,14 +33,17 @@ class Ingredients(Form):
     amount = DecimalField('Amount')
     measure = SelectField('Measure', choices=measureList)
 
+class Preparations(Form):
+    step = TextAreaField('Preparation step')
+
 class InsertRecipeForm(FlaskForm):
     recipe_name = StringField('Recipe name', validators=[InputRequired()])
     meal_type = SelectField('Meal type', choices=[('warm_meal', 'Warm meal'), ('cold_meal', 'Cold meal'), ('drink', 'Drink')], validators=[DataRequired()])
     preparation_time = IntegerField('Preparation time (minutes)', validators=[DataRequired(), NumberRange(min=5, max=180)])
     portions = IntegerField('Amount of portions', validators=[DataRequired(), NumberRange(min=1, max=6)])
     meal_description = TextAreaField('Meal description', validators=[Optional()])
-    ingredient = FieldList(FormField(Ingredients), min_entries=5, max_entries=15)
-    prep_step_1 = TextAreaField("Step 1")
+    ingredients = FieldList(FormField(Ingredients), min_entries=5)
+    preparation = FieldList(FormField(Preparations), min_entries=3)
 
 @app.route('/')
 @app.route('/home/get_recipes')
