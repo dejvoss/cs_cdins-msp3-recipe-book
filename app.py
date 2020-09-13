@@ -7,7 +7,9 @@ from werkzeug.utils import secure_filename
 import datetime
 import base64
 from base64 import b64encode
-
+from flask_wtf import FlaskForm
+from wtforms import StringField, BooleanField, FloatField, SubmitField, TextAreaField, FileField, SelectField, IntegerField
+from wtforms.validators import DataRequired, InputRequired, NumberRange, Optional
 
 
 if os.path.exists("env.py"):
@@ -23,6 +25,14 @@ app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif', '.JPG', '.PNG', '.GIF
 mongo = PyMongo(app)
 db = mongo.db.recipes
 
+class InsertRecipeForm(FlaskForm):
+    recipe_name = StringField('recipe_name', validators=[InputRequired()])
+    # meal_type = SelectField('meal_type', choices=[('Warm meal', 'warm_meal'), ('Cold meal', 'cold_meal'), ('drink', 'drink')], validators=[DataRequired()])
+    # preparation_time = IntegerField('preparation_time', validators=[InputRequired(), NumberRange(min=5, max=180)])
+    # portions = IntegerField('portions', validators=[DataRequired(), NumberRange(min=1, max=6)])
+    # meal_description = TextAreaField('meal_description', validators=[Optional])
+
+
 @app.route('/')
 @app.route('/home/get_recipes')
 def home():
@@ -35,7 +45,8 @@ def home():
 
 @app.route('/add_recipe')
 def add_recipe():
-    return render_template("add_recipe.html", pyingredient_list = mongo.db.ingredients_list.find())
+    form = InsertRecipeForm()
+    return render_template("add_recipe.html")
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
