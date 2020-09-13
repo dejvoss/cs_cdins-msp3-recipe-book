@@ -8,7 +8,7 @@ import datetime
 import base64
 from base64 import b64encode
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, FloatField, SubmitField, TextAreaField, FileField, SelectField, IntegerField
+from wtforms import StringField, BooleanField, DecimalField, SubmitField, TextAreaField, FileField, SelectField, IntegerField, FormField, Form, FloatField
 from wtforms.validators import DataRequired, InputRequired, NumberRange, Optional
 
 
@@ -26,13 +26,25 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 mongo = PyMongo(app)
 db = mongo.db.recipes
 
+measureList=[('g', 'grams'), ('dec', 'decagrams')]
+
+class Ingredients(Form):
+    name = StringField('Ingredient name')
+    amount = FloatField('Amount')
+    measure = SelectField('Measure', choices=measureList)
+
 class InsertRecipeForm(FlaskForm):
     recipe_name = StringField('Recipe name', validators=[InputRequired()])
     meal_type = SelectField('Meal type', choices=[('warm_meal', 'Warm meal'), ('cold_meal', 'Cold meal'), ('drink', 'Drink')], validators=[DataRequired()])
     preparation_time = IntegerField('Preparation time (minutes)', validators=[DataRequired(), NumberRange(min=5, max=180)])
     portions = IntegerField('Amount of portions', validators=[DataRequired(), NumberRange(min=1, max=6)])
     meal_description = TextAreaField('Meal description', validators=[Optional()])
-
+    ingredient_1 = FormField(Ingredients)
+    ingredient_2 = FormField(Ingredients)
+    ingredient_3 = FormField(Ingredients)
+    ingredient_4 = FormField(Ingredients)
+    ingredient_5 = FormField(Ingredients)
+    prep_step_1 = TextAreaField("Step 1")
 
 @app.route('/')
 @app.route('/home/get_recipes')

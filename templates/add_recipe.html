@@ -42,6 +42,23 @@
                {{ form.meal_description(class_='form-control', rows='3', placeholder='Write here your own meal description') }}
             </div>
          </div>
+         <hr class="mb-5">
+         <div class="mb-3 row" id="ingredient_list">
+         <h5>Ingredients list</h5>
+        {{ form.ingredient_1(class_='table ingredient_table') }}
+        {{ form.ingredient_2(class_='table ingredient_table') }}
+        {{ form.ingredient_3(class_='table ingredient_table') }}
+        {{ form.ingredient_4(class_='table ingredient_table') }}
+        {{ form.ingredient_5(class_='table ingredient_table') }}
+         </div>
+         
+         <div class="mb-3 row" id="preparation_steps">
+            <h5>Preparation steps</h5>
+            {{ form.prep_step_1.label(class_='col-sm-2 col-form-label') }}
+            <div class="col-sm-10">
+            {{ form.prep_step_1(class_='form-control', rows='4', placeholder='Type the preparation steps here') }}
+         </div>
+         </div>
          </form>
    </div>
 </div>

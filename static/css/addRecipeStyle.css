@@ -26,6 +26,14 @@
     padding: 5%;
 }
 
+.ingredient_table tbody, .ingredient_table th {
+    display: flex;
+}
+
+.ingredient_table select {
+    height: 31px;
+}
+
 .preview_image {
     width: 200px;
     height: 200px;
