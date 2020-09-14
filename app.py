@@ -30,12 +30,12 @@ measureList=[('g', 'grams'), ('dec', 'decagrams')]
 meal_type_list=[('warm_meal', 'Warm meal'), ('cold_meal', 'Cold meal'), ('drink', 'Drink')]
 
 class Ingredients(Form):
-    name = StringField('Ingredient name')
-    amount = DecimalField('Amount')
-    measure = SelectField('Measure', choices=measureList)
+    name = StringField('Ingredient name', validators=[InputRequired()])
+    amount = DecimalField('Amount', validators=[InputRequired()])
+    measure = SelectField('Measure', choices=measureList, validators=[InputRequired()])
 
 class Preparations(Form):
-    step = TextAreaField('Preparation step')
+    step = TextAreaField('Preparation step', validators=[InputRequired()])
 
 class InsertRecipeForm(FlaskForm):
     recipe_name = StringField('Recipe name', validators=[InputRequired()])

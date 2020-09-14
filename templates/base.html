@@ -144,9 +144,9 @@ function addIngredientField() {
   let field_id_name = pernament_field_id + "name";
   let field_id_amount = pernament_field_id + "amount";
   let field_id_measure = pernament_field_id + "measure";
-  let html_ingredient = '<div class="col-sm-6"><label class="form-label" for="' + field_id_name + '">Ingredient name</label><input class="form-control" id="' + field_id_name + '" name="' + field_id_name + '" type="text"></div>';
-  let html_amount = '<div class="col-6 col-sm-2"><label class="form-label" for="' + field_id_amount + '">Amount</label><input class="form-control" id="' + field_id_amount + '" min="0.5" name="' + field_id_amount + '" step="0.5" type="number"></div>';
-  let html_measure = '<div class="col-6 col-sm-4"><label class="form-label" for="' + field_id_measure + '">Measure</label><select class="form-select" id="' + field_id_measure + '" name="' + field_id_measure + '"><option value="g">grams</option><option value="dec">decagrams</option></select></div>';
+  let html_ingredient = '<div class="col-sm-6"><label class="form-label" for="' + field_id_name + '">Ingredient name</label><input class="form-control" id="' + field_id_name + '" name="' + field_id_name + '" required type="text"></div>';
+  let html_amount = '<div class="col-6 col-sm-2"><label class="form-label" for="' + field_id_amount + '">Amount</label><input class="form-control" id="' + field_id_amount + '" min="0.5" name="' + field_id_amount + '" required step="0.5" type="number"></div>';
+  let html_measure = '<div class="col-6 col-sm-4"><label class="form-label" for="' + field_id_measure + '">Measure</label><select class="form-select" id="' + field_id_measure + '" name="' + field_id_measure + '" required><option value="g">grams</option><option value="dec">decagrams</option></select></div>';
   let html_ingr_full = html_ingredient + html_amount + html_measure; //create a variable which contain all new html code for ingredient field
   let divChildEl = document.createElement("div"); // create div element for new ingredient field
   divChildEl.setAttribute("class", "row");
@@ -157,7 +157,7 @@ function addIngredientField() {
 function addStepField() {
   let step_counter = document.getElementById("preparation_steps").childElementCount;
   let field_id = "preparation-" + step_counter + "-step"
-  let html_step_field = '<label class="col-sm-2 col-form-label" for="' + field_id + '">Preparation step</label><div class="col-sm-10"><textarea class="form-control" id="' + field_id + '" name="' + field_id + '" placeholder="Type the preparation step here" rows="4"></textarea></div>';
+  let html_step_field = '<label class="col-sm-2 col-form-label" for="' + field_id + '">Preparation step</label><div class="col-sm-10"><textarea class="form-control" id="' + field_id + '" name="' + field_id + '" placeholder="Type the preparation step here" required rows="4"></textarea></div>';
   document.getElementById('preparation_steps').insertAdjacentHTML('beforeend', '<div class="row mb-3">' +  html_step_field + '</div>');
 }
 function PreviewImage() {
