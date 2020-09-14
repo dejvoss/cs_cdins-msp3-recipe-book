@@ -27,6 +27,7 @@ mongo = PyMongo(app)
 db = mongo.db.recipes
 
 measureList=[('g', 'grams'), ('dec', 'decagrams')]
+meal_type_list=[('warm_meal', 'Warm meal'), ('cold_meal', 'Cold meal'), ('drink', 'Drink')]
 
 class Ingredients(Form):
     name = StringField('Ingredient name')
@@ -38,7 +39,7 @@ class Preparations(Form):
 
 class InsertRecipeForm(FlaskForm):
     recipe_name = StringField('Recipe name', validators=[InputRequired()])
-    meal_type = SelectField('Meal type', choices=[('warm_meal', 'Warm meal'), ('cold_meal', 'Cold meal'), ('drink', 'Drink')], validators=[DataRequired()])
+    meal_type = SelectField('Meal type', choices=meal_type_list, validators=[DataRequired()])
     preparation_time = IntegerField('Preparation time (minutes)', validators=[DataRequired(), NumberRange(min=5, max=180)])
     portions = IntegerField('Amount of portions', validators=[DataRequired(), NumberRange(min=1, max=6)])
     meal_description = TextAreaField('Meal description', validators=[Optional()])
@@ -64,24 +65,6 @@ def add_recipe():
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
-    # create uniq name for meal image and store as decoded object in mongodb
-    # todaysDate = datetime.datetime.now()    #today date and time for imange file name
-    # string_date = todaysDate.strftime("%Y%m%d %H:%M:%S") # convert date, time to string
-    # recipe = mongo.db.recipes # database collection
-    # recipe_object = request.form.to_dict() # render the html for to the dictionary object
-    # meal_img = request.files['meal_image'] # uploaded image of meal
-    # meal_img = secure_filename(meal_img.filename) # change name of image by secure_filename
-    # my_img_name = recipe_object["recipe_title"] + '.' + string_date + '.' + meal_img #create own file name to be uniq
-    # mongo.save_file(my_img_name, request.files["meal_image"]) # save img meal file to the mongo database
-    # recipe_object['meal_image'] = my_img_name #change the name of recipe image to own name created above(my_img_name)
-    # recipe.insert_one(recipe_object) #insert recipe_object to the database
-    # # insert ingredients to the ingredient database collection
-    # ingredient_base = mongo.db.ingredients_list
-    # filtered_recipe_object = {k:v for k,v in recipe_object.items() if "ingredient" in k}
-    # for k,v in filtered_recipe_object.items():
-    #     if ingredient_base.find( {"name": v} ).count() == 0:
-    #         if v != "":
-    #             ingredient_base.insert_one({"name": v})
     recipe_object = request.form.to_dict()
     print(recipe_object)
     return redirect(url_for('home'))
