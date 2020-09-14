@@ -8,7 +8,7 @@ import datetime
 import base64
 from base64 import b64encode
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, DecimalField, SubmitField, TextAreaField, FileField, SelectField, IntegerField, FormField, Form, FloatField, FieldList
+from wtforms import StringField, DecimalField, SubmitField, TextAreaField, FileField, SelectField, IntegerField, FormField, Form, FieldList
 from wtforms.validators import DataRequired, InputRequired, NumberRange, Optional
 
 
@@ -44,7 +44,8 @@ class InsertRecipeForm(FlaskForm):
     meal_description = TextAreaField('Meal description', validators=[Optional()])
     ingredients = FieldList(FormField(Ingredients), min_entries=5)
     preparation = FieldList(FormField(Preparations), min_entries=3)
-    submit = SubmitField('Insert recipe')
+    meal_image = FileField('Meal picture')
+    
 
 @app.route('/')
 @app.route('/home/get_recipes')

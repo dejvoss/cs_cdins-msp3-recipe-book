@@ -83,6 +83,17 @@
             {% endfor %}
          </div>
          <a class="btn btn-outline-info" onclick="addStepField()">More steps<i class="material-icons">add</i></a>
+         <hr class="mb-5">
+         <div class="form-file form-file-lg mb-5 row meal_image_div">
+            <div class="col text-center">
+            {{ form.meal_image(class_='form-file-input', onchange='PreviewImage()')}}
+            <label class="lbl_for_img_btn" for="meal_image">
+               <span class="form-file-button">Insert meal picture</span>
+            </label>
+
+               <img id="uploadPreview" class="preview_image" />
+            </div>
+         </div>
          <button type="submit" class="btn btn-lg btn-success">Insert recipe</button>
          </form>
       </div>
