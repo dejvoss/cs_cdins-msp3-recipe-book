@@ -4,9 +4,6 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from werkzeug.utils import secure_filename
-import datetime
-import base64
-from base64 import b64encode
 from flask_wtf import FlaskForm
 from wtforms import StringField, DecimalField, SubmitField, TextAreaField, FileField, SelectField, IntegerField, FormField, Form, FieldList
 from wtforms.validators import DataRequired, InputRequired, NumberRange, Optional
@@ -15,12 +12,16 @@ from wtforms.validators import DataRequired, InputRequired, NumberRange, Optiona
 if os.path.exists("env.py"):
     import env
 
+UPLOAD_FOLDER = 'media/images'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
 app = Flask(__name__)
 app.jinja_env.filters['b64d'] = lambda u: b64encode(u).decode()
 app.config["MONGO_DBNAME"] = 'recipe_book'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
-app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif', '.JPG', '.PNG', '.GIF']
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 
 mongo = PyMongo(app)
@@ -51,6 +52,7 @@ class InsertRecipeForm(FlaskForm):
 @app.route('/')
 @app.route('/home/get_recipes')
 def home():
+
     return render_template("index.html", recipes = mongo.db.recipes.find())
 # def ImgURL(url):
 #     img = urllib.urlopen(url).read()
@@ -63,11 +65,28 @@ def add_recipe():
     form = InsertRecipeForm()
     return render_template("add_recipe.html", form=form)
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
-    recipe_object = request.form.to_dict()
-    print(recipe_object)
-    return redirect(url_for('home'))
+    if request.method == 'POST':
+        mongo_recipe_object = request.form.to_dict()
+        if 'meal_image' not in request.files:
+            return "No file"
+        file = request.files['meal_image']
+        if file.filename =='':
+            return "Empty file"
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            meal_name = request.form['recipe_name']
+            saved_filename = meal_name + '_' + filename
+            path=os.path.join(app.config['UPLOAD_FOLDER'], saved_filename)
+            file.save(path)
+            mongo_recipe_object["meal_image"]=path
+            print(mongo_recipe_object)
+            return redirect(url_for('home'))
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
