@@ -117,6 +117,7 @@ i.medium {
 
 .meal_image {
     max-height: 50vh;
+    max-width: 90vw;
     padding: auto;
 }
 
