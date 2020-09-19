@@ -86,6 +86,7 @@ def insert_recipe():
             filename = secure_filename(file.filename)
             meal_name = request.form['recipe_name']
             saved_filename = meal_name + '_' + filename
+            saved_filename = secure_filename(saved_filename)
             path=os.path.join(app.config['UPLOAD_FOLDER'], saved_filename)
             file.save(path)
             mongo_recipe_object["meal_image"]=saved_filename
