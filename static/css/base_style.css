@@ -1,0 +1,150 @@
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ MAIN STYLE + STYLE BASE.HTML ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
+/* style for base.html and index.html webpages */
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Judson', serif; 
+    background-color: #ffffff;;
+    color: #0a0904;
+
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    font-family: 'Archivo Black', sans-serif; 
+}
+
+a:hover {
+    color: #74000A;
+    cursor: pointer;
+}
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
+/* navigation bar style */
+/* default style for navigation bar */
+
+
+
+.main-navbar {
+    background-color: #5e8b4a;
+    padding: 1px;
+    height: 64px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    transition: 0.8s;
+    
+}
+
+.navbar {
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,.0);
+
+}
+
+.main-nav-def {
+    background-color: transparent;
+    padding: 15px;  
+    height: 100px;
+    width: 100%;
+    color: #74000A;
+    transition: 1s;
+}
+
+.brand-logo{
+    position: absolute;
+    left: 10%;
+}
+
+.nav-links {
+    position: absolute;
+    right: 10%;
+    
+}
+
+.main-navbar ul a {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    color: #ffffff;
+
+}
+
+.main-navbar ul a:hover {
+    background-color: transparent;
+    color: #74000A;
+    text-decoration: none;
+}
+
+.mobile_menu_btn {
+    display: none;
+font-size: 2rem;
+color: #5e8b4a;
+background: #ffffff;
+border-radius: 5px;
+height: 50px;
+width: 50px;
+text-align: center;
+position: absolute;
+right: 10%;
+}
+/* mobile navigation */
+.mobile_fs_nav {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+    height: 100%;
+    width: 0;
+    position: fixed; /* Stay in place */
+    z-index: 1040; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(94,139,74); /* Black fallback color */
+    background-color: rgba(94,139,74, 0.9); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  }
+  .mobile_nav_content {
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  }
+  .mobile_fs_nav a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #ffffff;
+    display: block; /* Display block instead of inline */
+    transition: 0.3s; /* Transition effects on hover (color) */
+  }
+  .mobile_fs_nav a:hover, .mobile_fs_nav a:focus {
+    color: #74000A;
+   }
+
+  /* Position the close button (top right corner) */
+.mobile_fs_nav .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  }
+
+/* logo in navigation bar */
+.logo-img {
+    height: 64px;
+    width: 64px;
+    vertical-align: top;
+}
+.brand-logo {
+    
+    color: #ffffff;
+}
+
+.logo-caption {
+    display: inline;
+}
+
+.brand-logo:hover {
+    color: #74000A;
+    text-decoration: none;
+}
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ FOOTER ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
+.my-footer-class {
+    background-color: #a57255;
+}

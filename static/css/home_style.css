@@ -1,0 +1,115 @@
+
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ HEADER ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
+header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    height: 80vh;
+}
+
+#myMainVideo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    max-height: 100vh;
+    z-index: -1;
+}
+
+.video-content {
+    margin-top:20vh;
+    margin-bottom: 25vh;
+    height: 50vh;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    padding: 5%;
+    color: #5e8b4a;
+}
+
+.video-content h1, .video-content p {
+    background-color: white;
+    margin: -1%;
+    padding: 1%;
+}
+
+.video-content p {
+    padding-bottom: 4%;
+}
+.my-4 {
+    margin-top: 2.5rem!important;
+}
+/* button displayed on top of video */
+.my-btn-class {
+    background-color: #74000A;
+    margin: -2%;
+    color: #ffffff;
+    font-size: 2rem;
+    height: 64px;
+    
+}
+.my-btn-class:hover {
+    background-color: #ffffff;
+    color: #74000A;
+}
+.my-btn-class:focus {
+    background-color: #ffffff;
+    color: #74000A;
+    outline: .5px solid #74000A;
+}
+/* video control button */
+/* 
+.headVideo {
+    position: relative;
+} */
+
+.video-control {
+    color: #5e8b4a;
+
+}
+
+#myVideoBtn:hover {
+    color: #74000A;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+/* button sticked to the window for adding new recipe */
+.stick-btn {
+    position: fixed;
+    bottom: 15%;
+    right:2%;
+    background-color: #5e8b4a;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
+    border: solid 2px #74000A;
+    z-index: 10;
+}
+
+.stick-btn:focus {
+    outline: none;
+    background-color: #a57255;
+}
+
+
+/* play/stop video icon */
+
+i.medium {
+    font-size: 4rem;
+}
+
+/* recipes */
+
+.ingredients_list {
+    list-style: none;
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+}
+
+
+.meal_image {
+    width: 100%;
+}

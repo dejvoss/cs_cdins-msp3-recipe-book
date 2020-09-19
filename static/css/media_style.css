@@ -1,0 +1,74 @@
+
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ MEDIA STYLE ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
+/* change logo size to fit in navigation bar */
+@media (max-width: 600px) {
+    .logo-img {
+        height: 56px;
+        width: 56px;
+    }
+/* display video captions below vide on mobile */
+    .video-content {
+        position: static;
+        width: 100%;
+    }
+    /* class to hide elements in small devices */
+    .sm-hide {
+        visibility: hidden;
+    }
+    /* show drop button instead of all buttons as navigation in section */
+    .sm-show {
+        display: block;
+    }
+    #myTab {
+        display: block;
+        
+    }
+    /* change color of the navigation in section menu */
+    .nav-pills .nav-link {
+        background-color: #74000A;
+        color: #ffffff;
+    }
+    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+        background-color: #ffffff;
+        color: #74000A;
+    }
+
+/* hide logo caption in mobile view */
+@media (max-width : 350px) {
+    .logo-caption {
+        display: none;
+    }
+    .video-content p {
+        display: none;
+    }
+    .my-btn-class {
+        margin: 2px;
+        padding: 5px;
+        height: auto;
+    }
+}
+
+@media (max-width: 601px) {
+    .mobile_menu_btn {
+        display: block;
+    }
+    .nav-links {
+        display: none;
+    }
+}
+
+@media (min-width: 992px){}
+.navbar-expand-lg {
+    justify-content: flex-end;
+}
+}
+
+/* When the height of the screen is less than 450 pixels, in mobile navigation change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+    .mobile_nav_content a {font-size: 20px}
+    .mobile_nav_content .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+    }
+  }
