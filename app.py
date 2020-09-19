@@ -27,7 +27,7 @@ mongo = PyMongo(app)
 db = mongo.db.recipes
 
 measureList=[('grams', 'grams'), ('decagrams', 'decagrams'), ('pieces', 'pieces'), ('pinch', 'pinch'), ('glasses', 'glasses'), ('liters', 'liters'), ('spoons', 'spoons'), ('tea spoons', 'tea spoons')]
-meal_type_list=[('warm_meal', 'Warm meal'), ('cold_meal', 'Cold meal'), ('drink', 'Drink')]
+meal_type_list=[('warm meal', 'Warm meal'), ('cold meal', 'Cold meal'), ('drink', 'Drink')]
 
 class Ingredients(Form):
     name = StringField('Ingredient name', validators=[InputRequired()])
