@@ -36,7 +36,7 @@
   {% for recipes in recipes %}
   
     <div class="col-12 col-sm-6">
-  <h2 class="text-center">{{recipes.recipe_name}}</h2>
+  <a href="/recipes/{{ recipes.recipe_name }}">{{ loop.index }} {{ recipes.recipe_name }}><h2 class="text-center">{{recipes.recipe_name}}</h2></a>
   {% if recipes.meal_image == "" %}
   <img class="meal_image" src="{{url_for('static', filename='images/def_meal_img.jpg')}}" alt="meal image">
   {% else %}

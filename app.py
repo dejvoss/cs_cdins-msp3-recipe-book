@@ -91,6 +91,10 @@ def insert_recipe():
             mongo_recipe_object["meal_image"]=saved_filename
             mongo.db.recipe_base.insert_one(mongo_recipe_object)
             return redirect(url_for('home'))
+@app.route('/recipes/<recipe_name>')
+def single_recipe(recipe_name):
+    recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
+    return render_template('singl_recipe.html', recipe=recipe)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
