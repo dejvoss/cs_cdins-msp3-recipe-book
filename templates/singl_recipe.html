@@ -1,4 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container">
+<img class="meal_image" src="{{url_for('static', filename='uploaded_img/'+recipe.meal_image)}}" alt="meal image">
 <h2 class="text-center">{{recipe.recipe_name}}</h2>
+<p>{{recipe.meal_description}}</p>
+{{ nr_of_ingr }}
+<ul>
+    
+{% for key, value in recipe.items() %}
+{% if 'ingredient' in key %}
+<li>{{value}}</li>
+{% endif %}
+{% endfor %}
+</ul>
+</div>
 {% endblock %}

@@ -95,7 +95,9 @@ def insert_recipe():
 @app.route('/recipes/<recipe_name>')
 def single_recipe(recipe_name):
     recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
-    return render_template('singl_recipe.html', recipe=recipe)
+    ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
+    amount_of_ingr = len(ingredients)
+    return render_template('singl_recipe.html', recipe=recipe, nr_of_ingr=amount_of_ingr)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
