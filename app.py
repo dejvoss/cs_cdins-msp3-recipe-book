@@ -16,7 +16,6 @@ UPLOAD_FOLDER = 'media/images'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
-app.jinja_env.filters['b64d'] = lambda u: b64encode(u).decode()
 app.config["MONGO_DBNAME"] = 'recipe_book'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -27,7 +26,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 mongo = PyMongo(app)
 db = mongo.db.recipes
 
-measureList=[('g', 'grams'), ('dec', 'decagrams')]
+measureList=[('grams', 'grams'), ('decagrams', 'decagrams'), ('pieces', 'pieces'), ('pinch', 'pinch'), ('glasses', 'glasses'), ('liters', 'liters'), ('spoons', 'spoons'), ('tea spoons', 'tea spoons')]
 meal_type_list=[('warm_meal', 'Warm meal'), ('cold_meal', 'Cold meal'), ('drink', 'Drink')]
 
 class Ingredients(Form):
@@ -44,10 +43,10 @@ class InsertRecipeForm(FlaskForm):
     preparation_time = IntegerField('Preparation time (minutes)', validators=[DataRequired(), NumberRange(min=5, max=180)])
     portions = IntegerField('Amount of portions', validators=[DataRequired(), NumberRange(min=1, max=6)])
     meal_description = TextAreaField('Meal description', validators=[Optional()])
-    ingredients = FieldList(FormField(Ingredients), min_entries=5)
-    preparation = FieldList(FormField(Preparations), min_entries=3)
+    ingredients = FieldList(FormField(Ingredients), min_entries=3)
+    preparation = FieldList(FormField(Preparations), min_entries=1)
     meal_image = FileField('Meal picture')
-    
+
 
 @app.route('/')
 @app.route('/home/get_recipes')
@@ -63,7 +62,8 @@ def home():
 @app.route('/add_recipe')
 def add_recipe():
     form = InsertRecipeForm()
-    return render_template("add_recipe.html", form=form)
+    list_of_ingred = mongo.db.ingredients_list.find()
+    return render_template("add_recipe.html", form=form, list_of_ingredients=list_of_ingred)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -73,6 +73,10 @@ def allowed_file(filename):
 def insert_recipe():
     if request.method == 'POST':
         mongo_recipe_object = request.form.to_dict()
+        ingredients_name_only = {k:v for k,v in mongo_recipe_object.items() if "ingredient" in k and "name" in k}
+        for k, v in ingredients_name_only.items():
+            if mongo.db.ingredients_list.find({'name': v}).count() == 0:
+                mongo.db.ingredients_list.insert_one({'name': v})
         if 'meal_image' not in request.files:
             return "No file"
         file = request.files['meal_image']
@@ -85,7 +89,7 @@ def insert_recipe():
             path=os.path.join(app.config['UPLOAD_FOLDER'], saved_filename)
             file.save(path)
             mongo_recipe_object["meal_image"]=path
-            print(mongo_recipe_object)
+            mongo.db.recipe_base.insert_one(mongo_recipe_object)
             return redirect(url_for('home'))
 
 if __name__ == "__main__":

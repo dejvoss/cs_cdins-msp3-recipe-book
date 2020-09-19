@@ -50,25 +50,27 @@
          
 
          {% for l in form.ingredients %}
-         <div class="row">
-         <div class="col-sm-6">
+         <div class="row" id="{{l.form.name.id}}_row">
+         <div class="col-sm-7">
          {{ l.form.name.label(class_='form-label') }}
          {{ l.form.name(class_='form-control')}}
          </div>
-         <div class="col-6 col-sm-2">
+         <div class="col-5 col-sm-2">
          {{ l.form.amount.label(class_='form-label') }}
          {{ l.form.amount(type='number', min='0.5', step='0.5', class_='form-control') }}   
          </div>
-         <div class="col-6 col-sm-4">
+         <div class="col-5 col-sm-3">
             {{ l.form.measure.label(class_='form-label') }}
             {{ l.form.measure(class_='form-select') }}
          </div>
+
       </div>
          {% endfor %}
    </div>
 
          
-         <a class="btn btn-outline-info" onclick="addIngredientField()">More steps<i class="material-icons">add</i></a>
+         <a onclick="addIngredientField()" title="Add another ingredient"><i class="icon-size material-icons">add_circle_outline</i></a>
+         <a onclick="removeIngredientField()" style="float:right" title="Remove last ingredient"><i class="icon-size material-icons">remove_circle_outline</i></a>
          <hr class="mb-5">
          <h5>Preparation steps</h5>
          <div class="mb-3 row" id="preparation_steps">
@@ -83,12 +85,13 @@
             </div>
             {% endfor %}
          </div>
-         <a class="btn btn-outline-info" onclick="addStepField()">More steps<i class="material-icons">add</i></a>
+         <a onclick="addStepField()" title="Add another step"><i class="icon-size material-icons">add_circle_outline</i></a>
+         <a onclick="removeStepField()" style="float:right" title="Remove last step"><i class="icon-size material-icons">remove_circle_outline</i></a>
          <hr class="mb-5">
          <div class="form-file form-file-lg mb-5 row meal_image_div">
             <div class="col text-center">
 
-            {{ form.meal_image(class_='form-file-input', onchange='PreviewImage()')}} -->
+            {{ form.meal_image(class_='form-file-input', onchange='PreviewImage()')}}
             <label class="lbl_for_img_btn" for="meal_image">
                <span class="form-file-button">Insert meal picture</span>
             </label>
