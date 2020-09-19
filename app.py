@@ -12,7 +12,7 @@ from wtforms.validators import DataRequired, InputRequired, NumberRange, Optiona
 if os.path.exists("env.py"):
     import env
 
-UPLOAD_FOLDER = 'media/images'
+UPLOAD_FOLDER = 'static/uploaded_img'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
@@ -52,7 +52,7 @@ class InsertRecipeForm(FlaskForm):
 @app.route('/home/get_recipes')
 def home():
 
-    return render_template("index.html", recipes = mongo.db.recipes.find())
+    return render_template("index.html", recipes = mongo.db.recipes.find(), przepisy=mongo.db.recipe_base.find())
 # def ImgURL(url):
 #     img = urllib.urlopen(url).read()
 #     encoded_string = base64.b64encode(img)
@@ -88,7 +88,7 @@ def insert_recipe():
             saved_filename = meal_name + '_' + filename
             path=os.path.join(app.config['UPLOAD_FOLDER'], saved_filename)
             file.save(path)
-            mongo_recipe_object["meal_image"]=path
+            mongo_recipe_object["meal_image"]=saved_filename
             mongo.db.recipe_base.insert_one(mongo_recipe_object)
             return redirect(url_for('home'))
 
