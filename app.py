@@ -52,7 +52,7 @@ class InsertRecipeForm(FlaskForm):
 @app.route('/home/get_recipes')
 def home():
 
-    return render_template("index.html", recipes = mongo.db.recipes.find(), przepisy=mongo.db.recipe_base.find())
+    return render_template("index.html", recipes=mongo.db.recipe_base.find())
 # def ImgURL(url):
 #     img = urllib.urlopen(url).read()
 #     encoded_string = base64.b64encode(img)
