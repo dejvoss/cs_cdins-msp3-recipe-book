@@ -15,23 +15,6 @@
     .sm-hide {
         visibility: hidden;
     }
-    /* show drop button instead of all buttons as navigation in section */
-    .sm-show {
-        display: block;
-    }
-    #myTab {
-        display: block;
-        
-    }
-    /* change color of the navigation in section menu */
-    .nav-pills .nav-link {
-        background-color: #74000A;
-        color: #ffffff;
-    }
-    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-        background-color: #ffffff;
-        color: #74000A;
-    }
 
 /* hide logo caption in mobile view */
 @media (max-width : 350px) {

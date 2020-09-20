@@ -148,3 +148,18 @@ i.medium {
     color: #ffffff;
     background-color: #74000A;
 }
+
+/* <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR IN TOP OF THE SECTION ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ --> */
+.nav-pills .midl-nav-link {
+    margin: 0;
+    font-size: 1.5rem;
+    background-color: #74000A;
+    color: #ffffff;
+    border: solid 1px #ffffff;
+}
+
+.nav-pills .midl-nav-active, .nav-pills .midl-nav-link:hover {
+    background-color: #ffffff;
+    color: #74000A;
+    border: solid 1px #74000A;
+}
