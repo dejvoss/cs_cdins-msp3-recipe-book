@@ -2,11 +2,12 @@
 # Flask application for website recipe book
 import os
 from flask import Flask, render_template, redirect, request, url_for
+import email_validator
 from flask_pymongo import PyMongo
 from werkzeug.utils import secure_filename
 from flask_wtf import FlaskForm
 from wtforms import StringField, DecimalField, SubmitField, TextAreaField, FileField, SelectField, IntegerField, FormField, Form, FieldList
-from wtforms.validators import DataRequired, InputRequired, NumberRange, Optional
+from wtforms.validators import DataRequired, InputRequired, NumberRange, Optional, Email
 
 
 if os.path.exists("env.py"):
@@ -47,23 +48,25 @@ class InsertRecipeForm(FlaskForm):
     preparation = FieldList(FormField(Preparations), min_entries=1)
     meal_image = FileField('Meal picture')
 
-
+class ContactForm(FlaskForm):
+    name = StringField('Name', validators=[InputRequired()])
+    email = StringField('email', validators=[DataRequired(), Email()])
+    subject = StringField('Subject', validators=[InputRequired()])
+    message = TextAreaField('Message', validators=[InputRequired()])
+    
 @app.route('/')
 @app.route('/home/get_recipes')
 def home():
-
-    return render_template("index.html", recipes=mongo.db.recipe_base.find())
-# def ImgURL(url):
-#     img = urllib.urlopen(url).read()
-#     encoded_string = base64.b64encode(img)
-#     return encoded_string
+    contactForm = ContactForm()
+    return render_template("index.html", recipes=mongo.db.recipe_base.find(), contactForm=contactForm)
 
 
 @app.route('/add_recipe')
 def add_recipe():
+    contactForm = ContactForm()
     form = InsertRecipeForm()
     list_of_ingred = mongo.db.ingredients_list.find()
-    return render_template("add_recipe.html", form=form, list_of_ingredients=list_of_ingred)
+    return render_template("add_recipe.html", form=form, list_of_ingredients=list_of_ingred, contactForm=contactForm)
 
 def allowed_file(filename):
     return '.' in filename and \

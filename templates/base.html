@@ -74,6 +74,27 @@
             </ul>
          </div>
          <hr class="my-1">
+         <!-- CONTAT FORM -->
+         <div class="contact-form">
+            <form class="contact">
+               <div class="mb-3">
+               {{ contactForm.name.label(class_='form-label')}}
+               {{ contactForm.name(class_='form-control') }}
+            </div>
+            <div class="mb-3">
+               {{ contactForm.email.label(class_='form-label') }}
+               {{ contactForm.email(class_='form-control', placeholder='email@address.com') }}
+            </div>
+               <div class="mb-3">
+               {{ contactForm.subject.label(class_='form-label') }}
+               {{ contactForm.subject(class_='form-control') }}
+            </div>
+               <div class="mb-3">
+               {{ contactForm.message.label(class_='form-label') }}
+               {{ contactForm.message(class_='form-control', rows='5') }}
+            </div>
+            </form>
+         </div>
          <!-- Copyright -->
          <div class="text-center p-3" style="background-color: rgba(165, 114, 85, 0.5);">
             © 2020 Copyright:
