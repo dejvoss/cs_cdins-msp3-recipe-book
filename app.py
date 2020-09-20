@@ -95,12 +95,14 @@ def insert_recipe():
             mongo_recipe_object["meal_image"]=saved_filename
             mongo.db.recipe_base.insert_one(mongo_recipe_object)
             return redirect(url_for('home'))
+
 @app.route('/recipes/<recipe_name>')
 def single_recipe(recipe_name):
+    contactForm = ContactForm()
     recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
     ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
-    amount_of_ingr = len(ingredients)
-    return render_template('singl_recipe.html', recipe=recipe, nr_of_ingr=amount_of_ingr)
+    amount_of_ingr = int(len(ingredients)/3)
+    return render_template('singl_recipe.html', recipe=recipe, ingredients=ingredients, nr_of_ingr=amount_of_ingr, contactForm=contactForm)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
