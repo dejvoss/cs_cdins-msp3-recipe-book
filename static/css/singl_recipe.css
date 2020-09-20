@@ -1,0 +1,8 @@
+.ingred-data-list {
+    display: inline-flex;
+    list-style: none;
+}
+
+.ingred-data-list li {
+    padding-right: 5px;
+}
