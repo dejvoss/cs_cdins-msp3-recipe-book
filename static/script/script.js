@@ -91,3 +91,19 @@ function openNav() {
 function closeNav() {
     document.getElementById("mobile_nav").style.width = "0%";
 }
+
+/* Change the active link color in midle nav bar in home webpage source- https://www.w3schools.com/howto/howto_js_active_element.asp*/
+
+var btnContainer = document.getElementById("middle-nav-bar");
+
+// Get all buttons with class="btn" inside the container
+var btns = btnContainer.getElementsByClassName("midl-nav-link");
+console.log(btns)
+// Loop through the buttons and add the active class to the current/clicked button
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("midl-nav-active");
+    current[0].className = current[0].className.replace(" midl-nav-active", "");
+    this.className += " midl-nav-active";
+  });
+}
