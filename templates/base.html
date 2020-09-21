@@ -45,6 +45,9 @@
                <li class="nav-item">
                   <a class="nav-link" href="{{url_for('add_recipe')}}">Add recipe</a>
                </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#contactForm">Contact</a>
+               </li>
             </ul>
          </div>
       </nav>
@@ -52,6 +55,7 @@
          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
          <div class="mobile_nav_content">
             <a href="{{url_for('add_recipe')}}">Add recipe</a>
+            <a href="#contactForm" onclick="closeNav()">Contact</a>
          </div>
       </div>
       {% block content %}
@@ -77,7 +81,7 @@
          
          <hr class="my-1">
          <!-- CONTAT FORM -->
-            <form class="contact">
+            <form class="contact" id="contactForm">
                <div class="mb-3 row">
                {{ contactForm.name.label(class_='col-form-label col-2 col-md-1 offset-md-2')}}
                <div class="col-8 col-md-6">
