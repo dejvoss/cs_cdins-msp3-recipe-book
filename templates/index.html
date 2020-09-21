@@ -78,6 +78,11 @@
   {% else %}
 
   {% endif %}
+  <span>
+  <i><img src="{{url_for('static', filename='images/carrot_icon.jpg')}}" style="width: 24px"></i>
+  x 
+{{recipes.amount_of_ingred}}
+</span>
 </div>
   <p>{{recipes.meal_description}}</p>
 
