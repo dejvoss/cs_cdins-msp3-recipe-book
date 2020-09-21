@@ -77,6 +77,8 @@ def insert_recipe():
     if request.method == 'POST':
         mongo_recipe_object = request.form.to_dict()
         ingredients_name_only = {k:v for k,v in mongo_recipe_object.items() if "ingredient" in k and "name" in k}
+        nr_of_ingredients = int(len(ingredients_name_only))
+        mongo_recipe_object['amount_of_ingred'] = nr_of_ingredients
         for k, v in ingredients_name_only.items():
             if mongo.db.ingredients_list.find({'name': v}).count() == 0:
                 mongo.db.ingredients_list.insert_one({'name': v})
@@ -101,8 +103,7 @@ def single_recipe(recipe_name):
     contactForm = ContactForm()
     recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
     ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
-    amount_of_ingr = int(len(ingredients)/3)
-    return render_template('singl_recipe.html', recipe=recipe, ingredients=ingredients, nr_of_ingr=amount_of_ingr, contactForm=contactForm)
+    return render_template('singl_recipe.html', recipe=recipe, ingredients=ingredients, contactForm=contactForm)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

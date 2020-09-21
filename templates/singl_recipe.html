@@ -5,7 +5,8 @@
 <img class="meal_image" src="{{url_for('static', filename='uploaded_img/'+recipe.meal_image)}}" alt="meal image">
 <p>{{recipe.meal_description}}</p>
 <h5>Ingredients</h5>
-<p>number of ingredients: {{ nr_of_ingr }} </p>
+<p>number of ingredients: {{recipe.amount_of_ingred}} </p>
+
 <ol class="ingredients-list">
     
 {% for key, value in ingredients.items() %}
