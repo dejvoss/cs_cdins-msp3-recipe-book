@@ -58,6 +58,14 @@ a:hover {
     right: 10%;
     
 }
+/* Set links in main navbar to be inline(row directtion) and make brake between(padding)*/
+.navbar-nav {
+    flex-direction: row;
+}
+
+.navbar-nav .nav-link {
+    padding-right: 1rem;
+}
 
 .main-navbar ul a {
     text-transform: uppercase;
