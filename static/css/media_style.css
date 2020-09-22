@@ -13,7 +13,11 @@
     }
     /* class to hide elements in small devices */
     .sm-hide {
-        visibility: hidden;
+        display: none;
+    }
+
+    .lg-hide {
+        display:block;
     }
 
 /* hide logo caption in mobile view */
@@ -54,4 +58,5 @@
       top: 15px;
       right: 35px;
     }
+
   }
