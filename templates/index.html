@@ -52,12 +52,12 @@
 <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ SECTION WITH RECIPES ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
 <section id="recipes">
   <div class="container-fluid recipe_container">
-  <div class="row">
+  <div class="row justify-content-evenly">
     
  
   {% for recipes in recipes %}
   
-    <div class="col-12 col-sm-6 recipe-col">
+    <div class="col-12 col-md-5 recipe-col">
   <a href="/recipes/{{ recipes.recipe_name }}"><h2 class="text-center recipe_header">{{recipes.recipe_name}}</h2></a>
   {% if recipes.meal_image == "" %}
   <img class="meal_image" src="{{url_for('static', filename='images/def_meal_img.jpg')}}" alt="meal image">
@@ -95,8 +95,9 @@
 {{recipes.amount_of_ingred}}
 </span>
 </div>
+<div class="meal_description">
   <p>{{recipes.meal_description}}</p>
-
+</div>
 </div>
 
   {% endfor %}
