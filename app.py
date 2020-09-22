@@ -60,6 +60,10 @@ def home():
     contactForm = ContactForm()
     return render_template("index.html", recipes=mongo.db.recipe_base.find(), contactForm=contactForm)
 
+@app.route('/home/warm_meals')
+def warm_meals():
+    contactForm = ContactForm()
+    return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'warm meal' } ), contactForm=contactForm)
 
 @app.route('/add_recipe')
 def add_recipe():
