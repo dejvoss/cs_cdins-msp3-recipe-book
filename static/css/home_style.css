@@ -112,15 +112,16 @@ i.medium {
 .recipe-col {
     position:relative;
     text-align: center;
-    border: 1px solid #000000;
+    /* border: 1px solid #000000; */
     margin-bottom: 5%;
-
-
 }
+
+
 
 .meal_image {
     width: 100%;
     padding: auto;
+
 }
 
 .meal_icons {
@@ -132,8 +133,10 @@ i.medium {
     font-size: 1.1rem;
 }
 
+
 .meal_description {
     background-color: rgba(250,250,250, .6);
+    display:none;
     width: 100%;
     font-size: 1.2rem;
     position: absolute;
@@ -141,6 +144,8 @@ i.medium {
     left: 50%;
     transform: translate(-50%, -75%);
 }
+
+
 .recipe_container a {
     color: #74000A;
 }

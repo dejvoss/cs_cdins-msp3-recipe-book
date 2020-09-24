@@ -57,7 +57,7 @@
  
   {% for recipes in recipes %}
   
-    <div class="col-12 col-sm-4 recipe-col">
+    <div class="col-12 col-sm-6 col-md-4 recipe-col">
   <a href="/recipes/{{ recipes.recipe_name }}"><h4 class="text-center recipe_header">{{recipes.recipe_name}}</h4></a>
   {% if recipes.meal_image == "" %}
   <img class="meal_image" src="{{url_for('static', filename='images/def_meal_img.jpg')}}" alt="meal image">
