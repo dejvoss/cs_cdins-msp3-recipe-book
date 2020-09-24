@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
+<div class="menushadow"></div>
+<div class="container single-recipe-cont">
+    <div class="row">
+    <div class="col-12 singl-recipe-head">
 <h2 class="text-center">{{recipe.recipe_name}}</h2>
 <img class="meal_image" src="{{url_for('static', filename='uploaded_img/'+recipe.meal_image)}}" alt="meal image">
 <p>{{recipe.meal_description}}</p>
-<h5>Ingredients</h5>
-<p>number of ingredients: {{recipe.amount_of_ingred}} </p>
 
+</div>
+<div class="col-12 col-md-6 offset-md-3 singl-recipe-body">
+
+    <h5>Ingredients</h5>
+<p>number of ingredients: {{recipe.amount_of_ingred}} </p>
 <ol class="ingredients-list">
-    
 {% for key, value in ingredients.items() %}
 {% if 'name' in key %}
 <li class="ingredient-items"><ul class="ingred-data-list"><li>{{value}}: </li>
@@ -26,6 +31,7 @@
     <li>{{value}}</li>
     {% endif %}
     {% endfor %}
-</ol>
+</ol></div>
+</div>
 </div>
 {% endblock %}
