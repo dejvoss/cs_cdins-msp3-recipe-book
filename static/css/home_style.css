@@ -102,6 +102,10 @@ i.medium {
 
 /* recipes */
 
+#recipes {
+    margin-top: 30px;
+}
+
 .ingredients_list {
     list-style: none;
     -webkit-column-count: 3;
@@ -114,24 +118,28 @@ i.medium {
     text-align: center;
     /* border: 1px solid #000000; */
     margin-bottom: 5%;
+    border-top: 1px solid black;
+    /* border-radius: 30%; */
+   padding-top: 10px;
 }
 
 .recipe_header {
-    height: 60px;
-    position: absolute;
+    min-height: 60px;
     width: 100%;
+    background-color: inherit;
 }
 
 
 .meal_image {
     width: 100%;
     border-radius: 30%;
-    padding-top: 30px;
+    padding: 15px;
+    padding-bottom: 0;
 
 }
 
 .meal_icons {
-    position: absolute;
+   
     padding: 2px;
     background-color: #ffffff;
     right: 0;
@@ -165,15 +173,15 @@ i.medium {
 .nav-pills .midl-nav-link {
     margin: 0 0 5% 0;
     font-size: 1.5rem;
-    background-color: #74000A;
+    background-color: #0a0904;
     color: #ffffff;
     border: solid 1px #ffffff;
 }
 
 .nav-pills .midl-nav-active, .nav-pills .midl-nav-link:hover {
     background-color: #ffffff;
-    color: #74000A;
-    border: solid 1px #74000A;
+    color: #0a0904;
+    border: solid 1px #0a0904;
 }
 
 /* Hide dropdown button on default and show in screen wider than 600 px(is set in media_styles.css) */

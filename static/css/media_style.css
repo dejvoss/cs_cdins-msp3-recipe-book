@@ -19,9 +19,9 @@
     .lg-hide {
         display:block;
     }
-
+}
 /* hide logo caption in mobile view */
-@media (max-width : 350px) {
+@media (max-width: 350px) {
     .logo-caption {
         display: none;
     }
@@ -32,7 +32,29 @@
         margin: 2px;
         padding: 5px;
         height: auto;
+       
     }
+    .meal_image {
+        padding: 0;
+    }
+ 
+}
+@media (max-width: 200px){
+
+.display-4 {
+    font-size: 16px;
+}
+
+.nav-pills .midl-nav-link {
+    font-size: 12px;
+    padding: 10px 0;
+}
+.my-btn-class {
+    font-size: 14px;
+}
+.brand-logo{
+    display: none;
+}
 }
 
 @media (max-width: 601px) {
