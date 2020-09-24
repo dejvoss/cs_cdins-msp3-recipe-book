@@ -4,6 +4,7 @@ header {
     margin-bottom: 0;
     padding-bottom: 0;
     height: 80vh;
+    
 }
 
 #myMainVideo {
@@ -13,6 +14,10 @@ header {
     min-width: 100%;
     max-height: 100vh;
     z-index: -1;
+    background-image: url("../images/main_image2.jpg");
+    background-size: cover;
+    background-position: top;
+    
 }
 
 .video-content {
