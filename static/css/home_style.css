@@ -116,11 +116,17 @@ i.medium {
     margin-bottom: 5%;
 }
 
+.recipe_header {
+    height: 60px;
+    position: absolute;
+    width: 100%;
+}
 
 
 .meal_image {
     width: 100%;
-    padding: auto;
+    border-radius: 30%;
+    padding-top: 30px;
 
 }
 
