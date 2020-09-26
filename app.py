@@ -35,7 +35,7 @@ mongo = PyMongo(app)
 db = mongo.db.recipes
 
 measureList=[('grams', 'grams'), ('decagrams', 'decagrams'), ('pieces', 'pieces'), ('pinch', 'pinch'), ('glasses', 'glasses'), ('liters', 'liters'), ('spoons', 'spoons'), ('tea spoons', 'tea spoons')]
-meal_type_list=[('warm meal', 'Warm meal'), ('cold meal', 'Cold meal'), ('drink', 'Drink'), ('desserts', 'Desserts')]
+meal_type_list=[('Warm meals', 'Warm meals'), ('Cold meals', 'Cold meals'), ('Drinks', 'Drinks'), ('Desserts', 'Desserts')]
 # msg=Message("Subject", recipients=['recipient1@example.com'])
 # msg.body ="Mail Body"
 
