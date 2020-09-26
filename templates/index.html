@@ -29,25 +29,22 @@
     <li class="nav-item dropdown lg-hide">
       <a class="nav-link midl-nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false" href="#">Categories</a>
       <ul class="dropdown-menu nav-pills nav-justified">
-        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="#">All recipes</a></li>
-        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="#">Warm meals</a></li>
-        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="#">Cold meals</a></li>
-        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="#">Drinks</a></li>
         
+        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="#">All recipes</a></li>
+        {% for i in range(0, len) %}
+        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="#">{{categories[i][0]}}</a></li>
+        {% endfor %}
+       
       </ul>
     </li>
     <li class="nav-item sm-hide">
       <a class="nav-link midl-nav-link" href="#">All recipes</a>
     </li>
+    {% for i in range(0, len) %}
     <li class="nav-item sm-hide">
-      <a class="nav-link midl-nav-link" href="{{url_for('warm_meals')}}">Warm meals</a>
-    </li>
-    <li class="nav-item sm-hide">
-      <a class="nav-link midl-nav-link" href="#">Cold meals</a>
-    </li>
-    <li class="nav-item sm-hide">
-      <a class="nav-link midl-nav-link" href="#">Drinks</a>
-    </li>
+      <a class="nav-link midl-nav-link" href="{{url_for('warm_meals')}}">{{categories[i][0]}}</a></li>
+        {% endfor %}
+
   </ul>
 </nav>
 

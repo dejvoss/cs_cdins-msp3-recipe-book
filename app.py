@@ -35,7 +35,7 @@ mongo = PyMongo(app)
 db = mongo.db.recipes
 
 measureList=[('grams', 'grams'), ('decagrams', 'decagrams'), ('pieces', 'pieces'), ('pinch', 'pinch'), ('glasses', 'glasses'), ('liters', 'liters'), ('spoons', 'spoons'), ('tea spoons', 'tea spoons')]
-meal_type_list=[('warm meal', 'Warm meal'), ('cold meal', 'Cold meal'), ('drink', 'Drink')]
+meal_type_list=[('warm meal', 'Warm meal'), ('cold meal', 'Cold meal'), ('drink', 'Drink'), ('desserts', 'Desserts')]
 # msg=Message("Subject", recipients=['recipient1@example.com'])
 # msg.body ="Mail Body"
 
@@ -68,7 +68,8 @@ class ContactForm(FlaskForm):
 @app.route('/home/get_recipes')
 def home():
     contactForm = ContactForm()
-    return render_template("index.html", recipes=mongo.db.recipe_base.find(), contactForm=contactForm)
+    categories = meal_type_list
+    return render_template("index.html", recipes=mongo.db.recipe_base.find(), contactForm=contactForm, categories=categories, len=len(categories))
 
 @app.route('/home/warm_meals')
 def warm_meals():
