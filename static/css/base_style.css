@@ -161,13 +161,7 @@ right: 10%;
 position: fixed;
 width: 25%;
 }
-/* :target::before {
-    content: "";
-    display: block;
-    height: 180px; /* fixed header height*/
-   /* margin: -180px 0 0; /* negative fixed header height */
 
-
-  html {
+html {
     scroll-padding-top: 180px; /* height of sticky header */
   }
