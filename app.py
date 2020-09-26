@@ -35,7 +35,7 @@ mongo = PyMongo(app)
 db = mongo.db.recipes
 
 measureList=[('grams', 'grams'), ('decagrams', 'decagrams'), ('pieces', 'pieces'), ('pinch', 'pinch'), ('glasses', 'glasses'), ('liters', 'liters'), ('spoons', 'spoons'), ('tea spoons', 'tea spoons')]
-meal_type_list=[('Warm meals', 'Warm meals'), ('Cold meals', 'Cold meals'), ('Drinks', 'Drinks'), ('Desserts', 'Desserts')]
+meal_type_list=[('warm_meals', 'Warm meals'), ('cold_meals', 'Cold meals'), ('drinks', 'Drinks'), ('desserts', 'Desserts')]
 # msg=Message("Subject", recipients=['recipient1@example.com'])
 # msg.body ="Mail Body"
 
@@ -74,7 +74,26 @@ def home():
 @app.route('/home/warm_meals')
 def warm_meals():
     contactForm = ContactForm()
-    return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'warm meal' } ), contactForm=contactForm)
+    categories = meal_type_list
+    return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'warm_meals' } ), contactForm=contactForm, categories=categories, len=len(categories))
+
+@app.route('/home/cold_meals')
+def cold_meals():
+    contactForm = ContactForm()
+    categories = meal_type_list
+    return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'cold_meals' } ), contactForm=contactForm, categories=categories, len=len(categories))
+
+@app.route('/home/drinks')
+def drinks():
+    contactForm = ContactForm()
+    categories = meal_type_list
+    return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'drinks' } ), contactForm=contactForm, categories=categories, len=len(categories))
+
+@app.route('/home/desserts')
+def desserts():
+    contactForm = ContactForm()
+    categories = meal_type_list
+    return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'desserts' } ), contactForm=contactForm, categories=categories, len=len(categories))
 
 @app.route('/add_recipe')
 def add_recipe():

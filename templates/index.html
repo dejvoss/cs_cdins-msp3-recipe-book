@@ -30,19 +30,19 @@
       <a class="nav-link midl-nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false" href="#">Categories</a>
       <ul class="dropdown-menu nav-pills nav-justified">
         
-        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="#">All recipes</a></li>
+        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="{{url_for('home', _anchor='recipes')}}">All recipes</a></li>
         {% for i in range(0, len) %}
-        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="#">{{categories[i][0]}}</a></li>
+        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="{{url_for(categories[i][0], _anchor='recipes')}}">{{categories[i][1]}}</a></li>
         {% endfor %}
        
       </ul>
     </li>
     <li class="nav-item sm-hide">
-      <a class="nav-link midl-nav-link" href="#">All recipes</a>
+      <a class="nav-link midl-nav-link" href="{{url_for('home', _anchor='recipes')}}">All recipes</a>
     </li>
     {% for i in range(0, len) %}
     <li class="nav-item sm-hide">
-      <a class="nav-link midl-nav-link" href="{{url_for('warm_meals')}}">{{categories[i][0]}}</a></li>
+      <a class="nav-link midl-nav-link classanchor" href="{{url_for(categories[i][0], _anchor='recipes')}}">{{categories[i][1]}}</a></li>
         {% endfor %}
 
   </ul>
@@ -55,7 +55,6 @@
     
 
   {% for recipes in recipes %}
-  
     <div class="col-12 col-sm-6 col-md-4 recipe-col">
   <a href="/recipes/{{ recipes.recipe_name }}"><h4 class="text-center recipe_header">{{recipes.recipe_name}}</h4></a>
   {% if recipes.meal_image == "" %}
