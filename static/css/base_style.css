@@ -156,3 +156,8 @@ right: 10%;
 .my-footer-class {
     background-color: #a57255;
 }
+
+.flash-msg{
+position: fixed;
+width: 25%;
+}

@@ -5,7 +5,8 @@
 <div class="background-image">
 </div>
 
-   <!-- Inserting recipe form -->
+<!-- flash messages div-->
+
    <div class="container my-form-container">
       <div class="head-captions">
          <h2>Share your meal recipe with others.</h2>
@@ -13,6 +14,7 @@
             immediatly.
          </p>
       </div>
+         <!-- Inserting recipe form -->
       <form action="{{ url_for('insert_recipe') }}" method="POST" enctype="multipart/form-data"
          class="insert_recipe_form">
          
@@ -91,7 +93,7 @@
          <div class="form-file form-file-lg mb-5 row meal_image_div">
             <div class="col text-center">
 
-            {{ form.meal_image(class_='form-file-input', onchange='PreviewImage()')}}
+            {{ form.meal_image(class_='form-file-input', onchange='PreviewImage()', accept='image/*')}}
             <label class="lbl_for_img_btn" for="meal_image">
                <span class="form-file-button">Insert meal picture</span>
             </label>
@@ -99,6 +101,7 @@
                <img id="uploadPreview" class="preview_image"/>
             </div>
          </div>
+ 
          <button type="submit" class="btn btn-lg btn-success">Insert recipe</button>
          </form>
       </div>

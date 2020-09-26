@@ -1,7 +1,7 @@
 # Recipe App
 # Flask application for website recipe book
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, flash
 import email_validator
 from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
@@ -97,10 +97,20 @@ def insert_recipe():
             if mongo.db.ingredients_list.find({'name': v}).count() == 0:
                 mongo.db.ingredients_list.insert_one({'name': v})
         if 'meal_image' not in request.files:
-            return "No file"
+            flash('It looks like you did not select any file', 'warning')
+            flash('You can press back in your browser to restore recipe data you filled in', 'info')
+            return redirect(url_for('add_recipe'))
         file = request.files['meal_image']
         if file.filename =='':
-            return "Empty file"
+            flash('It looks like you did not select any file', 'warning')
+            flash('You can press back in your browser to restore recipe data you filled in', 'info')
+            return redirect(url_for('add_recipe'))
+        if file.filename != '':    
+            file_ext = os.path.splitext(file.filename)[1]
+        if file_ext not in ALLOWED_EXTENSIONS:
+            flash('Wrong file type')
+            flash('You can press back in your browser to restore data you filled in', 'info')
+            return redirect(url_for('add_recipe'))
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             meal_name = request.form['recipe_name']
@@ -110,6 +120,7 @@ def insert_recipe():
             file.save(path)
             mongo_recipe_object["meal_image"]=saved_filename
             mongo.db.recipe_base.insert_one(mongo_recipe_object)
+            flash('I have one more delicious recipe now. Thank you!', 'success')
             return redirect(url_for('home'))
 
 @app.route('/recipes/<recipe_name>')
@@ -127,7 +138,7 @@ def contact():
         subject = request.form['subject']
         message = request.form['message']
         meilMsg=Message(subject=subject, sender=email, recipients=['deosiecki@gmail.com'])
-        meilMsg.body = message
+        meilMsg.body = message + name
         mail.send(meilMsg)
         return "Email send succesful"
 
