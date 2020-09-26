@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>{{recipe.recipe_name}}</title>
+    </head>
+    <body>
+
+<h2 class="text-center">{{recipe.recipe_name}}</h2>
+<p>{{recipe.meal_description}}</p>
+
+<h5>Ingredients</h5>
+<p>number of ingredients: {{recipe.amount_of_ingred}} </p>
+<ol class="ingredients-list">
+{% for key, value in ingredients.items() %}
+{% if 'name' in key %}
+<li class="ingredient-name"><span>{{ value }}: </span>
+{% elif 'amount' in key %}
+{{ value }}
+{% elif 'measure' in key %}
+{{ value }}</li>
+{% endif %}
+{% endfor %}
+</ol>
+<div class="prep-cont"></div>
+<h5>Preparation</h5>
+<ol>
+    {% for key, value in recipe.items() %}
+    {% if 'preparation' in key and 'step' in key %}
+    <li>{{value}}</li>
+    {% endif %}
+    {% endfor %}
+</ol></div>
+
+
+</body>
+</html>

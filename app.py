@@ -1,8 +1,9 @@
 # Recipe App
 # Flask application for website recipe book
 import os
-from flask import Flask, render_template, redirect, request, url_for, flash
+from flask import Flask, render_template, redirect, request, url_for, flash, make_response
 import email_validator
+import pdfkit
 from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 from werkzeug.utils import secure_filename
@@ -162,6 +163,17 @@ def contact():
         mail.send(meilMsg)
         return "Email send succesful"
 
+@app.route('/pdf/<recipe_name>')
+def pdf_template(recipe_name):
+    recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
+    ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
+    rendered = render_template('pdf_template.html', recipe=recipe, ingredients = ingredients)
+    css = ['static/css/pdf-css.css']
+    pdf = pdfkit.from_string(rendered, False, css=css)
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'appplication/pdf'
+    response.headers['Content-Disposition'] = 'inline; filename=your-file-name.pdf'
+    return response
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=os.environ.get("PORT"),
