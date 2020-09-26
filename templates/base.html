@@ -81,31 +81,32 @@
          
          <hr class="my-1">
          <!-- CONTAT FORM -->
-            <form class="contact" id="contactForm">
+            <form class="contact" id="contactForm" action="{{ url_for('contact') }}" method="POST">
                <div class="mb-3 row">
                {{ contactForm.name.label(class_='col-form-label col-2 col-md-1 offset-md-2')}}
                <div class="col-8 col-md-6">
-               {{ contactForm.name(class_='form-control form-control-lg') }}
+               {{ contactForm.name(class_='form-control form-control-lg', placeholder='how can i call you?') }}
             </div>
             </div>
             <div class="mb-3 row">
                {{ contactForm.email.label(class_='col-form-label col-2 col-md-1 offset-md-2') }}
                <div class="col-8 col-md-6">
-               {{ contactForm.email(class_='form-control form-control-lg', placeholder='email@address.com') }}
+               {{ contactForm.email(class_='form-control form-control-lg', placeholder='on which address i can answer to you') }}
             </div>
             </div>
                <div class="mb-3 row">
                {{ contactForm.subject.label(class_='col-form-label col-2 col-md-1 offset-md-2') }}
                <div class="col-8 col-md-6">
-               {{ contactForm.subject(class_='form-control form-control-lg') }}
+               {{ contactForm.subject(class_='form-control form-control-lg', placeholder='main reason of your message') }}
             </div>
             </div>
                <div class="mb-3 row">
                {{ contactForm.message.label(class_='col-form-label col-2 col-md-1 offset-md-2') }}
                <div class="col-8 col-md-6">
-               {{ contactForm.message(class_='form-control form-control-lg', rows='5') }}
+               {{ contactForm.message(class_='form-control form-control-lg', rows='5', placeholder='tell me... ups, write look better') }}
             </div>
             </div>
+            {{ contactForm.submit() }}
             </form>
 
       <hr class="my-1">

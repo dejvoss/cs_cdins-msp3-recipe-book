@@ -3,6 +3,7 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for
 import email_validator
+from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 from werkzeug.utils import secure_filename
 from flask_wtf import FlaskForm
@@ -21,14 +22,22 @@ app.config["MONGO_DBNAME"] = 'recipe_book'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAIL_SERVER']= os.environ.get('MAIL_SERVER')
+app.config['MAIL_PORT']= os.environ.get('MAIL_PORT')
+app.config['MAIL_USE_SSL']= os.environ.get('MAIL_USE_SSL')
+app.config['MAIL_USE_TLS']= os.environ.get('MAIL_USE_TLS')
+app.config['MAIL_USERNAME']= os.environ.get('MAIL_USERNAME')
+app.config['MAIL_DEFAULT_SENDER']= os.environ.get('MAIL_DEFAULT_SENDER')
+app.config['MAIL_PASSWORD']= os.environ.get('MAIL_PASSWORD')
 
-
-
+mail = Mail(app)
 mongo = PyMongo(app)
 db = mongo.db.recipes
 
 measureList=[('grams', 'grams'), ('decagrams', 'decagrams'), ('pieces', 'pieces'), ('pinch', 'pinch'), ('glasses', 'glasses'), ('liters', 'liters'), ('spoons', 'spoons'), ('tea spoons', 'tea spoons')]
 meal_type_list=[('warm meal', 'Warm meal'), ('cold meal', 'Cold meal'), ('drink', 'Drink')]
+# msg=Message("Subject", recipients=['recipient1@example.com'])
+# msg.body ="Mail Body"
 
 class Ingredients(Form):
     name = StringField('Ingredient name', validators=[InputRequired()])
@@ -53,6 +62,7 @@ class ContactForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), Email()])
     subject = StringField('Subject', validators=[InputRequired()])
     message = TextAreaField('Message', validators=[InputRequired()])
+    submit = SubmitField('Send')
     
 @app.route('/')
 @app.route('/home/get_recipes')
@@ -76,7 +86,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/insert_recipe', methods=['POST'])
+@app.route('/insert_recipe', methods=['GET','POST'])
 def insert_recipe():
     if request.method == 'POST':
         mongo_recipe_object = request.form.to_dict()
@@ -108,6 +118,18 @@ def single_recipe(recipe_name):
     recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
     ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
     return render_template('singl_recipe.html', recipe=recipe, ingredients=ingredients, contactForm=contactForm)
+
+@app.route('/contact', methods=['GET','POST'])
+def contact():
+    if request.method=='POST':
+        name = request.form['name']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
+        meilMsg=Message(subject=subject, sender=email, recipients=['deosiecki@gmail.com'])
+        meilMsg.body = message
+        mail.send(meilMsg)
+        return "Email send succesful"
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
