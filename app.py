@@ -15,6 +15,9 @@ from wtforms.validators import DataRequired, InputRequired, NumberRange, Optiona
 if os.path.exists("env.py"):
     import env
     
+config = pdfkit.configuration(wkhtmltopdf='/opt/bin/wkhtmltopdf')
+pdfkit.from_string(html_string, output_file, configuration=config)
+
 UPLOAD_FOLDER = 'static/uploaded_img'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
