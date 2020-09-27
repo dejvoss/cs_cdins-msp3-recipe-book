@@ -14,6 +14,16 @@ from wtforms.validators import DataRequired, InputRequired, NumberRange, Optiona
 
 if os.path.exists("env.py"):
     import env
+    
+if 'DYNO' in os.environ:
+    print ('loading wkhtmltopdf path on heroku')
+    WKHTMLTOPDF_CMD = subprocess.Popen(
+        ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
+        stdout=subprocess.PIPE).communicate()[0].strip()
+else:
+    print ('loading wkhtmltopdf path on localhost')
+    MYDIR = os.path.dirname(__file__)    
+    WKHTMLTOPDF_CMD = os.path.join(MYDIR + "/static/executables/bin/", "wkhtmltopdf.exe")
 
 UPLOAD_FOLDER = 'static/uploaded_img'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
