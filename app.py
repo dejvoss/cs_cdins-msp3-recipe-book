@@ -159,7 +159,7 @@ def contact():
         meilMsg.body = 'You receive messaege: ' + message + 'from ' + name + 'who use email address ' + email
         mail.send(meilMsg)
         flash('Message send succesfully', 'success')
-        return redirect(url_for('contact'))
+        return redirect(url_for('home'))
 
 @app.route('/pdf/<recipe_name>')
 def pdf_template(recipe_name):
