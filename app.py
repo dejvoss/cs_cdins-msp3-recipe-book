@@ -15,9 +15,6 @@ from wtforms.validators import DataRequired, InputRequired, NumberRange, Optiona
 if os.path.exists("env.py"):
     import env
 
-config = pdfkit.configuration(wkhtmltopdf='/opt/bin/wkhtmltopdf')
-pdfkit.from_string(html_string, output_file, configuration=config)
-
 UPLOAD_FOLDER = 'static/uploaded_img'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -42,7 +39,6 @@ measureList=[('grams', 'grams'), ('decagrams', 'decagrams'), ('pieces', 'pieces'
 meal_type_list=[('warm_meals', 'Warm meals'), ('cold_meals', 'Cold meals'), ('drinks', 'Drinks'), ('desserts', 'Desserts')]
 # msg=Message("Subject", recipients=['recipient1@example.com'])
 # msg.body ="Mail Body"
-import subprocess
 
 class Ingredients(Form):
     name = StringField('Ingredient name', validators=[InputRequired()])
