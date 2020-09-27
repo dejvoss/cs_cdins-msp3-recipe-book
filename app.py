@@ -129,10 +129,10 @@ def insert_recipe():
             return redirect(url_for('add_recipe'))
         if file.filename != '':    
             file_ext = os.path.splitext(file.filename)[1]
-        if file_ext not in ALLOWED_EXTENSIONS:
-            flash('Wrong file type')
-            flash('You can press back in your browser to restore data you filled in', 'info')
-            return redirect(url_for('add_recipe'))
+            if file_ext not in ALLOWED_EXTENSIONS:
+                flash('Wrong file type')
+                flash('You can press back in your browser to restore data you filled in', 'info')
+                return redirect(url_for('add_recipe'))
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             meal_name = request.form['recipe_name']
