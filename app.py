@@ -41,10 +41,6 @@ meal_type_list=[('warm_meals', 'Warm meals'), ('cold_meals', 'Cold meals'), ('dr
 # msg.body ="Mail Body"
 import subprocess
 
-WKHTMLTOPDF_CMD = subprocess.Popen(
-['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')], # Note we default to 'wkhtmltopdf' as the binary name
-stdout=subprocess.PIPE).communicate()[0].strip()
-config = pdfkit.configuration(wkhtmltopdf=app.config['WKHTMLTOPDF_CMD'])
 class Ingredients(Form):
     name = StringField('Ingredient name', validators=[InputRequired()])
     amount = DecimalField('Amount', validators=[InputRequired()])
