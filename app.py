@@ -156,7 +156,7 @@ def contact():
         subject = request.form['subject']
         message = request.form['message']
         meilMsg=Message(subject=subject, sender=email, recipients=['deosiecki@gmail.com'])
-        meilMsg.body = message + name
+        meilMsg.body = 'You receive messaege: ' + message + 'from ' + name + 'who use email address ' + email
         mail.send(meilMsg)
         flash('Message send succesfully', 'success')
         return redirect(url_for('contact'))
