@@ -137,6 +137,10 @@ def insert_recipe():
             mongo.db.recipe_base.insert_one(mongo_recipe_object)
             flash('I have one more delicious recipe now. Thank you!', 'success')
             return redirect(url_for('home'))
+        else:
+            flash('It looks like you select not correct image file', 'warning')
+            flash('You can press back in your browser to restore recipe data you filled in', 'info')
+            return redirect(url_for('add_recipe'))
 
 @app.route('/recipes/<recipe_name>')
 def single_recipe(recipe_name):
