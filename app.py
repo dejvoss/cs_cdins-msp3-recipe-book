@@ -39,7 +39,12 @@ measureList=[('grams', 'grams'), ('decagrams', 'decagrams'), ('pieces', 'pieces'
 meal_type_list=[('warm_meals', 'Warm meals'), ('cold_meals', 'Cold meals'), ('drinks', 'Drinks'), ('desserts', 'Desserts')]
 # msg=Message("Subject", recipients=['recipient1@example.com'])
 # msg.body ="Mail Body"
+import subprocess
 
+WKHTMLTOPDF_CMD = subprocess.Popen(
+['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')], # Note we default to 'wkhtmltopdf' as the binary name
+stdout=subprocess.PIPE).communicate()[0].strip()
+config = pdfkit.configuration(wkhtmltopdf=app.config['WKHTMLTOPDF_CMD'])
 class Ingredients(Form):
     name = StringField('Ingredient name', validators=[InputRequired()])
     amount = DecimalField('Amount', validators=[InputRequired()])
