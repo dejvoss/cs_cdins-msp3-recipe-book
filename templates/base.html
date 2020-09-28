@@ -59,7 +59,7 @@
          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
          <div class="mobile_nav_content">
             <a href="{{url_for('home')}}">Home</a>
-            <a href="{{url_for('home', _anchor='recipes')}}">Recipes</a>
+            <a href="{{url_for('home', _anchor='recipes')}}" onclick="closeNav()">Recipes</a>
             <a href="{{url_for('add_recipe')}}">Add recipe</a>
             <a href="#contactForm" onclick="closeNav()">Contact</a>
          </div>
