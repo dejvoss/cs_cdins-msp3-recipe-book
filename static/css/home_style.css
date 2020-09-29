@@ -165,12 +165,17 @@ i.medium {
 .meal_description {
     background-color: rgba(250,250,250, .6);
     display:none;
-    width: 100%;
-    font-size: 1.2rem;
+    font-size: 16px;
     position: absolute;
     top: 75%;
     left: 50%;
     transform: translate(-50%, -75%);
+    width: 90%;
+}
+
+.meal_image:hover + .meal_description {
+    display: block;
+
 }
 
 

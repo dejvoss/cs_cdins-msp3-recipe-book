@@ -55,6 +55,10 @@
 .brand-logo{
     display: none;
 }
+
+.meal_description{
+    display: none!important;
+}
 }
 
 @media (max-width: 601px) {
