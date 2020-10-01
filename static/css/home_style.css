@@ -1,10 +1,11 @@
+/* CSS STYLE FOR MAIN HOME PAGE WHICH SHOWS MOVIE AND RECIPES */
 
-/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ HEADER ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ HEADER WITH MOVIE▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
+
 header {
     margin-bottom: 0;
     padding-bottom: 0;
     height: 80vh;
-    
 }
 
 #myMainVideo {
@@ -14,12 +15,13 @@ header {
     min-width: 100%;
     max-height: 100vh;
     z-index: -1;
-
-    
 }
 
+/* IMAGE IN BACKGROUND OF VIDEO - TO COVER WHITE SPACE IN LARGE SCREENS */
+
 .video-back-img {
-    -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
+    -webkit-filter: blur(5px);
+    /* Safari 6.0 - 9.0 */
     filter: blur(15px);
     position: absolute;
     top: 0;
@@ -29,8 +31,10 @@ header {
     z-index: -1;
 }
 
+/* VIDE CONTENT - CAPTIONS AND BUTTON */
+
 .video-content {
-    margin-top:20vh;
+    margin-top: 20vh;
     margin-bottom: 25vh;
     height: 50vh;
     width: 80%;
@@ -50,36 +54,36 @@ header {
 .video-content p {
     padding-bottom: 4%;
 }
+
 .my-4 {
     margin-top: 2.5rem!important;
 }
+
 /* button displayed on top of video */
+
 .my-btn-class {
     background-color: #74000A;
     margin: -2%;
     color: #ffffff;
     font-size: 2rem;
     height: 64px;
-    
 }
+
 .my-btn-class:hover {
     background-color: #ffffff;
     color: #74000A;
 }
+
 .my-btn-class:focus {
     background-color: #ffffff;
     color: #74000A;
     outline: .5px solid #74000A;
 }
-/* video control button */
-/* 
-.headVideo {
-    position: relative;
-} */
+
+/* DIV WITH VIDEO CONTROL BUTTON - PLAY/STOP */
 
 .video-control {
     color: #5e8b4a;
-
 }
 
 #myVideoBtn:hover {
@@ -88,12 +92,12 @@ header {
     cursor: pointer;
 }
 
-
 /* button sticked to the window for adding new recipe */
+
 .stick-btn {
     position: fixed;
     bottom: 15%;
-    right:2%;
+    right: 2%;
     background-color: #5e8b4a;
     font-size: 20px;
     text-transform: uppercase;
@@ -106,7 +110,6 @@ header {
     outline: none;
     background-color: #a57255;
 }
-
 
 /* play/stop video icon */
 
@@ -128,13 +131,13 @@ i.medium {
 }
 
 .recipe-col {
-    position:relative;
+    position: relative;
     text-align: center;
     /* border: 1px solid #000000; */
     margin-bottom: 5%;
     border-top: 1px solid black;
     /* border-radius: 30%; */
-   padding-top: 10px;
+    padding-top: 10px;
 }
 
 .recipe_header {
@@ -143,17 +146,14 @@ i.medium {
     background-color: inherit;
 }
 
-
 .meal_image {
     width: 100%;
     border-radius: 30%;
     padding: 15px;
     padding-bottom: 0;
-
 }
 
 .meal_icons {
-   
     padding: 2px;
     background-color: #ffffff;
     right: 0;
@@ -161,10 +161,9 @@ i.medium {
     font-size: 1.1rem;
 }
 
-
 .meal_description {
-    background-color: rgba(250,250,250, .6);
-    display:none;
+    background-color: rgba(250, 250, 250, .6);
+    display: none;
     font-size: 16px;
     position: absolute;
     top: 75%;
@@ -173,11 +172,11 @@ i.medium {
     width: 90%;
 }
 
-.meal_image:hover + .meal_description {
+/* SHOW MEAL DESCRIPTION WHEN HOVE MEAL IMAGE */
+
+.meal_image:hover+.meal_description {
     display: block;
-
 }
-
 
 .recipe_container a {
     color: #74000A;
@@ -188,7 +187,8 @@ i.medium {
     background-color: #74000A;
 }
 
-/* <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR IN TOP OF THE SECTION ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ --> */
+/* <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR IN TOP OF THE SECTION NAV FOR SELECTING CATEGORIES ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ --> */
+
 .nav-pills .midl-nav-link {
     margin: 0 0 5% 0;
     font-size: 1.5rem;
@@ -204,10 +204,13 @@ i.medium {
 }
 
 /* Hide dropdown button on default and show in screen wider than 600 px(is set in media_styles.css) */
+
 .lg-hide {
-    display:none;
+    display: none;
 }
+
 /* Drodpown links visible in screens wider than 600 px, set the width to full screen width and change margin to 0 */
+
 .midl-nav-dropdown, .nav-pills .midl-nav-dropdown {
     width: 100vw;
     margin: 0;
