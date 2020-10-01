@@ -1,3 +1,4 @@
+<!-- HOME PAGE WITH VIDEO AND RECIPES AS EXTENSION OF BASE TEMPLATE -->
 {% extends 'base.html' %}
 {% block content %}
 
@@ -5,36 +6,40 @@
 <header>
   <a class="btn-lg btn-rounded stick-btn sm-hide" href="{{url_for('add_recipe')}}">Add recipe!</a>
   <div class="video-background">
-    <img class="video-back-img" src="{{url_for('static', filename='images/main_image.jpg')}}">
+    <img class="video-back-img" src="{{url_for('static', filename='images/main_image.jpg')}}"
+      alt="blur picture with plate of meat decorated by paprica and beans">
   </div>
-  <video autoplay muted id="myMainVideo" >
-        <source src="{{url_for('static', filename='video/main_video.mp4')}}" type="video/mp4">
-    </video>
+  <video autoplay muted id="myMainVideo">
+    <source src="{{url_for('static', filename='video/main_video.mp4')}}" type="video/mp4">
+  </video>
 
-    <div class="video-content">
+  <div class="video-content">
 
-        <h1 class="display-4">No idea for dinner!? No problem!</h1>
-        <p class="lead">Find delicious meal, print recipe or read on your device and cook it!</p>
-        <a class="btn btn-lg my-btn-class" href="#recipes">Go to recipes</a>
-        <hr class="my-4">
-        <div class="video-control">
-          <a id="myVideoBtn" onclick="myFunction()"><i class="medium material-icons">pause_circle_filled</i></a>
-        </div>
+    <h1 class="display-4">No idea for dinner!? No problem!</h1>
+    <p class="lead">Find delicious meal, print recipe or read on your device and cook it!</p>
+    <a class="btn btn-lg my-btn-class" href="#recipes">Go to recipes</a>
+    <hr class="my-4">
+    <div class="video-control">
+      <a id="myVideoBtn" onclick="myFunction()"><i class="medium material-icons">pause_circle_filled</i></a>
     </div>
+  </div>
 </header>
 <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR IN TOP OF THE SECTION ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
-<nav class='middle-nav-bar' >
+<nav class='middle-nav-bar'>
   <ul class="nav nav-pills nav-justified" id="middle-nav-bar">
-<!-- INSTEAD OF PILLS NAV BAR DISPLAY DROPDOWN BUTTON WITH PILLS IN DEVICES WIDER THAN 600px -->
+    <!-- INSTEAD OF PILLS NAV BAR DISPLAY DROPDOWN BUTTON WITH PILLS IN DEVICES WIDER THAN 600px -->
     <li class="nav-item dropdown lg-hide">
-      <a class="nav-link midl-nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false" href="#">Categories</a>
+      <a class="nav-link midl-nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false"
+        href="#">Categories</a>
       <ul class="dropdown-menu nav-pills nav-justified">
-        
-        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="{{url_for('home', _anchor='recipes')}}">All recipes</a></li>
+        <!-- TAKE THE NAMES OF BUTTONS FROM CATEGORY PYTHON LIST AND LOOP THROUGH THE LIST - WHEN NEW CATEGORY WILL BE ADDED IS ENOUGH TO PLACE IT IN APP.PY CATEGORIES LIST -->
+        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown"
+            href="{{url_for('home', _anchor='recipes')}}">All recipes</a></li>
         {% for i in range(0, len) %}
-        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown" href="{{url_for(categories[i][0], _anchor='recipes')}}">{{categories[i][1]}}</a></li>
+        <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown"
+            href="{{url_for(categories[i][0], _anchor='recipes')}}">{{categories[i][1]}}</a></li>
         {% endfor %}
-       
+
       </ul>
     </li>
     <li class="nav-item sm-hide">
@@ -42,8 +47,9 @@
     </li>
     {% for i in range(0, len) %}
     <li class="nav-item sm-hide">
-      <a class="nav-link midl-nav-link classanchor" href="{{url_for(categories[i][0], _anchor='recipes')}}">{{categories[i][1]}}</a></li>
-        {% endfor %}
+      <a class="nav-link midl-nav-link classanchor"
+        href="{{url_for(categories[i][0], _anchor='recipes')}}">{{categories[i][1]}}</a></li>
+    {% endfor %}
 
   </ul>
 </nav>
@@ -51,57 +57,74 @@
 <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ SECTION WITH RECIPES ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
 <section id="recipes">
   <div class="container-fluid recipe_container">
-  <div class="row justify-content-evenly">
-    
+    <div class="row justify-content-evenly">
 
-  {% for recipes in recipes %}
-    <div class="col-12 col-sm-6 col-md-4 recipe-col">
-  <a href="/recipes/{{ recipes.recipe_name }}"><h4 class="text-center recipe_header">{{recipes.recipe_name}}</h4></a>
-  {% if recipes.meal_image == "" %}
-  <img class="meal_image" src="{{url_for('static', filename='images/def_meal_img.jpg')}}" alt="meal image">
-  {% else %}
-  <img class="meal_image" src="{{url_for('static', filename='uploaded_img/'+recipes.meal_image)}}" alt="meal image">
-  {% endif %}
-  <div class="meal_description">
-    {{recipes.meal_description}}
+      <!-- GO THROUGH THE LOOP AND POPULATE DATA FROM DATABASE, DEPEND OF CHOSEN CATEGORY DIFFERENT DATA IS APPLIED -->
+      {% for recipes in recipes %}
+      <div class="col-12 col-sm-6 col-md-4 recipe-col">
+        <a href="/recipes/{{ recipes.recipe_name }}">
+          <h4 class="text-center recipe_header">{{recipes.recipe_name}}</h4>
+        </a>
+        <!-- apply default image for recipes without images -->
+        {% if recipes.meal_image == "" %}
+        <img class="meal_image" src="{{url_for('static', filename='images/def_meal_img.jpg')}}" alt="meal image">
+        {% else %}
+        <img class="meal_image" src="{{url_for('static', filename='uploaded_img/'+recipes.meal_image)}}"
+          alt="meal image">
+        {% endif %}
+        <div class="meal_description">
+          {{recipes.meal_description}}
+        </div>
+        <!-- icon with person - to show portions of meal -->
+        <div class="meal_icons"><span title="amount of portions">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-x-fill" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z" />
+            </svg>
+            {{recipes.portions}}
+          </span>
+          <span title="time of preparation">
+            <!-- icon with clock - to show preparation time of meal -->
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z" />
+              <path fill-rule="evenodd"
+                d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
+            </svg>
+            {{recipes.preparation_time}} min
+          </span>
+          <!-- depend of type of meal display different icon -->
+          {% if recipes.meal_type == "drink" %}
+
+          <svg width="1em" height="1.0625em" viewBox="0 0 16 17" class="bi bi-cup-straw" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M13.964 1.18a.5.5 0 0 1-.278.65l-2.255.902-.462 2.08c.375.096.714.216.971.368.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.955 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 6.132A.78.78 0 0 1 3.5 6c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 4.614 6.867 4.5 8 4.5c.712 0 1.389.045 1.985.127l.527-2.37a.5.5 0 0 1 .302-.355l2.5-1a.5.5 0 0 1 .65.279zM9.768 5.608A13.991 13.991 0 0 0 8 5.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 6c.146.073.362.15.648.222C5.967 6.39 6.924 6.5 8 6.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756a5.513 5.513 0 0 0 1.325-.297l-.845 8.03c-.013.12-.06.185-.102.214-.357.249-1.167.69-2.438.69-1.27 0-2.08-.441-2.438-.69-.041-.029-.09-.094-.102-.214l-.845-8.03c.137.046.283.088.435.126.774.194 1.817.308 2.95.308.742 0 1.445-.049 2.06-.137zm-5.593-1.48s.003.002.005.006l-.005-.006zm7.066 0l-.005.006a.026.026 0 0 1 .005-.006zM11.354 6a3.282 3.282 0 0 1-.703.235l.1-.446c.264.069.464.142.603.211z" />
+          </svg>
+          {% elif recipes.meal_type == "warm meal" %}
+          <i><img src="{{url_for('static', filename='images/warm_meal_icon.jpg')}}" style="width: 24px"
+              alt="icon with hot pot"></i>
+          {% elif recipes.meal_type == "cold meal" %}
+          <i><img src="{{url_for('static', filename='images/cold_meal_icon.jpg')}}" style="width: 32px"
+              alt="icon with blue tube - symbolize cold meal"></i>
+          {% else %}
+
+          {% endif %}
+          <!-- display number of ingredient with icon of carrot -->
+          <span title="amount of ingredients in meal">
+            <i><img src="{{url_for('static', filename='images/carrot_icon.jpg')}}" style="width: 24px"
+                alt="icon with carrot as symbol of ingredients in recipe"></i>
+            x
+            {{recipes.amount_of_ingred}}
+          </span>
+        </div>
+
+      </div>
+
+      {% endfor %}
+    </div>
   </div>
-  <div class="meal_icons"><span title="amount of portions">
-  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-x-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
-  </svg>
-{{recipes.portions}} 
-</span>
-<span title="time of preparation">
-  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"/>
-    <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
-  </svg>
-  {{recipes.preparation_time}} min
-</span>
-  {% if recipes.meal_type == "drink" %}
-
-  <svg width="1em" height="1.0625em" viewBox="0 0 16 17" class="bi bi-cup-straw" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" d="M13.964 1.18a.5.5 0 0 1-.278.65l-2.255.902-.462 2.08c.375.096.714.216.971.368.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.955 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 6.132A.78.78 0 0 1 3.5 6c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 4.614 6.867 4.5 8 4.5c.712 0 1.389.045 1.985.127l.527-2.37a.5.5 0 0 1 .302-.355l2.5-1a.5.5 0 0 1 .65.279zM9.768 5.608A13.991 13.991 0 0 0 8 5.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 6c.146.073.362.15.648.222C5.967 6.39 6.924 6.5 8 6.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756a5.513 5.513 0 0 0 1.325-.297l-.845 8.03c-.013.12-.06.185-.102.214-.357.249-1.167.69-2.438.69-1.27 0-2.08-.441-2.438-.69-.041-.029-.09-.094-.102-.214l-.845-8.03c.137.046.283.088.435.126.774.194 1.817.308 2.95.308.742 0 1.445-.049 2.06-.137zm-5.593-1.48s.003.002.005.006l-.005-.006zm7.066 0l-.005.006a.026.026 0 0 1 .005-.006zM11.354 6a3.282 3.282 0 0 1-.703.235l.1-.446c.264.069.464.142.603.211z"/>
-  </svg>
-  {% elif recipes.meal_type == "warm meal" %}
-  <i><img src="{{url_for('static', filename='images/warm_meal_icon.jpg')}}" style="width: 24px"></i>
-  {% elif recipes.meal_type == "cold meal" %}
-  <i><img src="{{url_for('static', filename='images/cold_meal_icon.jpg')}}" style="width: 32px"></i>
-  {% else %}
-
-  {% endif %}
-  <span title="amount of ingredients in meal">
-  <i><img src="{{url_for('static', filename='images/carrot_icon.jpg')}}" style="width: 24px"></i>
-  x 
-{{recipes.amount_of_ingred}}
-</span>
-</div>
-
-</div>
-
-  {% endfor %}
-</div>
-</div>
 </section>
 
 {% endblock %}

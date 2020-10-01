@@ -1,110 +1,116 @@
 <!-- Page for adding recipe - it is extend the base.html -->
 {% extends 'base.html' %}
 {% block content %}
+<!-- grey layer under the transparent menu to make menu text more visible -->
 <div class="menushadow"></div>
+<!-- background image div -->
 <div class="background-image">
 </div>
+<!-- header text -->
+<div class="container my-form-container">
+   <div class="head-captions">
+      <h2>Share your meal recipe with others.</h2>
+      <p>It is so easy, fill in all fields and press submit button. Your recipe will be accesibly in recipe book
+         immediatly.
+      </p>
+   </div>
+   <!-- Inserting recipe form, populate data from app.py-->
+   <form action="{{ url_for('insert_recipe') }}" method="POST" enctype="multipart/form-data" class="insert_recipe_form">
 
-<!-- flash messages div-->
-
-   <div class="container my-form-container">
-      <div class="head-captions">
-         <h2>Share your meal recipe with others.</h2>
-         <p>It is so easy, fill in all fields and press submit button. Your recipe will be accesibly in recipe book
-            immediatly.
-         </p>
+      <div class="mb-3 row">
+         <div class="col-sm-12">
+            {{ form.recipe_name.label(class_='form-label') }}
+            {{ form.recipe_name(class_='form-control form-control-lg', place_holder='Type recipe name here') }}
+         </div>
       </div>
-         <!-- Inserting recipe form -->
-      <form action="{{ url_for('insert_recipe') }}" method="POST" enctype="multipart/form-data"
-         class="insert_recipe_form">
-         
-         <div class="mb-3 row">
-            <div class="col-sm-12">
-               {{ form.recipe_name.label(class_='form-label') }}
-               {{ form.recipe_name(class_='form-control form-control-lg', place_holder='Type recipe name here') }}
-            </div>
+      <div class="mb-3 row">
+         <div class="col-sm-12 col-md-4">
+            {{ form.meal_type.label(class_='form-label') }}
+            {{ form.meal_type(class_='form-select') }}
          </div>
-         <div class="mb-3 row">
-            <div class="col-sm-12 col-md-4">
-               {{ form.meal_type.label(class_='form-label') }}
-               {{ form.meal_type(class_='form-select') }}
-            </div>
-            <div class="col-sm-12 col-md-4">
-               {{ form.preparation_time.label(class_='form-label') }}
-               {{ form.preparation_time(type='range', class_='form-range', min='5', max='180', step='5')}}
-            </div>
-            <div class="col-sm-12 col-md-4">
-               {{ form.portions.label(class_='form-label') }}
-               {{ form.portions(type='range', class_='form-range', min='1', max='6', step='1') }}
-               
-            </div>
+         <div class="col-sm-12 col-md-4">
+            {{ form.preparation_time.label(class_='form-label') }}
+            {{ form.preparation_time(type='range', class_='form-range', min='5', max='180', step='5')}}
+         </div>
+         <div class="col-sm-12 col-md-4">
+            {{ form.portions.label(class_='form-label') }}
+            {{ form.portions(type='range', class_='form-range', min='1', max='6', step='1') }}
 
          </div>
-         <div class="mb-5 row">
-            <div class="col-sm-12">
-               {{ form.meal_description.label(class_='form-label') }}
-               {{ form.meal_description(class_='form-control', rows='3', placeholder='Write here your own meal description') }}
-            </div>
+
+      </div>
+      <div class="mb-5 row">
+         <div class="col-sm-12">
+            {{ form.meal_description.label(class_='form-label') }}
+            {{ form.meal_description(class_='form-control', rows='3', placeholder='Write here your own meal description') }}
          </div>
-         <hr class="mb-5">
-         <h5>Ingredients list</h5>
-         <div class="mb-3 row" id="ingredient_list">
-         
+      </div>
+      <hr class="mb-5">
+      <h5>Ingredients list</h5>
+      <div class="mb-3 row" id="ingredient_list">
+
 
          {% for l in form.ingredients %}
          <div class="row" id="{{l.form.name.id}}_row">
-         <div class="col-sm-7">
-         {{ l.form.name.label(class_='form-label') }}
-         {{ l.form.name(class_='form-control')}}
-         </div>
-         <div class="col-5 col-sm-2">
-         {{ l.form.amount.label(class_='form-label') }}
-         {{ l.form.amount(type='number', min='0.5', step='0.5', class_='form-control') }}   
-         </div>
-         <div class="col-5 col-sm-3">
-            {{ l.form.measure.label(class_='form-label') }}
-            {{ l.form.measure(class_='form-select') }}
-         </div>
-
-      </div>
-         {% endfor %}
-   </div>
-
-         
-         <a onclick="addIngredientField()" title="Add another ingredient"><i class="icon-size material-icons">add_circle_outline</i></a>
-         <a onclick="removeIngredientField()" style="float:right" title="Remove last ingredient"><i class="icon-size material-icons">remove_circle_outline</i></a>
-         <hr class="mb-5">
-         <h5>Preparation steps</h5>
-         <div class="mb-3 row" id="preparation_steps">
-            
-            {% for l in form.preparation %}
-            <div class="row mb-3">
-               {{ l.form.step.label(class_='col-sm-2 col-form-label') }}
-               <div class="col-sm-10">
-                  {{ l.form.step(class_='form-control', rows='4', placeholder='Type the preparation step here' )}}
-                  
-               </div>
+            <div class="col-sm-7">
+               {{ l.form.name.label(class_='form-label') }}
+               {{ l.form.name(class_='form-control')}}
             </div>
-            {% endfor %}
+            <div class="col-5 col-sm-2">
+               {{ l.form.amount.label(class_='form-label') }}
+               {{ l.form.amount(type='number', min='0.5', step='0.5', class_='form-control') }}
+            </div>
+            <div class="col-5 col-sm-3">
+               {{ l.form.measure.label(class_='form-label') }}
+               {{ l.form.measure(class_='form-select') }}
+            </div>
+
          </div>
-         <a onclick="addStepField()" title="Add another step"><i class="icon-size material-icons">add_circle_outline</i></a>
-         <a onclick="removeStepField()" style="float:right" title="Remove last step"><i class="icon-size material-icons">remove_circle_outline</i></a>
-         <hr class="mb-5">
-         <div class="form-file form-file-lg mb-5 row meal_image_div">
-            <div class="col text-center">
+         {% endfor %}
+      </div>
+
+      <!-- +/- buttons to add or remove fields for adding ingredients; in default there are only 3 fields displayed -->
+      <a onclick="addIngredientField()" title="Add another ingredient"><i
+            class="icon-size material-icons">add_circle_outline</i></a>
+      <a onclick="removeIngredientField()" style="float:right" title="Remove last ingredient"><i
+            class="icon-size material-icons">remove_circle_outline</i></a>
+      <hr class="mb-5">
+      <!-- Preparation steps field -->
+      <h5>Preparation steps</h5>
+      <div class="mb-3 row" id="preparation_steps">
+
+         {% for l in form.preparation %}
+         <div class="row mb-3">
+            {{ l.form.step.label(class_='col-sm-2 col-form-label') }}
+            <div class="col-sm-10">
+               {{ l.form.step(class_='form-control', rows='4', placeholder='Type the preparation step here' )}}
+
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+      <!-- +/- buttons to add or remove fields for adding preparation steps; in default there is only 1 field displayed -->
+      <a onclick="addStepField()" title="Add another step"><i
+            class="icon-size material-icons">add_circle_outline</i></a>
+      <a onclick="removeStepField()" style="float:right" title="Remove last step"><i
+            class="icon-size material-icons">remove_circle_outline</i></a>
+      <hr class="mb-5">
+      <!-- file input with image preview -->
+      <div class="form-file form-file-lg mb-5 row meal_image_div">
+         <div class="col text-center">
 
             {{ form.meal_image(class_='form-file-input', onchange='PreviewImage()', accept='image/*')}}
             <label class="lbl_for_img_btn" for="meal_image">
                <span class="form-file-button">Insert meal picture</span>
             </label>
 
-               <img id="uploadPreview" class="preview_image"/>
-            </div>
+            <img id="uploadPreview" class="preview_image" />
          </div>
- 
-         <button type="submit" class="btn btn-lg btn-success">Insert recipe</button>
-         </form>
       </div>
-   
+
+      <button type="submit" class="btn btn-lg btn-success">Insert recipe</button>
+   </form>
+</div>
+
 
 {% endblock %}
