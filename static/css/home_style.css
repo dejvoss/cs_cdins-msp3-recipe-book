@@ -117,7 +117,7 @@ i.medium {
     font-size: 4rem;
 }
 
-/* recipes */
+/* ----------------------------------------------------------------------- RECIPES ------------------------------------------------------------------------- */
 
 #recipes {
     margin-top: 30px;
@@ -166,13 +166,13 @@ i.medium {
     display: none;
     font-size: 16px;
     position: absolute;
-    top: 75%;
+    top: 55%;
     left: 50%;
-    transform: translate(-50%, -75%);
+    transform: translate(-50%, -55%);
     width: 90%;
 }
 
-/* SHOW MEAL DESCRIPTION WHEN HOVE MEAL IMAGE */
+/* SHOW MEAL DESCRIPTION WHEN HOVER MEAL IMAGE */
 
 .meal_image:hover+.meal_description {
     display: block;
@@ -187,6 +187,12 @@ i.medium {
     background-color: #74000A;
 }
 
+/* MEAL INGREDIENTS STRIP */
+
+.ingred-home li {
+    display: inline;
+    margin-left: 10px;
+}
 /* <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR IN TOP OF THE SECTION NAV FOR SELECTING CATEGORIES ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ --> */
 
 .nav-pills .midl-nav-link {

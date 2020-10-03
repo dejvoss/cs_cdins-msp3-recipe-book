@@ -65,16 +65,19 @@
         <a href="/recipes/{{ recipes.recipe_name }}">
           <h4 class="text-center recipe_header">{{recipes.recipe_name}}</h4>
         </a>
-        <!-- apply default image for recipes without images -->
+        <!-- apply default image for recipes without images and add image for recipes with image -->
         {% if recipes.meal_image == "" %}
         <img class="meal_image" src="{{url_for('static', filename='images/def_meal_img.jpg')}}" alt="meal image">
         {% else %}
         <img class="meal_image" src="{{url_for('static', filename='uploaded_img/'+recipes.meal_image)}}"
           alt="meal image">
         {% endif %}
+        <!-- meal description -->
         <div class="meal_description">
           {{recipes.meal_description}}
         </div>
+        <!-- meal ingredients -->
+        
         <!-- icon with person - to show portions of meal -->
         <div class="meal_icons"><span title="amount of portions">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-x-fill" fill="currentColor"
@@ -123,7 +126,19 @@
             {{recipes.amount_of_ingred}}
           </span>
         </div>
-
+        <div class="ingredients-strip">
+          <ul class="ingred-home">{% for key, value in recipes.items() %}
+            {% if 'ingredients' in key %}
+            {% if 'name' in key %}
+            <li>{{value}}:
+            {% else %}
+            {{value}}
+            {% endif %}
+            {% endif %}
+            
+            {% endfor %}
+          </ul>
+        </div>
       </div>
 
       {% endfor %}
