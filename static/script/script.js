@@ -94,33 +94,24 @@ function closeNav() {
 
 /* Change the active link color in midle nav bar in home webpage source- https://www.w3schools.com/howto/howto_js_active_element.asp*/
 
-// var btnContainer = document.getElementById("middle-nav-bar");
+var btnContainer = document.getElementById("middle-nav-bar");
 
 // // Get all buttons with class="btn" inside the container
-// var btns = btnContainer.getElementsByClassName("midl-nav-link");
-// console.log(btns)
-// // Loop through the buttons and add the active class to the current/clicked button
-// for (var i = 0; i < btns.length; i++) {
-//   btns[i].addEventListener("click", function() {
-//     var current = document.getElementsByClassName("midl-nav-active");
-//     current[0].className = current[0].className.replace(" midl-nav-active", "");
-//     this.className += " midl-nav-active";
-//   });
-// }
-
+var btns = btnContainer.getElementsByClassName("midl-nav-link");
+console.log(btns)
+// Loop through the buttons and add the active class to the current/clicked button
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("midl-nav-active");
+    current[0].className = current[0].className.replace(" midl-nav-active", "");
+    this.className += " midl-nav-active";
+  });
+}
+// Print recipe - open new window only with recipe content, nothing else
 function printRecipe() {
    var printContent = document.getElementById("recipe-area").innerHTML;
     var printWindow = window.open("","","width=900,height=650");
     printWindow.document.write(printContent);
-    printWindow.window.print();
+    printWindow.document.close();
+    printWindow.print();
 }
-
-// function printPageArea(areaID){
-//     var printContent = document.getElementById(areaID);
-//     var WinPrint = window.open('', '', 'width=900,height=650');
-//     WinPrint.document.write(printContent.innerHTML);
-//     WinPrint.document.close();
-//     WinPrint.focus();
-//     WinPrint.print();
-//     WinPrint.close();
-// }     var printContents = document.getElementById(divName).innerHTML;
