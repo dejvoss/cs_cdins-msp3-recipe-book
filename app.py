@@ -63,7 +63,11 @@ class ContactForm(FlaskForm):
     subject = StringField('Subject', validators=[InputRequired()])
     message = TextAreaField('Message', validators=[InputRequired()])
     submit = SubmitField('Send')
-    
+
+class sendRecipeForm(FlaskForm):
+    emailto = StringField('email address', validators=[DataRequired(), Email()])
+    submit = SubmitField('Send recipe on email')
+
 @app.route('/')
 @app.route('/home/get_recipes')
 def home():
@@ -146,7 +150,8 @@ def single_recipe(recipe_name):
     contactForm = ContactForm()
     recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
     ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
-    return render_template('singl_recipe.html', recipe=recipe, ingredients=ingredients, contactForm=contactForm)
+    meilRecipe = sendRecipeForm()
+    return render_template('singl_recipe.html', recipe=recipe, ingredients=ingredients, contactForm=contactForm, meilRecipe=meilRecipe)
 
 @app.route('/contact', methods=['GET','POST'])
 def contact():
@@ -160,6 +165,18 @@ def contact():
         mail.send(meilMsg)
         flash('Message send succesfully', 'success')
         return redirect(url_for('home'))
+
+@app.route('/send-recipe-to-email/<recipe_name>', methods=['GET', 'POST'])
+def send_meil_recipe(recipe_name):
+    recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
+    ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
+    subject = "Your recipe for"
+    emailto = request.form['emailto']
+    recipeMsg = Message(subject=subject, sender=emailto, recipients=[emailto])
+    recipeMsg.html = render_template('meil_recipe.html', recipe=recipe, ingredients=ingredients)
+    mail.send(recipeMsg)
+    flash('Recipe succesfully send on your email address.', 'success')
+    return redirect(url_for('home'))
 
 @app.route('/pdf/<recipe_name>')
 def pdf_template(recipe_name):

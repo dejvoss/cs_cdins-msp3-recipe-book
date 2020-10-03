@@ -44,5 +44,10 @@
 </div>
 <div class="take-recipe-btns">
     <button onclick="printRecipe()">print</button>
+    <form class="meilRecipe text-center" action="/send-recipe-to-email/{{recipe.recipe_name}}" method="POST">
+                   {{ meilRecipe.emailto.label()}}
+                   {{ meilRecipe.emailto() }}
+                    {{ meilRecipe.submit}}
+    </form>
 </div>
 {% endblock %}
