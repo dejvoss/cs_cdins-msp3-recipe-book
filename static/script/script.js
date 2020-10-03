@@ -1,3 +1,5 @@
+// JAVA SCRIPT FOR PAGE COOKING RECIPE ?!?!?!?!?!?!?!?!??!?!?!?!??!?!?
+// function to change the navigation bar when scroll down
 function scrollFunction() {
     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
         document.getElementById("main-nav-bar").classList.remove("main-nav-def")
@@ -9,6 +11,9 @@ function scrollFunction() {
 window.onscroll = function() {
     scrollFunction()
 };
+
+// VIDEO ?!?!?!?!?!?!?!?!??!?!?!?!??!?!??!?!?!?!?!?!?!?!??!?!?!?!??!?!?
+// change play/stop icon on video when video is finished
 if (document.getElementById("myMainVideo") != null) {
     var mainVideo = document.getElementById("myMainVideo");
     var VideoBtn = document.getElementById("myVideoBtn");
@@ -27,19 +32,17 @@ function myFunction() {
         VideoBtn.innerHTML = '<i class="medium material-icons">play_circle_filled</i>';
     }
 }
-// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
-
+// ADD RECIPE PAGE ?!?!?!?!?!?!?!?!??!?!?!?!??!?!??!?!?!?!?!?!?!?!??!?!?!?!??!?!??!?!?!?!?!?!?!?!??!?!?!?!??!?!?
+// add one more ingredient field
 var measure_option_List = ['grams', 'decagrams', 'pieces', 'pinch', 'glasses', 'liters', 'spoons', 'tea spoons']
 
 function addIngredientField() {
     let ingredient_counter = document.getElementById("ingredient_list").childElementCount;
-    let new_ingr_nr = ingredient_counter + 1;
     let pernament_field_id = "ingredients-" + ingredient_counter + "-";
     let field_id_name = pernament_field_id + "name";
     let field_id_amount = pernament_field_id + "amount";
     let field_id_measure = pernament_field_id + "measure";
     let rowId = field_id_name + "_row"
-    measureList = [('grams', 'grams'), ('decagrams', 'decagrams'), ('pieces', 'pieces'), ('pinch', 'pinch'), ('glasses', 'glasses'), ('liters', 'liters'), ('spoons', 'spoons'), ('tea spoons', 'tea spoons')]
     let measure_option_Html = ""
     for (i = 0; i < measure_option_List.length; i++) {
         let measure_name = measure_option_List[i]
@@ -58,22 +61,22 @@ function addIngredientField() {
     divChildEl.innerHTML = html_ingr_full;
     document.getElementById("ingredient_list").appendChild(divChildEl); // add div elemenet for new ingredient field
 }
-
+// remove last field for ingredients 
 function removeIngredientField(btn_parent) {
     document.getElementById("ingredient_list").lastChild.remove()
 }
-
+// add one more field for preparation step
 function addStepField() {
     let step_counter = document.getElementById("preparation_steps").childElementCount;
     let field_id = "preparation-" + step_counter + "-step"
     let html_step_field = '<label class="col-sm-2 col-form-label" for="' + field_id + '">Preparation step</label><div class="col-sm-10"><textarea class="form-control" id="' + field_id + '" name="' + field_id + '" placeholder="Type the preparation step here" required rows="4"></textarea></div>';
     document.getElementById('preparation_steps').insertAdjacentHTML('beforeend', '<div class="row mb-3">' + html_step_field + '</div>');
 }
-
+// remove last field of preparation step
 function removeStepField() {
     document.getElementById("preparation_steps").lastChild.remove()
 }
-
+// function to see image which will be uploaded to the database
 function PreviewImage() {
     var oFReader = new FileReader();
     oFReader.readAsDataURL(document.getElementById("meal_image").files[0]);
@@ -82,35 +85,23 @@ function PreviewImage() {
         document.getElementById("uploadPreview").src = oFREvent.target.result;
     };
 };
-/* Open when someone clicks on the span element */
+
+/* MOBILE NAVIGATION ?!?!?!?!?!?!?!?!??!?!?!?!??!?!? */
+/* Open mobile navigation menu when click on the menu button */
 function openNav() {
     document.getElementById("mobile_nav").style.width = "100%";
 }
 
-/* Close when someone clicks on the "x" symbol inside the overlay */
+/* Close mobile navigation menu when someone clicks on the "x" symbol inside the overlay */
 function closeNav() {
     document.getElementById("mobile_nav").style.width = "0%";
 }
 
-/* Change the active link color in midle nav bar in home webpage source- https://www.w3schools.com/howto/howto_js_active_element.asp*/
 
-var btnContainer = document.getElementById("middle-nav-bar");
-
-// // Get all buttons with class="btn" inside the container
-var btns = btnContainer.getElementsByClassName("midl-nav-link");
-console.log(btns)
-// Loop through the buttons and add the active class to the current/clicked button
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-    var current = document.getElementsByClassName("midl-nav-active");
-    current[0].className = current[0].className.replace(" midl-nav-active", "");
-    this.className += " midl-nav-active";
-  });
-}
-// Print recipe - open new window only with recipe content, nothing else
+// Print recipe - open new window only with recipe content, nothing else and open print menu
 function printRecipe() {
-   var printContent = document.getElementById("recipe-area").innerHTML;
-    var printWindow = window.open("","","width=900,height=650");
+    var printContent = document.getElementById("recipe-area").innerHTML;
+    var printWindow = window.open("", "", "width=900,height=650");
     printWindow.document.write(printContent);
     printWindow.document.close();
     printWindow.print();
