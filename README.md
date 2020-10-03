@@ -11,11 +11,7 @@ The main goal of this project is to give for the users nice modern look website 
 
 #### User Stories:
 
-I identified 3 group of user for my project. People under the age of 25, people between the age of 25 and 45 and people over the age of 45. My user stories are pieces of conversation about a website.
-
-#### People under the age of 25:
-
-
+I identified 3 group of user for my project. People between the age of 25 and 45 and people over the age of 45. My user stories are pieces of conversation about a website.
 
 #### People between the age of 25 and 45:
 
@@ -36,7 +32,7 @@ I identified 3 group of user for my project. People under the age of 25, people 
 Taking to consideration the above user stories i identified below requirements:
 
 #### Functional Requirements:
-1. The project must be a one webpage with header, one main section and footer.
+1. The project must be a multi webpage with main page, page for adding recipes and single recipe page.
 2. Each recipes needs to be able to open as a single webpage.
 3. Website must be accesible from different devices.
 4. Inserting new recipe must be easy and intuitive:
@@ -77,17 +73,12 @@ Taking to consideration the above user stories i identified below requirements:
     * ingredients quantity
     * ingredient measure (grams, pieces, spoons, )
     * image
-2. Best recipes needs to be displayed on main page.
-3. Meals has to be organized by different types:
-    * by preparation time
-    * by quantity of portion
-    * by quntity of ingredients
-4. Meals has to be organized by different categories:
-    * Soups
-    * Breakfasts
-    * Dinners
-    * Cakes
-    * Drinks
+2. Rrecipes needs to be displayed on main page.
+3. Meals has to be organized by different categories:
+    * cold meals
+    * hot meals
+    * drinks
+    * desserts
 
 ### Structure
 
@@ -151,7 +142,26 @@ h1, h2, h3, h4, h5, h6 {
 
 ## Features
 
+1. Insert recipe to the database.
+2. Add recipe image.
+3. Printing recipe.
+4. Sending recipe by email.
+
 ## Technologies Used
+
+* python
+* flask
+* Bootstra 5 Alpha
+* CSS
+* HTML
+* JAVASCRIPT
+* BOOTSTRAP ICONS
+* GOOGLE FONT
+* MONGODB
+* HERKOU as deployment service
+* Git for version control
+* github
+
 
 ## Testing
 
