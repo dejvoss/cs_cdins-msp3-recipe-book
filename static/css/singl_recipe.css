@@ -36,3 +36,8 @@
     margin-right: auto;
 }
 
+.edit-btn {
+display: block;
+max-width: 150px;
+margin: auto;
+}

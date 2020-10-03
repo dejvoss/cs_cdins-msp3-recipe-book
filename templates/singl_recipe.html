@@ -14,7 +14,7 @@
         </div>
         <div class="col-12 col-md-6 offset-md-3 singl-recipe-body">
             <!-- Create loop for to display all ingredients in a list -->
-            <h5>Ingredients</h5>
+            <h5 class="text-center">Ingredients</h5>
             <p>number of ingredients: {{recipe.amount_of_ingred}} </p>
             <ol class="ingredients-list">
                 {% for key, value in ingredients.items() %}
@@ -30,8 +30,10 @@
                 {% endif %}
                 {% endfor %}
             </ol>
+        </div>
             <!-- Create loop for to display all preparation steps in a list -->
-            <h5>Preparation</h5>
+            <div class="col-12 col-md-8 offset-md-2 singl-recipe-body">
+            <h5 class="text-center">Preparation</h5>
             <ol>
                 {% for key, value in recipe.items() %}
                 {% if 'preparation' in key and 'step' in key %}
@@ -42,21 +44,26 @@
         </div>
     </div>
 </div>
-<div class="take-recipe-btns text-center">
+<div class="control-btns text-center">
     <button onclick="printRecipe()" class="btn btn-dark mb-3"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-printer-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5z"/>
         <path fill-rule="evenodd" d="M11 9H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
         <path fill-rule="evenodd" d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
-      </svg> Print recipe</button>
+      </svg>  Print recipe</button>
     <form class="meilRecipe text-center mb-3" action="/send-recipe-to-email/{{recipe.recipe_name}}" method="POST">
                 
                 {{ meilRecipe.submit(class_="btn btn-dark mb-1 my-send-rc-btn")}}
                 {{ meilRecipe.emailto(class_='form-control', placeholder='email@address.com') }}
     </form>
-    <a href="/pdf/{{recipe.recipe_name}}" class="btn btn-dark mb-5">
+    <a href="{{url_for('pdf_template', recipe_id=recipe._id)}}" class="btn btn-dark mb-3">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-arrow-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8 5a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5A.5.5 0 0 1 8 5z"/>
-          </svg> Download as PDF
+          </svg>  Download as PDF
         </a>
+        <a href="/edit/{{recipe.recipe_name}}" class="btn btn-dark mb-5 edit-btn">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+              </svg>  Edit recipe
+            </a>
 </div>
 {% endblock %}
