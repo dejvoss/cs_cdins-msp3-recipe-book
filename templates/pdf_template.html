@@ -17,7 +17,7 @@
     <ol class="ingredients-list">
         {% for key, value in ingredients.items() %}
         {% if 'name' in key %}
-        <li class="ingredient-name"><span>{{ value }}: </span>
+        <li class="ingredient-name">{{ value }}: 
             {% elif 'amount' in key %}
             {{ value }}
             {% elif 'measure' in key %}
