@@ -1,3 +1,5 @@
+/* Style for PDF template which is used to generate pdf with recipe */
+
 body, p, ul, li {
     font-size: 16px;
 }

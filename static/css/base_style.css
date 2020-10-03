@@ -1,5 +1,4 @@
-/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ MAIN STYLE + STYLE BASE.HTML ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
-/* style for base.html and index.html webpages */
+/*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ STYLE FOR THE BASE.HTML - PART VISIBLE IN ALL PAGES▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 body {
     height: 100%;
     width: 100%;
@@ -19,10 +18,8 @@ a:hover {
 }
 /*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 /* navigation bar style */
-/* default style for navigation bar */
 
-
-
+/* navigation bar class which is set when page is scrolled down,  */
 .main-navbar {
     background-color: #5e8b4a;
     padding: 1px;
@@ -31,14 +28,12 @@ a:hover {
     position: fixed;
     top: 0;
     transition: 0.8s;
-    
 }
-
+/* overwright bootstrap navbar class to remove border in clicked links */
 .navbar {
     box-shadow: 0 10px 20px 0 rgba(0,0,0,.0);
-
 }
-
+/* navigation bar in default - before scroll or when page is on the top */
 .main-nav-def {
     background-color: transparent;
     padding: 15px;  
@@ -58,28 +53,27 @@ a:hover {
     right: 10%;
     
 }
-/* Set links in main navbar to be inline(row directtion) and make brake between(padding)*/
+/* links in main navbar setted to be inline(row directtion) and with brake between(padding)*/
 .navbar-nav {
     flex-direction: row;
 }
-
 .navbar-nav .nav-link {
     padding-right: 1rem;
 }
-
+/* linsk in navbar */
 .main-navbar ul a {
     text-transform: uppercase;
     font-size: 1.5rem;
     color: #ffffff;
 
 }
-
+/* links in navbar when hover */
 .main-navbar ul a:hover {
     background-color: transparent;
     color: #74000A;
     text-decoration: none;
 }
-
+/* button which open navigation menu - visible on small devices */
 .mobile_menu_btn {
     display: none;
 font-size: 2rem;
@@ -92,7 +86,7 @@ text-align: center;
 position: absolute;
 right: 10%;
 }
-/* mobile navigation */
+/* mobile navigation menu source w3schools.com*/
 .mobile_fs_nav {
     /* Height & width depends on how you want to reveal the overlay (see JS below) */   
     height: 100%;
@@ -133,7 +127,7 @@ right: 10%;
     font-size: 60px;
   }
 
-/* logo in navigation bar */
+/* logo in main navigation bar */
 .logo-img {
     height: 64px;
     width: 64px;
@@ -157,12 +151,13 @@ right: 10%;
     background-color: #a57255;
 }
 
+/* STYLE FOR FLASH MESSAGES */
 .flash-msg{
 position: fixed;
 width: 25%;
 z-index: 100;
 }
-
+/* ADJUST SCROLL PADDING - ANCHORS TO SPECIFIED SECTIONS ARE ALWAYS GOES TO THE TOP OF PAGE AND ARE HIDEN BY MENU, by setting scroll padding, anchors to the id in pages are always be displayed below the navigation bar */
 html {
     scroll-padding-top: 180px; /* height of sticky header */
   }

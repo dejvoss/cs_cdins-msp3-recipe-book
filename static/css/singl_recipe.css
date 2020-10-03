@@ -1,13 +1,4 @@
-.ingred-data-list {
-    display: inline-flex;
-    list-style: none;
-    padding-left: 2px;
-    
-}
-
-.ingred-data-list li {
-    padding-right: 5px;
-}
+/* STYLE FOR SINGLE RECIPE PAGE */
 
 .single-recipe-cont {
     margin-top: 100px;
@@ -23,13 +14,12 @@
     width: auto;
     max-width: 90vw;
     max-height: 45vh;
-
 }
 
 .singl-recipe-head {
     text-align: center
 }
-
+/* action buttons below recipe */
 .meilRecipe {
     max-width: 200px;
     margin-left: auto;

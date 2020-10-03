@@ -6,7 +6,7 @@
         height: 56px;
         width: 56px;
     }
-/* display video captions below vide on mobile */
+/* display video captions below video on mobile */
     .video-content {
         position: static;
         width: 100%;
@@ -15,7 +15,7 @@
     .sm-hide {
         display: none;
     }
-
+/* class to hide elements in large devices */
     .lg-hide {
         display:block;
     }
@@ -39,6 +39,7 @@
     }
  
 }
+/* in very small devices hide page logo, don't show meal description, change font size of the category navigation */
 @media (max-width: 200px){
 
 .display-4 {
@@ -68,12 +69,6 @@
     .nav-links {
         display: none;
     }
-}
-
-@media (min-width: 992px){}
-.navbar-expand-lg {
-    justify-content: flex-end;
-}
 }
 
 /* When the height of the screen is less than 450 pixels, in mobile navigation change the font-size of the links and position the close button again, so they don't overlap */

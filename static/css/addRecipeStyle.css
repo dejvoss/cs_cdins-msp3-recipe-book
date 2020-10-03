@@ -1,3 +1,5 @@
+/* STYLE FOR PAGE ADD RECIPE */
+/* set background image */
 .background-image {
     height: 100%;
     background-image: url("../images/addRecipeBack.jpg");
@@ -6,9 +8,8 @@
     z-index:-1;
     position: fixed;
     top:0;
-
 }
-
+/* place dark div to highlit text in transparent navigation bar; height needs to be same as navigation bar */
 .menushadow {
     position: fixed;
     top: 0;
@@ -16,13 +17,13 @@
     height: 64px;
     background-color: rgba(000,000,000,0.5)
 }
-
+/* form container */
 .my-form-container{
     margin-top: 150px;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 5%;
 }
-
+/* text on the top of the form container */
 .head-captions {
     text-align: center;
     text-transform: uppercase;
@@ -30,20 +31,12 @@
     background-color: #008000;
 }
 
-
-.ingredient_table tbody, .ingredient_table th {
-    display: flex;
-}
-
-.ingredient_table select {
-    height: 31px;
-}
-
+/* image visible when user select file to upload */
 .preview_image {
     width: 200px;
     height: 200px;
 }
-
+/* part of the form with inserting image */
 .meal_image_div {
     height: 100%;
 }
@@ -55,9 +48,3 @@
 .form-file-button:hover {
     cursor: pointer;
 }
-
-
-/* #5e8b4a
-#ca2545
-#a57255
-#0a0904 */

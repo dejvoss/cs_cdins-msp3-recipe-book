@@ -123,13 +123,6 @@ i.medium {
     margin-top: 30px;
 }
 
-.ingredients_list {
-    list-style: none;
-    -webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3;
-}
-
 .recipe-col {
     position: relative;
     text-align: center;
@@ -187,7 +180,7 @@ i.medium {
     background-color: #74000A;
 }
 
-/* MEAL INGREDIENTS STRIP */
+/* MEAL INGREDIENTS */
 
 .ingred-home li {
     display: inline;
