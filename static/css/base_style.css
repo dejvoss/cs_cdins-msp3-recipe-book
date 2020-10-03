@@ -160,6 +160,7 @@ right: 10%;
 .flash-msg{
 position: fixed;
 width: 25%;
+z-index: 100;
 }
 
 html {
