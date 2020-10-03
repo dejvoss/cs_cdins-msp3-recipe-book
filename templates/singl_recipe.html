@@ -42,12 +42,21 @@
         </div>
     </div>
 </div>
-<div class="take-recipe-btns">
-    <button onclick="printRecipe()">print</button>
-    <form class="meilRecipe text-center" action="/send-recipe-to-email/{{recipe.recipe_name}}" method="POST">
-                   {{ meilRecipe.emailto.label()}}
-                   {{ meilRecipe.emailto() }}
-                    {{ meilRecipe.submit}}
+<div class="take-recipe-btns text-center">
+    <button onclick="printRecipe()" class="btn btn-dark mb-3"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-printer-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5z"/>
+        <path fill-rule="evenodd" d="M11 9H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+        <path fill-rule="evenodd" d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+      </svg> Print recipe</button>
+    <form class="meilRecipe text-center mb-3" action="/send-recipe-to-email/{{recipe.recipe_name}}" method="POST">
+                
+                {{ meilRecipe.submit(class_="btn btn-dark mb-1 my-send-rc-btn")}}
+                {{ meilRecipe.emailto(class_='form-control', placeholder='email@address.com') }}
     </form>
+    <a href="/pdf/{{recipe.recipe_name}}" class="btn btn-dark mb-5">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-arrow-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8 5a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5A.5.5 0 0 1 8 5z"/>
+          </svg> Download as PDF
+        </a>
 </div>
 {% endblock %}

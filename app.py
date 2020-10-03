@@ -187,8 +187,9 @@ def pdf_template(recipe_name):
     css = ['static/css/pdf-css.css']
     pdf = pdfkit.from_string(rendered, False, css=css, configuration=config)
     response = make_response(pdf)
+    disposCont = 'inline; filename=' + recipe_name + '.pdf'
     response.headers['Content-Type'] = 'appplication/pdf'
-    response.headers['Content-Disposition'] = 'inline; filename=your-file-name.pdf'
+    response.headers['Content-Disposition'] = disposCont
     return response
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
