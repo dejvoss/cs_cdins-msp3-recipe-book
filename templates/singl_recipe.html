@@ -3,7 +3,7 @@
 <!-- grey layer under the transparent menu to make menu text more visible -->
 <div class="menushadow"></div>
 <!-- display recipe from mongoDB -->
-<div class="container single-recipe-cont">
+<div class="container single-recipe-cont" id="recipe-area">
     <div class="row">
         <div class="col-12 singl-recipe-head">
             <h2 class="text-center">{{recipe.recipe_name}}</h2>
@@ -20,14 +20,13 @@
                 {% for key, value in ingredients.items() %}
                 {% if 'name' in key %}
                 <li class="ingredient-items">
-                    <ul class="ingred-data-list">
-                        <li>{{value}}: </li>
+                    {{value}}: 
                         {% elif 'amount' in key %}
-                        <li>{{ value }} </li>
+                        {{ value }} 
                         {% elif 'measure' in key %}
-                        <li>{{ value }}</li>
-                </li>
-                </ul>
+                        {{ value }}</li>
+                
+               
                 {% endif %}
                 {% endfor %}
             </ol>
@@ -42,5 +41,8 @@
             </ol>
         </div>
     </div>
+</div>
+<div class="take-recipe-btns">
+    <button onclick="printRecipe()">print</button>
 </div>
 {% endblock %}
