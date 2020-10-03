@@ -131,12 +131,11 @@
           <ul class="ingred-home">{% for key, value in recipes.items() %}
             {% if 'ingredients' in key %}
             {% if 'name' in key %}
-            <li>{{value}}:
+            <li> {{value}}:
               {% else %}
               {{value}}
               {% endif %}
               {% endif %}
-
               {% endfor %}
           </ul>
         </div>
