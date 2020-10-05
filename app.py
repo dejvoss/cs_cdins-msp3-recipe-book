@@ -1,5 +1,7 @@
-# Recipe App
+# Recipe Book Application
 # Flask application for website recipe book
+# Application display recipes from database mongoDB and allowed user to add recipes to the database
+
 import os
 from flask import Flask, render_template, redirect, request, url_for, flash, make_response
 import email_validator
@@ -11,18 +13,21 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, DecimalField, SubmitField, TextAreaField, FileField, SelectField, IntegerField, FormField, Form, FieldList
 from wtforms.validators import DataRequired, InputRequired, NumberRange, Optional, Email
 
-
+# import variables setted in environment file if exist
 if os.path.exists("env.py"):
     import env
-    
+
+# set upload folder and allowed extension for uploading recipe image
 UPLOAD_FOLDER = 'static/uploaded_img'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
+# congifguration cariables
 app = Flask(__name__)
-app.config["MONGO_DBNAME"] = 'recipe_book'
+app.config["MONGO_DBNAME"] = 'recipe_book'              # database collection name
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# configuration for email server used to send contact message and/or sending recipe to email
 app.config['MAIL_SERVER']= 'smtp.gmail.com'
 app.config['MAIL_PORT']= '465'
 app.config['MAIL_USE_SSL']= True
@@ -34,10 +39,11 @@ mail = Mail(app)
 mongo = PyMongo(app)
 db = mongo.db.recipes
 
+# list of measures used in add recipe form
 measureList=[('grams', 'grams'), ('decagrams', 'decagrams'), ('pieces', 'pieces'), ('pinch', 'pinch'), ('glasses', 'glasses'), ('liters', 'liters'), ('spoons', 'spoons'), ('tea spoons', 'tea spoons')]
+#  list of recipes categories, add it here in case of new category
 meal_type_list=[('warm_meals', 'Warm meals'), ('cold_meals', 'Cold meals'), ('drinks', 'Drinks'), ('desserts', 'Desserts')]
-# msg=Message("Subject", recipients=['recipient1@example.com'])
-# msg.body ="Mail Body"
+
 
 class Ingredients(Form):
     name = StringField('Ingredient name', validators=[InputRequired()])
@@ -68,6 +74,7 @@ class sendRecipeForm(FlaskForm):
     emailto = StringField('email address', validators=[DataRequired(), Email()])
     submit = SubmitField('Send recipe on email')
 
+# home route, display all recipes
 @app.route('/')
 @app.route('/home/get_recipes')
 def home():
@@ -75,30 +82,35 @@ def home():
     categories = meal_type_list
     return render_template("index.html", recipes=mongo.db.recipe_base.find(), contactForm=contactForm, categories=categories, len=len(categories))
 
+# route displayed warm meals on home page
 @app.route('/home/warm_meals')
 def warm_meals():
     contactForm = ContactForm()
     categories = meal_type_list
     return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'warm_meals' } ), contactForm=contactForm, categories=categories, len=len(categories))
 
+# route displayed cold meals on home page
 @app.route('/home/cold_meals')
 def cold_meals():
     contactForm = ContactForm()
     categories = meal_type_list
     return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'cold_meals' } ), contactForm=contactForm, categories=categories, len=len(categories))
 
+# route displayed drinks on home page
 @app.route('/home/drinks')
 def drinks():
     contactForm = ContactForm()
     categories = meal_type_list
     return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'drinks' } ), contactForm=contactForm, categories=categories, len=len(categories))
 
+# route displayed desserts on home page
 @app.route('/home/desserts')
 def desserts():
     contactForm = ContactForm()
     categories = meal_type_list
     return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'desserts' } ), contactForm=contactForm, categories=categories, len=len(categories))
 
+# route display form for inserting new recipe
 @app.route('/add_recipe')
 def add_recipe():
     contactForm = ContactForm()
@@ -110,6 +122,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+# route which populate new recipe from form in to mongoDB database
 @app.route('/insert_recipe', methods=['GET','POST'])
 def insert_recipe():
     if request.method == 'POST':
@@ -145,6 +158,7 @@ def insert_recipe():
             flash('You can press back in your browser to restore recipe data you filled in', 'info')
             return redirect(url_for('add_recipe'))
 
+# route display recipe in single page
 @app.route('/recipes/<recipe_name>')
 def single_recipe(recipe_name):
     contactForm = ContactForm()
@@ -153,6 +167,7 @@ def single_recipe(recipe_name):
     meilRecipe = sendRecipeForm()
     return render_template('singl_recipe.html', recipe=recipe, ingredients=ingredients, contactForm=contactForm, meilRecipe=meilRecipe)
 
+# route for sending contact message
 @app.route('/contact', methods=['GET','POST'])
 def contact():
     if request.method=='POST':
@@ -166,6 +181,7 @@ def contact():
         flash('Message send succesfully', 'success')
         return redirect(url_for('home'))
 
+# route for sending recipe by email
 @app.route('/send-recipe-to-email/<recipe_name>', methods=['GET', 'POST'])
 def send_meil_recipe(recipe_name):
     recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
@@ -178,6 +194,7 @@ def send_meil_recipe(recipe_name):
     flash('Recipe succesfully send on your email address.', 'success')
     return redirect(url_for('home'))
 
+# route for downloading pdf version of recipe
 @app.route('/pdf/<recipe_name>')
 def pdf_template(recipe_name):
     config = pdfkit.configuration(wkhtmltopdf=os.environ.get('WKHTMLTOPDF_BINARY'))
@@ -191,6 +208,7 @@ def pdf_template(recipe_name):
     response.headers['Content-Type'] = 'appplication/pdf'
     response.headers['Content-Disposition'] = disposCont
     return response
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=os.environ.get("PORT"),
