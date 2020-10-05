@@ -84,7 +84,7 @@ Taking to consideration the above user stories i identified below requirements:
 ![Web Page Structure](README_purpose/web_structure.PNG)
 
 Scheme of database structure were changed a bit - due to low number of categories i resign from keeping these in database. 
-Instead i create collection with ingredients to give possibility for autocomplete ingredients fields during adding recipe to raise user experience.
+Instead i create collection with ingredients to give in future possibility for autocomplete ingredients fields during adding recipe to raise user experience.
 ### Skeleton
 
 #### Desktop
@@ -151,10 +151,12 @@ h1, h2, h3, h4, h5, h6 {
 6. Navigation bar - allows users to easily navigate the site.
 7. Display recipes by categories - Big navigation bar above the recipes allows users to select categories to display recipes only from selected category.
 8. Icons displayed below each recipe with portion quantity, preparation time, type of meal and number of ingredients - Allows users to find quickly what kind of meal it is, how long it takes to prepare, for how many people it is and how many ingredients is used to prepare.
+9. Inserting ingredients name to ingredients base during inserting new recipe.
 
 ## Features left to implement
 1. Download recipe as PDF.
 2. Option to select recipes by number of ingredients.
+3. Create autocomplete function for typing ingredients with database ingredient collection as source.
 
 ## Technologies Used
 
