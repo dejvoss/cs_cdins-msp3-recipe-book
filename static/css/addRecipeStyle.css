@@ -20,7 +20,7 @@
 /* form container */
 .my-form-container{
     margin-top: 150px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.95);
     padding: 5%;
 }
 /* text on the top of the form container */
@@ -29,6 +29,7 @@
     text-transform: uppercase;
     padding: 20px;
     background-color: #5e8b4a;
+    border-radius: 5px;
 }
 
 /* image visible when user select file to upload */
