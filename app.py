@@ -197,7 +197,7 @@ def send_meil_recipe(recipe_name):
 # route for downloading pdf version of recipe
 @app.route('/pdf/<recipe_name>')
 def pdf_template(recipe_name):
-    config = pdfkit.configuration(wkhtmltopdf=os.environ.get('WKHTMLTOPDF_BINARY'))
+    config = pdfkit.configuration(wkhtmltopdf=('wkhtmltopdf\wkhtmltopdf.exe'))
     recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
     ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
     rendered = render_template('pdf_template.html', recipe=recipe, ingredients = ingredients)
