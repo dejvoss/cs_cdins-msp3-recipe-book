@@ -188,7 +188,7 @@ def send_meil_recipe(recipe_name):
     ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
     subject = "Your recipe for"
     emailto = request.form['emailto']
-    recipeMsg = Message(subject=subject, sender=emailto, recipients=[emailto])
+    recipeMsg = Message(subject=subject, recipients=[emailto])
     recipeMsg.html = render_template('meil_recipe.html', recipe=recipe, ingredients=ingredients)
     mail.send(recipeMsg)
     flash('Recipe succesfully send on your email address.', 'success')
