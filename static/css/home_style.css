@@ -84,6 +84,7 @@ header {
 
 .video-control {
     color: #5e8b4a;
+    margin-top: 2rem;
 }
 
 #myVideoBtn:hover {
