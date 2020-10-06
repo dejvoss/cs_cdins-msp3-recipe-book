@@ -72,7 +72,8 @@ def allowed_file(filename):
 # route which populate new recipe from form in to mongoDB database
 @app.route('/insert_recipe', methods=['GET','POST'])
 def insert_recipe():
-    if request.method == 'POST':
+    form = InsertRecipeForm()
+    if form.validate_on_submit():
         mongo_recipe_object = request.form.to_dict()
         ingredients_name_only = {k:v for k,v in mongo_recipe_object.items() if "ingredient" in k and "name" in k}
         nr_of_ingredients = int(len(ingredients_name_only))
@@ -104,6 +105,9 @@ def insert_recipe():
             flash('It looks like you select not correct image file', 'warning')
             flash('You can press back in your browser to restore recipe data you filled in', 'info')
             return redirect(url_for('add_recipe'))
+    flash('Something went wrong. Please try again.', 'warning')
+    flash('You can try press back in your browser to restore recipe data you filled in', 'info')
+    return redirect(url_for('add_recipe'))
 
 # route display recipe in single page
 @app.route('/recipes/<recipe_name>')
