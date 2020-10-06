@@ -128,16 +128,14 @@
         </div>
         <!-- ingredients list -->
         <div>
+          Prepare from: 
           <ul class="ingred-home">{% for key, value in recipes.items() %}
-            {% if 'ingredients' in key %}
-            {% if 'name' in key %}
-            <li> {{value}}:
-              {% else %}
-              {{value}}
-              {% endif %}
+            {% if 'ingredients' in key and 'name' in key %}
+            <li> {{value}} </li>   
               {% endif %}
               {% endfor %}
           </ul>
+          <a href="/recipes/{{ recipes.recipe_name }}" style='padding: 10px'>Open to see more</a>
         </div>
       </div>
 
