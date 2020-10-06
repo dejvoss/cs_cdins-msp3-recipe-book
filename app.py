@@ -74,14 +74,14 @@ def allowed_file(filename):
 def insert_recipe():
     form = InsertRecipeForm()
     if form.validate_on_submit():
-        mongo_recipe_object = request.form.to_dict()
-        ingredients_name_only = {k:v for k,v in mongo_recipe_object.items() if "ingredient" in k and "name" in k}
-        nr_of_ingredients = int(len(ingredients_name_only))
-        mongo_recipe_object['amount_of_ingred'] = nr_of_ingredients
-        for k, v in ingredients_name_only.items():
+        mongo_recipe_object = request.form.to_dict() # create recipe object, by changing request form in to dictionary
+        ingredients_name_only = {k:v for k,v in mongo_recipe_object.items() if "ingredient" in k and "name" in k} # filtered recipe object - take only ingredients name to pu to ingredient database 
+        nr_of_ingredients = int(len(ingredients_name_only)) #count how many ingrdients is in recipe
+        mongo_recipe_object['amount_of_ingred'] = nr_of_ingredients # add number of ingredients to database to recipe object
+        for k, v in ingredients_name_only.items():  # check each of ingredient if exist in ingredient base ad add if not exist
             if mongo.db.ingredients_list.find({'name': v}).count() == 0:
                 mongo.db.ingredients_list.insert_one({'name': v})
-        if 'meal_image' not in request.files:
+        if 'meal_image' not in request.files: 
             flash('It looks like you did not select any file', 'warning')
             flash('You can press back in your browser to restore recipe data you filled in', 'info')
             return redirect(url_for('add_recipe'))
