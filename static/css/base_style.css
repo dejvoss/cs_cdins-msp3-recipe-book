@@ -152,6 +152,16 @@ right: 10%;
     color: #ffffff;
 }
 
+footer hr {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* links in footer */
+.my-list-style > li:not(:first-child)::before {
+    content: "|";
+}
+
 .my-footer-class a {
     color: #ffffff;
 }
@@ -160,6 +170,7 @@ right: 10%;
     color: #5e8b4a;
 }
 
+/* contact form submit button */
 .btn-mycolor {
     background-color: #5e8b4a;
     color: #ffffff;
@@ -170,7 +181,7 @@ right: 10%;
     color: #5e8b4a;
 }
 
-/* STYLE FOR FLASH MESSAGES */
+/* ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ STYLE FOR FLASH MESSAGES ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 .flash-msg{
 position: fixed;
 width: 25%;
