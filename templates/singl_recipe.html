@@ -20,18 +20,16 @@
             <p>number of ingredients: {{recipe.amount_of_ingred}} </p>
             <ol class="ingredients-list">
                 {% for key, value in ingredients.items() %}
-                {% for x in range(recipe.amount_of_ingred) %}
-                {% if 'name' in key and x|string in key %}
+                {% if 'name' in key %}
                 <li class="ingredient-items">
                     {{value}}: 
-                        {% elif 'amount' in key and x|string in key %}
+                        {% elif 'amount' in key %}
                         {{ value }} 
-                        {% elif 'measure' in key and x|string in key %}
+                        {% elif 'measure' in key %}
                         {{ value }}</li>
                 
                
                 {% endif %}
-                {% endfor %}
                 {% endfor %}
             </ol>
         </div>
