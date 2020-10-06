@@ -11,6 +11,8 @@ from flask_pymongo import PyMongo
 from werkzeug.utils import secure_filename
 import forms
 from forms import InsertRecipeForm, ContactForm, SendRecipeForm, meal_type_list, measureList
+from bson.objectid import ObjectId
+from bson.json_util import dumps
 
 # import variables setted in environment file if exist
 if os.path.exists("env.py"):
@@ -113,10 +115,31 @@ def insert_recipe():
 @app.route('/recipes/<recipe_name>')
 def single_recipe(recipe_name):
     contactForm = ContactForm()
-    recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
+    recipe = mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
+    print(recipe)
     ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
     mailRecipe = SendRecipeForm()
     return render_template('singl_recipe.html', recipe=recipe, ingredients=ingredients, contactForm=contactForm, mailRecipe=mailRecipe)
+
+@app.route('/delete/<recipe_id>')
+def delete_recipe(recipe_id):
+    recipe = mongo.db.recipe_base.find_one({'_id': ObjectId(recipe_id)})
+    print(recipe)
+    recipe_img = recipe['meal_image']
+    recipe_name = recipe['recipe_name']
+    path=os.path.join(app.config['UPLOAD_FOLDER'], recipe_img)
+    os.remove(path)
+    mongo.db.recipe_base.remove({'_id': ObjectId(recipe_id)})
+    flash('Recipe ' + recipe_name + ' removed from database successfully.', 'success')
+    return redirect(url_for('home'))
+
+# @app.route('/edit-recipe/<recipe_id>')
+# def edit_recipe(recipe_id):
+#     recipe = mongo.db.recipe_base.find_one({'_id': ObjectId(recipe_id)})
+#     contactForm = ContactForm()
+#     form = InsertRecipeForm()
+#     return render_template('edit_recipe.html', form=form, contactForm=contactForm, recipe=recipe)
+
 
 # route for sending contact message
 @app.route('/contact', methods=['GET','POST'])
