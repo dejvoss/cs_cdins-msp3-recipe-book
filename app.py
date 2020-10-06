@@ -117,7 +117,9 @@ def single_recipe(recipe_name):
 # route for sending contact message
 @app.route('/contact', methods=['GET','POST'])
 def contact():
-    if request.method=='POST':
+    form = ContactForm()
+
+    if form.validate_on_submit():
         name = request.form['name']
         email = request.form['email']
         subject = request.form['subject']
@@ -127,6 +129,9 @@ def contact():
         mail.send(mailMsg)
         flash('Message send succesfully', 'success')
         return redirect(url_for('home'))
+
+    flash("Something went wrong, message doesn't send. Please try again", 'warning')
+    return redirect(url_for('home'))
 
 # route for sending recipe by email
 @app.route('/send-recipe-to-email/<recipe_name>', methods=['GET', 'POST'])

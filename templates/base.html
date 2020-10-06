@@ -109,6 +109,7 @@
          <!-- CONTAT FORM IN FOOTER-->
          <h5 class="text-center mb-3">Leave the message below</h5>
          <form class="contact text-center" id="contactForm" action="{{ url_for('contact') }}" method="POST">
+            {{ contactForm.csrf_token }}
             <div class="mb-3 row">
                {{ contactForm.name.label(class_='col-form-label col-2 col-md-1 offset-md-2')}}
                <div class="col-8 col-md-6">
