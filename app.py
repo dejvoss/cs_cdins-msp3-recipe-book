@@ -42,39 +42,20 @@ db = mongo.db.recipes
 
 # home route, display all recipes
 @app.route('/')
-@app.route('/home/get_recipes')
+@app.route('/home')
 def home():
     contactForm = ContactForm()
     categories = meal_type_list
     return render_template("index.html", recipes=mongo.db.recipe_base.find(), contactForm=contactForm, categories=categories, len=len(categories))
 
-# route displayed warm meals on home page
-@app.route('/home/warm_meals')
-def warm_meals():
-    contactForm = ContactForm()
-    categories = meal_type_list
-    return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'warm_meals' } ), contactForm=contactForm, categories=categories, len=len(categories))
-
-# route displayed cold meals on home page
-@app.route('/home/cold_meals')
-def cold_meals():
-    contactForm = ContactForm()
-    categories = meal_type_list
-    return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'cold_meals' } ), contactForm=contactForm, categories=categories, len=len(categories))
-
-# route displayed drinks on home page
-@app.route('/home/drinks')
-def drinks():
-    contactForm = ContactForm()
-    categories = meal_type_list
-    return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'drinks' } ), contactForm=contactForm, categories=categories, len=len(categories))
-
-# route displayed desserts on home page
-@app.route('/home/desserts')
-def desserts():
-    contactForm = ContactForm()
-    categories = meal_type_list
-    return render_template("index.html", recipes=mongo.db.recipe_base.find( { 'meal_type': 'desserts' } ), contactForm=contactForm, categories=categories, len=len(categories))
+@app.route('/home/<category_name>')
+def displayCategory(category_name):
+    if category_name in ('desserts', 'drinks', 'cold_meals', 'warm_meals'):
+        contactForm = ContactForm()
+        return render_template('index.html', recipes=mongo.db.recipe_base.find( { 'meal_type': category_name } ), contactForm=contactForm, categories=meal_type_list, len=len(meal_type_list))
+    else:
+        flash('Pick a proper category', 'warning')
+        return redirect(url_for('home'))
 
 # route display form for inserting new recipe
 @app.route('/add_recipe')

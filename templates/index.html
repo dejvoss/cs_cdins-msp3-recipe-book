@@ -37,7 +37,7 @@
             href="{{url_for('home', _anchor='recipes')}}">All recipes</a></li>
         {% for i in range(0, len) %}
         <li class="nav-item"><a class="dropdown-item nav-link midl-nav-link midl-nav-dropdown"
-            href="{{url_for(categories[i][0], _anchor='recipes')}}">{{categories[i][1]}}</a></li>
+            href="/home/{{categories[i][0]}}#recipes">{{categories[i][1]}}</a></li>
         {% endfor %}
 
       </ul>
@@ -48,7 +48,7 @@
     {% for i in range(0, len) %}
     <li class="nav-item sm-hide">
       <a class="nav-link midl-nav-link classanchor"
-        href="{{url_for(categories[i][0], _anchor='recipes')}}">{{categories[i][1]}}</a></li>
+        href="/home/{{categories[i][0]}}#recipes">{{categories[i][1]}}</a></li>
     {% endfor %}
 
   </ul>
