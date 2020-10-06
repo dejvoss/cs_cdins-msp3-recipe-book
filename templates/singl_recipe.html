@@ -55,10 +55,10 @@
         <path fill-rule="evenodd" d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
       </svg>  Print recipe</button>
       <!-- send recipe by email - form -->
-    <form class="meilRecipe text-center mb-3" action="/send-recipe-to-email/{{recipe.recipe_name}}" method="POST">
+    <form class="mailRecipe text-center mb-3" action="/send-recipe-to-email/{{recipe.recipe_name}}" method="POST">
                 
-                {{ meilRecipe.submit(class_="btn btn-dark mb-1 my-send-rc-btn")}}
-                {{ meilRecipe.emailto(class_='form-control', placeholder='email@address.com') }}
+                {{ mailRecipe.submit(class_="btn btn-dark mb-1 my-send-rc-btn")}}
+                {{ mailRecipe.emailto(class_='form-control', placeholder='email@address.com') }}
     </form>
     <!-- download recipe as pdf -->
     <a href="/pdf/{{recipe.recipe_name}}" class="btn btn-dark mb-5">
