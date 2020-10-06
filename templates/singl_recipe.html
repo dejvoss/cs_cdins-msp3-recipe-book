@@ -56,7 +56,7 @@
       </svg>  Print recipe</button>
       <!-- send recipe by email - form -->
     <form class="mailRecipe text-center mb-3" action="/send-recipe-to-email/{{recipe.recipe_name}}" method="POST">
-                
+                {{ mailRecipe.csrf_token }}
                 {{ mailRecipe.submit(class_="btn btn-dark mb-1 my-send-rc-btn")}}
                 {{ mailRecipe.emailto(class_='form-control', placeholder='email@address.com') }}
     </form>

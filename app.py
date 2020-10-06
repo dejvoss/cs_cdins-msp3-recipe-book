@@ -136,15 +136,19 @@ def contact():
 # route for sending recipe by email
 @app.route('/send-recipe-to-email/<recipe_name>', methods=['GET', 'POST'])
 def send_mail_recipe(recipe_name):
-    recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
-    ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
-    subject = "Your recipe for"
-    emailto = request.form['emailto']
-    recipeMsg = Message(subject=subject, recipients=[emailto])
-    recipeMsg.html = render_template('mail_recipe.html', recipe=recipe, ingredients=ingredients)
-    mail.send(recipeMsg)
-    flash('Recipe succesfully send on your email address.', 'success')
-    return redirect(url_for('home'))
+    form = SendRecipeForm()
+    if form.validate_on_submit():
+        recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
+        ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
+        subject = "Your recipe for"
+        emailto = request.form['emailto']
+        recipeMsg = Message(subject=subject, recipients=[emailto])
+        recipeMsg.html = render_template('mail_recipe.html', recipe=recipe, ingredients=ingredients)
+        mail.send(recipeMsg)
+        flash('Recipe succesfully send on your email address.', 'success')
+        return redirect(url_for('single_recipe', recipe_name=recipe_name))
+    flash('Somethin went wrong, check your email address and try again.', 'warning')
+    return redirect(url_for('single_recipe', recipe_name=recipe_name))
 
 # route for downloading pdf version of recipe by using wkhtmltopdf which work fine on local machine - works fine, but with few conditions:
 # wkhtmltopdf needs to be installed and added to the windows path (please refer to https://www.youtube.com/watch?v=Y2q_b4ugPWk)
