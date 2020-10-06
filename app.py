@@ -116,7 +116,6 @@ def insert_recipe():
 def single_recipe(recipe_name):
     contactForm = ContactForm()
     recipe = mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
-    print(recipe)
     ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
     mailRecipe = SendRecipeForm()
     return render_template('singl_recipe.html', recipe=recipe, ingredients=ingredients, contactForm=contactForm, mailRecipe=mailRecipe)
@@ -133,13 +132,23 @@ def delete_recipe(recipe_id):
     flash('Recipe ' + recipe_name + ' removed from database successfully.', 'success')
     return redirect(url_for('home'))
 
-# @app.route('/edit-recipe/<recipe_id>')
-# def edit_recipe(recipe_id):
-#     recipe = mongo.db.recipe_base.find_one({'_id': ObjectId(recipe_id)})
-#     contactForm = ContactForm()
-#     form = InsertRecipeForm()
-#     return render_template('edit_recipe.html', form=form, contactForm=contactForm, recipe=recipe)
+@app.route('/edit-recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    recipe = mongo.db.recipe_base.find_one({'_id': ObjectId(recipe_id)})
+    contactForm = ContactForm()
+    form = InsertRecipeForm()
+    return render_template('edit_recipe.html', form=form, contactForm=contactForm, recipe=recipe)
 
+@app.route('/update/<recipe_id>', methods=['GET','POST'])
+def update_recipe(recipe_id):
+    recipe_base = mongo.db.recipe_base
+    new_recipe = request.form.to_dict()
+    form = InsertRecipeForm()
+    if form.validate_on_submit():
+        recipe_base.update_one({'_id': ObjectId(recipe_id)}, {'$set': new_recipe})
+        print(new_recipe)
+        return redirect(url_for('home'))
+    return redirect(url_for('home'))
 
 # route for sending contact message
 @app.route('/contact', methods=['GET','POST'])
