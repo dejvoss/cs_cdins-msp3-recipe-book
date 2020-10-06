@@ -148,7 +148,26 @@ right: 10%;
 }
 /*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ FOOTER ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 .my-footer-class {
-    background-color: #a57255;
+    background-color: #3B3C36;
+    color: #ffffff;
+}
+
+.my-footer-class a {
+    color: #ffffff;
+}
+
+.my-footer-class a:hover {
+    color: #5e8b4a;
+}
+
+.btn-mycolor {
+    background-color: #5e8b4a;
+    color: #ffffff;
+}
+
+.btn-mycolor:hover {
+    background-color: #ffffff;
+    color: #5e8b4a;
 }
 
 /* STYLE FOR FLASH MESSAGES */

@@ -92,16 +92,16 @@
          <!-- footer menu -->
          <ul class="list-unstyled list-inline mb-0 text-center">
             <li class="list-inline-item">
-               <a href="{{url_for('home')}}" class="text-dark text-uppercase">Home</a>
+               <a href="{{url_for('home')}}" class="text-uppercase">Home</a>
             </li>
             <li class="list-inline-item">
-               <a href="{{url_for('home', _anchor='recipes')}}" class="text-dark text-uppercase">Recipes</a>
+               <a href="{{url_for('home', _anchor='recipes')}}" class="text-uppercase">Recipes</a>
             </li>
             <li class="list-inline-item">
-               <a href="#contactForm" class="text-dark text-uppercase">Contact</a>
+               <a href="#contactForm" class="text-uppercase">Contact</a>
             </li>
             <li class="list-inline-item">
-               <a href="{{url_for('add_recipe')}}" class="text-dark text-uppercase">Add Recipe</a>
+               <a href="{{url_for('add_recipe')}}" class="text-uppercase">Add Recipe</a>
             </li>
          </ul>
 
@@ -134,14 +134,14 @@
                   {{ contactForm.message(class_='form-control form-control-lg', rows='5', placeholder='write me') }}
                </div>
             </div>
-            {{ contactForm.submit(class_="btn btn-primary") }}
+            {{ contactForm.submit(class_="btn btn-mycolor") }}
          </form>
 
          <hr class="my-1">
          <!-- Copyright -->
-         <div class="text-center p-3" style="background-color: rgba(165, 114, 85, 0.5);">
+         <div class="text-center p-3">
             © 2020 Copyright:
-            <a class="text-dark" href="https://cdins-msp3-recipe-book.herokuapp.com/">Cooking book</a>
+            <a href="https://cdins-msp3-recipe-book.herokuapp.com/">Cooking book</a>
          </div>
       </div>
       <!-- Copyright -->
