@@ -16,7 +16,7 @@
         </div>
         <div class="col-12 col-md-6 offset-md-3 singl-recipe-body">
             <!-- Create loop for to display all ingredients in a list -->
-            <h5 class="text-center">Ingredients</h5>
+            <h4 class="text-center">Ingredients:</h4>
             <p>number of ingredients: {{recipe.amount_of_ingred}} </p>
             <ol class="ingredients-list">
                 {% for key, value in ingredients.items() %}
@@ -35,7 +35,7 @@
         </div>
             <!-- Create loop for to display all preparation steps in a list -->
             <div class="col-12 col-md-8 offset-md-2 singl-recipe-body">
-            <h5 class="text-center">Preparation</h5>
+            <h4 class="text-center">Preparation:</h4>
             <ol>
                 {% for key, value in recipe.items() %}
                 {% if 'preparation' in key and 'step' in key %}
