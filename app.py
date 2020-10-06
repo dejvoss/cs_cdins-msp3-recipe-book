@@ -160,19 +160,25 @@ def send_mail_recipe(recipe_name):
     flash('Recipe succesfully send on your email address.', 'success')
     return redirect(url_for('home'))
 
-# route for downloading pdf version of recipe
-@app.route('/pdf/<recipe_name>')
-def pdf_template(recipe_name):
-    recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
-    ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
-    rendered = render_template('pdf_template.html', recipe=recipe, ingredients = ingredients)
-    css = ['static/css/pdf-css.css']
-    pdf = pdfkit.from_string(rendered, False, css=css, configuration=config)
-    response = make_response(pdf)
-    disposCont = 'inline; filename=' + recipe_name + '.pdf'
-    response.headers['Content-Type'] = 'appplication/pdf'
-    response.headers['Content-Disposition'] = disposCont
-    return response
+# route for downloading pdf version of recipe by using wkhtmltopdf which work fine on local machine - works fine, but with few conditions:
+# wkhtmltopdf needs to be installed and added to the windows path (please refer to https://www.youtube.com/watch?v=Y2q_b4ugPWk)
+# unfortunetally i couldn't run it on heroku.
+# I find many ways to fix in stackoverflow, but any of these works for me or i was not able implement these as should be
+# in case that i have also print function which is giving similar output as the pdf and instead of print every user can save file to pdf i decide to comment the wkhtmltopdf function
+# and leave only the print one
+# Please uncomment function on local server if needed
+# @app.route('/pdf/<recipe_name>')
+# def pdf_template(recipe_name):
+#     recipe=mongo.db.recipe_base.find_one({'recipe_name': recipe_name})
+#     ingredients = {k:v for k,v in recipe.items() if "ingredient" in k}
+#     rendered = render_template('pdf_template.html', recipe=recipe, ingredients = ingredients)
+#     css = ['static/css/pdf-css.css']
+#     pdf = pdfkit.from_string(rendered, False, css=css)
+#     response = make_response(pdf)
+#     disposCont = 'inline; filename=' + recipe_name + '.pdf'
+#     response.headers['Content-Type'] = 'appplication/pdf'
+#     response.headers['Content-Disposition'] = disposCont
+#     return response
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
