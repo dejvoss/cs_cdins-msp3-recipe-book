@@ -38,3 +38,22 @@ max-width: 150px;
 margin: auto;
 }
 
+/* message to confirm delete teh recipe */
+#confirm-rm-msg {
+    display:none;
+    position: fixed;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -35%);
+    text-align: center;
+    padding: 50px;
+}
+
+#confirm-rm-msg a {
+    display: block;
+    margin-bottom: 30px;
+    max-width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
