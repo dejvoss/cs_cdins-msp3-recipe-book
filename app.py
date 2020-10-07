@@ -123,14 +123,18 @@ def single_recipe(recipe_name):
 @app.route('/delete/<recipe_id>')
 def delete_recipe(recipe_id):
     recipe = mongo.db.recipe_base.find_one({'_id': ObjectId(recipe_id)})
-    print(recipe)
-    recipe_img = recipe['meal_image']
     recipe_name = recipe['recipe_name']
-    path=os.path.join(app.config['UPLOAD_FOLDER'], recipe_img)
-    os.remove(path)
-    mongo.db.recipe_base.remove({'_id': ObjectId(recipe_id)})
-    flash('Recipe ' + recipe_name + ' removed from database successfully.', 'success')
-    return redirect(url_for('home'))
+    if 'meal_image' in recipe:
+        recipe_img = recipe['meal_image']
+        path=os.path.join(app.config['UPLOAD_FOLDER'], recipe_img)
+        os.remove(path)
+        mongo.db.recipe_base.remove({'_id': ObjectId(recipe_id)})
+        flash('Recipe ' + recipe_name + ' removed from database successfully.', 'success')
+        return redirect(url_for('home'))
+    else:
+        mongo.db.recipe_base.remove({'_id': ObjectId(recipe_id)})
+        flash('Recipe ' + recipe_name + ' removed from database successfully.', 'success')
+        return redirect(url_for('home'))
 
 @app.route('/edit-recipe/<recipe_id>')
 def edit_recipe(recipe_id):
@@ -145,10 +149,34 @@ def update_recipe(recipe_id):
     new_recipe = request.form.to_dict()
     form = InsertRecipeForm()
     if form.validate_on_submit():
-        recipe_base.update_one({'_id': ObjectId(recipe_id)}, {'$set': new_recipe})
-        print(new_recipe)
-        return redirect(url_for('home'))
-    return redirect(url_for('home'))
+        if 'meal_image' not in request.files: 
+            flash('It looks like you did not select any file', 'warning')
+            flash('You can press back in your browser to restore recipe data you filled in', 'info')
+            return redirect(url_for('edit_recipe', recipe_id=recipe_id))
+        file = request.files['meal_image']
+        if file.filename =='':
+            flash('It looks like you did not select any file', 'warning')
+            flash('You can press back in your browser to restore recipe data you filled in', 'info')
+            return redirect(url_for('edit_recipe', recipe_id=recipe_id))
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            meal_name = request.form['recipe_name']
+            saved_filename = meal_name + '_' + filename
+            saved_filename = secure_filename(saved_filename)
+            path=os.path.join(app.config['UPLOAD_FOLDER'], saved_filename)
+            file.save(path)
+            new_recipe["meal_image"]=saved_filename
+            recipe_base.replace_one({'_id': ObjectId(recipe_id)}, new_recipe)
+            flash('I have one more delicious recipe now. Thank you!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('It looks like you select not correct image file', 'warning')
+            flash('You can press back in your browser to restore recipe data you filled in', 'info')
+            return redirect(url_for('edit_recipe', recipe_id=recipe_id))
+    flash('Something went wrong. Please try again.', 'warning')
+    flash('You can try press back in your browser to restore recipe data you filled in', 'info')
+    return redirect(url_for('edit_recipe', recipe_id=recipe_id))
+        
 
 # route for sending contact message
 @app.route('/contact', methods=['GET','POST'])
