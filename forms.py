@@ -35,4 +35,4 @@ class ContactForm(FlaskForm):
 
 class SendRecipeForm(FlaskForm):
     emailto = StringField('email address', validators=[DataRequired(), Email()])
-    submit = SubmitField('Send')
+    submit = SubmitField('Send recipe')

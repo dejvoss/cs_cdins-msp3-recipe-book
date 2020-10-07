@@ -2,7 +2,7 @@
 body {
     height: 100%;
     width: 100%;
-    font-family: 'Judson', serif; 
+    font-family: 'Roboto', sans-serif;
     background-color: #ffffff;;
     color: #0a0904;
 
@@ -16,6 +16,14 @@ a:hover {
     color: #74000A;
     cursor: pointer;
 }
+
+/* overwright bootstrap btn class to change font-size and weight */
+
+.btn {
+    font-size: 14px;
+    font-weight: 100;
+}
+
 /*-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ NAVIGATION BAR ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 /* navigation bar style */
 

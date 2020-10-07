@@ -34,7 +34,6 @@
 
 .control-btns a, .my-send-rc-btn{
 display: block;
-max-width: 150px;
 margin: auto;
 }
 
@@ -52,7 +51,6 @@ margin: auto;
 #confirm-rm-msg a {
     display: block;
     margin-bottom: 30px;
-    max-width: 180px;
     margin-left: auto;
     margin-right: auto;
 }

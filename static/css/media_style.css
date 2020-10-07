@@ -84,3 +84,10 @@
     }
 
   }
+/* On screens bigger than 220 px set the width of the control buttons in recipe page for the same size */
+  @media (min-height: 450px) {
+    .control-btns a, .control-btns button, .my-send-rc-btn {
+        width: 200px;
+    }
+
+  }
