@@ -140,7 +140,7 @@
               {% endif %}
               {% endfor %}
           </ul>
-          <a href="/recipes/{{ recipes.recipe_name }}" class="open-recipe-lnk">Open to see more</a>
+          <a href="{{ url_for('single_recipe', recipe_id=recipes._id)}}" class="open-recipe-lnk">Open to see more</a>
         </div>
       </div>
     
