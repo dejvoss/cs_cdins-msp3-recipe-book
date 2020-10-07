@@ -1,4 +1,4 @@
-/* STYLE FOR PAGE ADD RECIPE */
+/* STYLE FOR PAGE ADD RECIPE and EDIT RECIPE*/
 /* set background image */
 .background-image {
     height: 100%;
@@ -49,4 +49,13 @@
 
 .form-file-button:hover {
     cursor: pointer;
+}
+
+/* edit recipe page */
+
+/* cancel button */
+
+.cancel-btn {
+    width: 145.2px;
+    margin-top: 10px;  
 }

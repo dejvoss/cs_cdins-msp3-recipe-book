@@ -138,8 +138,8 @@
          </div>
       </div>
 
-      <button type="submit" class="btn btn-lg btn-success">Update recipe</button>
-      <a class="btn btn-lg cancell-btn" >Cancel</a>
+      <button type="submit" class="btn btn-lg btn-success" style="margin-right:10px">Update recipe</button>
+      <a class="btn btn-lg btn-dark cancel-btn" href="{{url_for('single_recipe', recipe_name=recipe.recipe_name)}}">Cancel</a>
    </form>
 </div>
 
