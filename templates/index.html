@@ -61,7 +61,7 @@
 
       <!-- GO THROUGH THE LOOP AND POPULATE DATA FROM DATABASE, DEPEND OF CHOSEN CATEGORY DIFFERENT DATA IS APPLIED -->
       {% for recipes in recipes %}
-      <div class="col-12 col-sm-6 col-md-4 recipe-col">
+      <div class="col-12 col-sm-6 col-lg-4 recipe-col">
         <a href="/recipes/{{ recipes.recipe_name }}">
           <h4 class="text-center recipe_header">{{recipes.recipe_name}}</h4>
         </a>
@@ -72,10 +72,12 @@
         <img class="meal_image" src="{{url_for('static', filename='uploaded_img/'+recipes.meal_image)}}"
           alt="meal image">
         {% endif %}
+      
         <!-- meal description -->
         <div class="meal_description">
           {{recipes.meal_description}}
         </div>
+     
         <!-- meal ingredients -->
 
         <!-- icon with person - to show portions of meal -->
@@ -135,10 +137,10 @@
               {% endif %}
               {% endfor %}
           </ul>
-          <a href="/recipes/{{ recipes.recipe_name }}" style='padding: 10px'>Open to see more</a>
+          <a href="/recipes/{{ recipes.recipe_name }}" class="open-recipe-lnk">Open to see more</a>
         </div>
       </div>
-
+    
       {% endfor %}
     </div>
   </div>
