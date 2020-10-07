@@ -74,9 +74,12 @@
         {% endif %}
       
         <!-- meal description -->
+        {% if recipes.meal_description != "" %}
         <div class="meal_description">
           {{recipes.meal_description}}
         </div>
+        {% else %}
+        {% endif %}
      
         <!-- meal ingredients -->
 
