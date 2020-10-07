@@ -62,7 +62,7 @@
       <!-- GO THROUGH THE LOOP AND POPULATE DATA FROM DATABASE, DEPEND OF CHOSEN CATEGORY DIFFERENT DATA IS APPLIED -->
       {% for recipes in recipes %}
       <div class="col-12 col-sm-6 col-lg-4 recipe-col">
-        <a href="/recipes/{{ recipes.recipe_name }}">
+        <a href="{{ url_for('single_recipe', recipe_id=recipes._id)}} ">
           <h4 class="text-center recipe_header">{{recipes.recipe_name}}</h4>
         </a>
         <!-- apply default image for recipes without images and add image for recipes with image -->
