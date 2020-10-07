@@ -217,16 +217,16 @@ def send_mail_recipe(recipe_id):
     return redirect(url_for('single_recipe', recipe_id=recipe_id))
 
 # show flash message for user in case of errors and return to home page
-@app.errorhandler(Exception)
-def handle_bad_request(e):
-    """ Error handling: will catch these errors and display the play messages to error.html """
-    if type(AttributeError):
-        flash('This action occur error. Please try different one', 'warning')
-        print(type(e))
-        return redirect(url_for('home'))
-    flash('This action occur error. Please try different one', 'info')
-    print(type(e))
-    return url_for("home")
+# @app.errorhandler(Exception)
+# def handle_bad_request(e):
+#     """ Error handling: will catch these errors and display the play messages to error.html """
+#     if type(AttributeError):
+#         flash('This action occur error. Please try different one', 'warning')
+#         print(type(e))
+#         return redirect(url_for('home'))
+#     flash('This action occur error. Please try different one', 'info')
+#     print(type(e))
+#     return url_for("home")
 
 
 # route for downloading pdf version of recipe by using wkhtmltopdf which work fine on local machine - works fine, but with few conditions:

@@ -56,16 +56,13 @@
 .my-btn-class {
     font-size: 14px;
 }
-.brand-logo{
-    display: none;
-}
 
 .meal_description{
     display: none!important;
 }
 }
-
-@media (max-width: 601px) {
+/* show menu mobile button on screens wider than 601px and hide navigation links in navigation bar */
+@media (max-width: 701px) {
     .mobile_menu_btn {
         display: block;
     }
