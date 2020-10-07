@@ -174,12 +174,14 @@ footer hr {
 .btn-mycolor {
     background-color: #5e8b4a;
     color: #ffffff;
+    font-size: 16px;
 }
 
 .btn-mycolor:hover {
     background-color: #ffffff;
     color: #5e8b4a;
 }
+
 
 /* ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ STYLE FOR FLASH MESSAGES ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ */
 .flash-msg{
