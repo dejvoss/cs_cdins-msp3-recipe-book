@@ -52,11 +52,11 @@ def home():
 
 @app.route('/home/<category_name>')
 def displayCategory(category_name):
-    if category_name in ('desserts', 'drinks', 'cold_meals', 'warm_meals'):
+    if category_name in ('Desserts', 'Drinks', 'Cold meals', 'Warm meals'):
         contactForm = ContactForm()
         return render_template('index.html', recipes=mongo.db.recipe_base.find( { 'meal_type': category_name } ), contactForm=contactForm, categories=meal_type_list, len=len(meal_type_list))
     else:
-        flash('Pick a proper category', 'warning')
+        flash('Category doesn\'t exist Pick a proper one', 'warning')
         return redirect(url_for('home'))
 
 # route display form for inserting new recipe
@@ -153,10 +153,14 @@ def update_recipe(recipe_id):
         old_recipe = recipe_base.find_one({'_id': ObjectId(recipe_id)})
         filename = old_recipe['meal_image']
         new_recipe["meal_image"] = filename
+        ingredients_name_only = {k:v for k,v in new_recipe.items() if "ingredient" in k and "name" in k} # filtered recipe object - take only ingredients name to pu to ingredient database 
+        nr_of_ingredients = int(len(ingredients_name_only)) #count how many ingrdients is in recipe
+        new_recipe['amount_of_ingred'] = nr_of_ingredients # add number of ingredients to database to recipe object
         recipe_base.replace_one({'_id': ObjectId(recipe_id)}, new_recipe)
-        flash('I have one more delicious recipe now. Thank you!', 'success')
+        flash('Recipe updated. Thank you!', 'success')
         return redirect(url_for('home'))    
     flash('Something went wrong. Please try again.', 'warning')
+    print(form.errors)
     return redirect(url_for('edit_recipe', recipe_id=recipe_id))
         
 

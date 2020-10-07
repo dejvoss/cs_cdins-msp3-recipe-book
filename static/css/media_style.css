@@ -19,7 +19,10 @@
     .lg-hide {
         display:block;
     }
+
 }
+
+
 /* hide logo caption in mobile view */
 @media (max-width: 350px) {
     .logo-caption {

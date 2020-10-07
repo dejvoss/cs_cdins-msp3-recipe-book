@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, InputRequired, NumberRange, Optiona
 # list of measures used in add recipe form
 measureList=[('grams', 'grams'), ('decagrams', 'decagrams'), ('pieces', 'pieces'), ('pinch', 'pinch'), ('glasses', 'glasses'), ('liters', 'liters'), ('spoons', 'spoons'), ('tea spoons', 'tea spoons')]
 #  list of recipes categories, add it here in case of new category
-meal_type_list=[('warm_meals', 'Warm meals'), ('cold_meals', 'Cold meals'), ('drinks', 'Drinks'), ('desserts', 'Desserts')]
+meal_type_list=[('Warm meals', 'Warm meals'), ('Cold meals', 'Cold meals'), ('Drinks', 'Drinks'), ('Desserts', 'Desserts')]
 
 class Ingredients(Form):
     name = StringField('Ingredient name', validators=[InputRequired()])
