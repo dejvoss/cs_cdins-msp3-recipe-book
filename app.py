@@ -200,6 +200,23 @@ def send_mail_recipe(recipe_name):
     flash('Somethin went wrong, check your email address and try again.', 'warning')
     return redirect(url_for('single_recipe', recipe_name=recipe_name))
 
+@app.errorhandler(Exception)
+def handle_bad_request(e):
+    """ Error handling: will catch these errors and display the play messages to error.html """
+    # if type(e) is bson.errors.InvalidId:
+    #     flash("An error with the database occurred, couldn't find recipe", e)
+    # if type(e) is pymongo.errors.ConnectionFailure:
+    #     flash("An error with the database occurred, couldn't find recipe", e)
+    # if type(e) is pymongo.errors.CursorNotFound:
+    #     flash("An error with the database occurred, couldn't find recipe", e)
+    if type(AttributeError):
+        flash("Couldn't find recipe", 'warning')
+        return redirect(url_for('home'))
+    flash('This action occur error. Please try different one', 'info')
+    print(type(e))
+    return url_for("home")
+
+
 # route for downloading pdf version of recipe by using wkhtmltopdf which work fine on local machine - works fine, but with few conditions:
 # wkhtmltopdf needs to be installed and added to the windows path (please refer to https://www.youtube.com/watch?v=Y2q_b4ugPWk)
 # unfortunetally i couldn't run it on heroku.
