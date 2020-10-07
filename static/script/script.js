@@ -106,3 +106,14 @@ function printRecipe() {
     printWindow.document.close();
     printWindow.print();
 }
+
+function showWarnImgMessage() {
+    var DivAlertConent = 'Updating image is not allowed. Please remove recipe and add new one instead.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+    document.getElementById("flash-msg").insertAdjacentHTML('beforeend', '<div class="alert alert-warning alert-dismissible fade show" role="alert">' + DivAlertConent + '</div>')    
+};
+function showWarnRecNmgMessage() {
+    var DivAlertConent = 'Updating recipe name is not allowed. Please remove recipe and add new one instead.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+    document.getElementById("flash-msg").insertAdjacentHTML('beforeend', '<div class="alert alert-warning alert-dismissible fade show" role="alert">' + DivAlertConent + '</div>')    
+};
+
+

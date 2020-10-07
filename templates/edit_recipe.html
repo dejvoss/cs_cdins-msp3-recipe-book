@@ -21,7 +21,7 @@
       <div class="mb-3 row">
          <div class="col-sm-12">
             {{ form.recipe_name.label(class_='form-label') }}
-            {{ form.recipe_name(class_='form-control-plaintext form-control-lg', readonly=true, place_holder='Type recipe name here', value=recipe.recipe_name) }}
+            {{ form.recipe_name(class_='form-control-plaintext form-control-lg', readonly=true, place_holder='Type recipe name here', value=recipe.recipe_name, onclick="showWarnRecNmgMessage()") }}
          </div>
       </div>
       <!-- meal type select form -->
@@ -133,7 +133,7 @@
             {% if recipe.meal_image == error %}
             <p>recipe has no image</p>
             {% else %}
-            <img id="recipe_image" class="preview_image" src="{{url_for('static', filename='uploaded_img/'+recipe.meal_image)}}"/>
+            <img id="recipe_image" class="preview_image" onclick="showWarnImgMessage()" src="{{url_for('static', filename='uploaded_img/'+recipe.meal_image)}}"/>
             {% endif %}
          </div>
       </div>

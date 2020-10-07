@@ -73,7 +73,8 @@
       </div>
    </div>
    <!-- div with flash information and warning messages -->
-   <div class="flash-msg">
+   <div class="flash-msg" id="flash-msg">
+      
       {% for category, message in get_flashed_messages(with_categories=True) %}
       <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
          <span>{{ message }}</span>
