@@ -124,6 +124,7 @@ def single_recipe(recipe_name):
 def delete_recipe(recipe_id):
     recipe = mongo.db.recipe_base.find_one({'_id': ObjectId(recipe_id)})
     recipe_name = recipe['recipe_name']
+    # if recipe has image assigned then remove image and record in database, if not, then remove only the record in database
     if 'meal_image' in recipe:
         recipe_img = recipe['meal_image']
         path=os.path.join(app.config['UPLOAD_FOLDER'], recipe_img)
@@ -149,32 +150,13 @@ def update_recipe(recipe_id):
     new_recipe = request.form.to_dict()
     form = InsertRecipeForm()
     if form.validate_on_submit():
-        if 'meal_image' not in request.files: 
-            flash('It looks like you did not select any file', 'warning')
-            flash('You can press back in your browser to restore recipe data you filled in', 'info')
-            return redirect(url_for('edit_recipe', recipe_id=recipe_id))
-        file = request.files['meal_image']
-        if file.filename =='':
-            flash('It looks like you did not select any file', 'warning')
-            flash('You can press back in your browser to restore recipe data you filled in', 'info')
-            return redirect(url_for('edit_recipe', recipe_id=recipe_id))
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            meal_name = request.form['recipe_name']
-            saved_filename = meal_name + '_' + filename
-            saved_filename = secure_filename(saved_filename)
-            path=os.path.join(app.config['UPLOAD_FOLDER'], saved_filename)
-            file.save(path)
-            new_recipe["meal_image"]=saved_filename
-            recipe_base.replace_one({'_id': ObjectId(recipe_id)}, new_recipe)
-            flash('I have one more delicious recipe now. Thank you!', 'success')
-            return redirect(url_for('home'))
-        else:
-            flash('It looks like you select not correct image file', 'warning')
-            flash('You can press back in your browser to restore recipe data you filled in', 'info')
-            return redirect(url_for('edit_recipe', recipe_id=recipe_id))
+        old_recipe = recipe_base.find_one({'_id': ObjectId(recipe_id)})
+        filename = old_recipe['meal_image']
+        new_recipe["meal_image"] = filename
+        recipe_base.replace_one({'_id': ObjectId(recipe_id)}, new_recipe)
+        flash('I have one more delicious recipe now. Thank you!', 'success')
+        return redirect(url_for('home'))    
     flash('Something went wrong. Please try again.', 'warning')
-    flash('You can try press back in your browser to restore recipe data you filled in', 'info')
     return redirect(url_for('edit_recipe', recipe_id=recipe_id))
         
 
