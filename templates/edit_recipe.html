@@ -28,7 +28,13 @@
       <div class="mb-3 row">
          <div class="col-sm-12 col-md-4">
             {{ form.meal_type.label(class_='form-label') }}
-            {{ form.meal_type(class_='form-select', value=recipe.meal_type) }}
+            <select class="form-select" id="meal_type" name="meal_type" required="">
+               <option value="{{recipe.meal_type}}">{{recipe.meal_type}}</option>
+               <option value="warm_meals">Warm meals</option>
+               <option value="cold_meals">Cold meals</option>
+               <option value="drinks">Drinks</option>
+               <option value="desserts">Desserts</option>
+            </select>
          </div>
          <!-- preparation time - range -->
          <div class="col-sm-12 col-md-4">
@@ -123,7 +129,7 @@
       <div class="form-file form-file-lg mb-5 row meal_image_div">
          <div class="col text-center">
 
-            {{ form.meal_image(class_='form-file-input', accept='image/*', disabled=true)}}
+            {{ form.meal_image(class_='form-file-input', accept='image/*')}}
             <label class="lbl_for_img_btn" for="meal_image">
                <span class="form-file-button">Insert meal picture</span>
             </label>

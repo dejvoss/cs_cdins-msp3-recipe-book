@@ -66,7 +66,7 @@
           <h4 class="text-center recipe_header">{{recipes.recipe_name}}</h4>
         </a>
         <!-- apply default image for recipes without images and add image for recipes with image -->
-        {% if recipes.meal_image == "" %}
+        {% if recipes.meal_image == error %}
         <img class="meal_image" src="{{url_for('static', filename='images/def_meal_img.jpg')}}" alt="meal image">
         {% else %}
         <img class="meal_image" src="{{url_for('static', filename='uploaded_img/'+recipes.meal_image)}}"
