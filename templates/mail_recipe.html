@@ -5,13 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{{recipe.recipe_name}}</title>
+    <!-- link to my single recipe page style file -->
+   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/singl_recipe.css')}}">
 </head>
 
 <body>
 
     <h2 class="text-center">{{recipe.recipe_name}}</h2>
     <p>{{recipe.meal_description}}</p>
-
     <h5>Ingredients</h5>
     <p>number of ingredients: {{recipe.amount_of_ingred}} </p>
     <ol class="ingredients-list">

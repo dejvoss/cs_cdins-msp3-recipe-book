@@ -10,10 +10,10 @@
         <div class="col-12 singl-recipe-head">
             <h2 class="text-center">{{recipe.recipe_name}}</h2>
             {% if recipe.meal_image == error %}
-        <img class="meal_image" src="{{url_for('static', filename='images/def_meal_img.jpg')}}" alt="meal image">
+        <img class="meal_image" src="{{url_for('static', filename='images/def_meal_img.jpg')}}" alt="meal image" style="max-height: 45vh">
             {% else %}
             <img class="meal_image" src="{{url_for('static', filename='uploaded_img/'+recipe.meal_image)}}"
-                alt="meal image">
+                alt="meal image" style="max-height: 45vh">
             {% endif %}
             <p>{{recipe.meal_description}}</p>
             
