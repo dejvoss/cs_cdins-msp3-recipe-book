@@ -13,6 +13,12 @@
 
     <h2 class="text-center">{{recipe.recipe_name}}</h2>
     <p>{{recipe.meal_description}}</p>
+    <ul class="mealInfo">
+        <li>Preparation time: {{recipe.preparation_time}} min</li>
+        <li>Portions: {{recipe.portions}}</li>
+        <li>Meal type: {{recipe.meal_type}}</li>
+        <li>Number of ingredients: {{recipe.amount_of_ingred}}</li>
+    </ul>
     <h5>Ingredients</h5>
     <p>number of ingredients: {{recipe.amount_of_ingred}} </p>
     <ol class="ingredients-list">
