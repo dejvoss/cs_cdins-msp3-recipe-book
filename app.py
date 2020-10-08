@@ -217,7 +217,6 @@ def contact():
         # send message
         mailMsg = Message(subject=subject, sender=email, recipients=['deosiecki@gmail.com'])
         mailMsg.body = 'You receive messaege: ' + message + 'from ' + name + 'who use email address ' + email
-        mailMsg = Message(subject=subject, sender=email, recipients=['deosiecki@gmail.com'])
         mail.send(mailMsg)
     flash("Something went wrong, message doesn't send. Please try again", 'warning')
     return redirect(url_for('home'))
@@ -240,17 +239,17 @@ def send_mail_recipe(recipe_id):
     flash('Somethin went wrong, check your email address and try again.', 'warning')
     return redirect(url_for('single_recipe', recipe_id=recipe_id))
 
-#show flash message for user in case of errors and return to home page
-# @app.errorhandler(Exception)
-# def handle_bad_request(e):
-#     """ Error handling: will catch these errors and display the play messages to error.html """
-#     if type(AttributeError):
-#         flash('Recipe doesn\'t exist. You can add one.', 'info')
-#         print(type(e))
-#         return redirect(url_for('home'))
-#     flash('This action occur error. Please try different one', 'info')
-#     print(type(e))
-#     return url_for("home")
+# show flash message for user in case of errors and return to home page
+@app.errorhandler(Exception)
+def handle_bad_request(e):
+    """ Error handling: will catch these errors and display the play messages to error.html """
+    if type(AttributeError):
+        flash('Recipe doesn\'t exist. You can add one.', 'info')
+        print(type(e))
+        return redirect(url_for('home'))
+    flash('This action occur error. Please try different one', 'info')
+    print(type(e))
+    return url_for("/eror.html")
 
 
 
