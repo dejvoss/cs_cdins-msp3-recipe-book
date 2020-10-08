@@ -16,14 +16,14 @@
                 alt="meal image" style="max-height: 45vh">
             {% endif %}
             <p>{{recipe.meal_description}}</p>
-            
+            <ul>
+                <li>Preparation time: {{recipe.preparation_time}} min</li>
+                <li>Portions: {{recipe.portions}}</li>
+                <li>Meal type: {{recipe.meal_type}}</li>
+                <li>Number of ingredients: {{recipe.amount_of_ingred}}</li>
+            </ul>
         </div>
-        <ul>
-            <li>Preparation time: {{recipe.preparation_time}} min</li>
-            <li>Portions: {{recipe.portions}}</li>
-            <li>Meal type: {{recipe.meal_type}}</li>
-            <li>Number of ingredients: {{recipe.amount_of_ingred}}</li>
-        </ul>
+       
         <div class="col-12 col-md-6 offset-md-3 singl-recipe-body">
             <!-- Create loop for to display all ingredients in a list -->
             <h4 class="text-center">Ingredients:</h4>
