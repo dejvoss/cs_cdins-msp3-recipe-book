@@ -128,12 +128,17 @@
       <div class="form-file form-file-lg mb-5 row meal_image_div">
          <div class="col text-center">
                
-           
-            {% if recipe.meal_image == error %}
+            {{ form.meal_image(class_='form-file-input', onchange='PreviewImage()', accept='image/*')}}
+            <label class="lbl_for_img_btn" for="meal_image">
+               <span class="form-file-button">Insert meal picture</span>
+            </label>
+
+            <img id="uploadPreview" class="preview_image" src="{{url_for('static', filename='uploaded_img/'+recipe.meal_image)}}"/>
+            <!-- {% if recipe.meal_image == error %}
             <p>recipe has no image</p>
             {% else %}
             <img id="recipe_image" class="preview_image" onclick="showWarnImgMessage()" src="{{url_for('static', filename='uploaded_img/'+recipe.meal_image)}}"/>
-            {% endif %}
+            {% endif %} -->
          </div>
       </div>
 

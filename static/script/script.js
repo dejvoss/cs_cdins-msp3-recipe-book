@@ -80,9 +80,14 @@ function removeStepField() {
 function PreviewImage() {
     var oFReader = new FileReader();
     oFReader.readAsDataURL(document.getElementById("meal_image").files[0]);
-
     oFReader.onload = function(oFREvent) {
+        
+        if (document.getElementById("uploadPreview").src == ""){
         document.getElementById("uploadPreview").src = oFREvent.target.result;
+        } else {
+            document.getElementById("uploadPreview").src = "";
+            document.getElementById("uploadPreview").src = oFREvent.target.result;
+        }
     };
 };
 

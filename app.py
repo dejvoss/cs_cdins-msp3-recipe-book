@@ -166,12 +166,38 @@ def update_recipe(recipe_id):
     form = InsertRecipeForm()
     # validate form
     if form.validate_on_submit():
-        old_recipe = recipe_base.find_one({'_id': ObjectId(recipe_id)}) #take the current recipe
-        filename = old_recipe['meal_image']                             # from current recipe take the filename, as file cannot be updated
-        new_recipe["meal_image"] = filename                             # save filename to new recipe object
+        old_recipe = recipe_base.find_one({'_id': ObjectId(recipe_id)})                    
         ingredients_name_only = {k:v for k,v in new_recipe.items() if "ingredient" in k and "name" in k} # filtered recipe object - take only ingredients name to count number of ingrdients
         nr_of_ingredients = int(len(ingredients_name_only)) #count how many ingrdients is in recipe
         new_recipe['amount_of_ingred'] = nr_of_ingredients # add number of ingredients to database to recipe object
+        if 'meal_image' not in request.files:   # if there is no new file, save old file in new recipe object
+            old_recipe = recipe_base.find_one({'_id': ObjectId(recipe_id)}) 
+            filename = old_recipe['meal_image']                             
+            new_recipe["meal_image"] = filename  
+        file = request.files['meal_image']
+        # if selected  file has wrong extension display flash message
+        if file and not allowed_file(file.filename):
+            flash('It looks like you want to update meal image, but you didn\'t select correct file', 'warning')
+            return redirect(url_for('edit_recipe', recipe_id=recipe_id))
+        if file.filename == '':              # if new file is not selected, save old file in new recipe object
+            old_recipe = recipe_base.find_one({'_id': ObjectId(recipe_id)}) 
+            filename = old_recipe['meal_image']                             
+            new_recipe["meal_image"] = filename  
+        # if new file is selected, update database accordingly
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            meal_name = request.form['recipe_name']
+            saved_filename = meal_name + '_' + filename # create a filename base on the file name and recipe name
+            saved_filename = secure_filename(saved_filename)
+            path=os.path.join(app.config['UPLOAD_FOLDER'], saved_filename)
+            file.save(path)
+            new_recipe["meal_image"] = saved_filename  
+        # save old file in other cases
+        else:
+            old_recipe = recipe_base.find_one({'_id': ObjectId(recipe_id)}) 
+            filename = old_recipe['meal_image']                             
+            new_recipe["meal_image"] = filename
+        # update database by replacing old recipe object
         recipe_base.replace_one({'_id': ObjectId(recipe_id)}, new_recipe)   # replace recipe object by new one
         flash('Recipe updated. Thank you!', 'success')
         return redirect(url_for('home'))    
