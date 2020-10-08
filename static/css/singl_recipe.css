@@ -25,6 +25,11 @@
 .singl-recipe-head {
     text-align: center
 }
+
+.mealInfo {
+    list-style: none;
+}
+
 /* action buttons below recipe */
 .mailRecipe {
     max-width: 200px;
