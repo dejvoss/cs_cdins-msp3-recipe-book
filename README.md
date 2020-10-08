@@ -112,7 +112,7 @@ Based on the main pictures and using the Huesnap tool[Huesnap.com] I selected be
 
 1. #5e8b4a
 2. #ca2545
-3. #a57255
+3. #a57255 - not used in the end
 4. #0a0904
 
 ![Web Page Structure](README_purpose/color_scheme.png)
@@ -120,6 +120,7 @@ Based on the main pictures and using the Huesnap tool[Huesnap.com] I selected be
 #### Fonts
 
 I choose two combinaion of fonts which i like before creating a webpage. I take to consideration that it could look different in the end effect than i imagined. 
+
 
 <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Judson:400,700" rel="stylesheet">
 body {
@@ -140,6 +141,16 @@ h1, h2, h3, h4, h5, h6 {
  font-family: 'Abril Fatface', serif;
 }
 
+In the end i select combination of above fonts and remove font-weight settings:
+
+body {
+ font-family: 'Roboto', sans-serif;
+ 
+}
+
+h1, h2, h3, h4, h5, h6 {
+ font-family: 'Archivo Black', sans-serif;
+}
 
 ## Features
 
@@ -181,7 +192,11 @@ For more and all python extensions used in this app, please read the requirement
 
 ## Testing
 
-I did test my website all the time during creating in browser developer tools to check if all python function are response correctly and to see if the page is responsive at mobile screens and then at large screens. I used 3 different web browser during tests and creating page:
+I did test features after implementation and after each change in code. I also perform complete test in end of the project. The below review is not in the order that I ran the tests because these are all the tests that got my attention.
+
+### Testing responsiveness and design
+
+I did test my website all the time during creating in browser developer to see if the page is responsive at mobile screens and at large screens. I used 3 different web browser during tests and creating page:
 * Google Chrome Version 85.0.4183.121 (Official Build) (64-bits)
 * Brave Version 1.14.84 Chromium: 85.0.4183.121 (Official Build) (64-bit)
 * Microsoft Edge 85.0.564.68 (Official Build) (wersja 64-bit)
@@ -193,24 +208,178 @@ I did also test the page on different screens and systems as below:
 * Windows with screen of 17'
 * Windows with screen 24'
 
-Thanks to my sister who was testing the inserting recipes to the database and whom insert many recipes to my page.
+I constently share the page with my friends and family to test design.
 
-I use HTML, CSS and JavaScript validator and Python syntax checker to find errors in the code.
-I test if all links on website are working correctly. 
-During creating a page i constently send it to my friends and family to got the feedback about design and intuitive usage.
+### Testing JavaScript functions
 
-### The most interesting issues and biggest challenges found during testing:
-* Page Add recipe - when click on plus button to add more ingredient fields, all information filled about ingredients were cleared.
-    * Fixed by changing JS function - old function was rewriting all html in ingredient part div, fixed by appending new child in ingredient div.
-* Categories links in main page are directed to anchor of section and display recipes in top of page. When click on it then the top of section were covered by navigation bar and didn't show the categories navigation bar.
-    * Fixed by adding to CSS: html {scroll-padding-top: 180px; /* height of sticky header */ }
-* Sending email by google mail server was failed due to authentication.
-    * Fixed by change settings in google account. Changed settings: Access for less secure apps turned on.
-* Download pdf version of recipe - is not working on heroku due to No wkhtmltopdf executable found: "b''"
-    * Not fixed
-* Printing recipe - print function was printing all page with footer and navigation bar.
-    * Fixed by change function to: - open new window, populate there html with recipe and only recipe and print from there.
+1. scrollFunction
+    * Check if menu is changing collor when scroll window down. Perform chck on different type of page - add recipe, home, single recipe, edit recipe.
+        * Test passed.
+2. myFunction - function to stop/play video
+    * Click on control button to stop video, click to play. Check if video reacting as should be(stop and play) and check if button is changin icon. Wait till video will be finished, check if button change icon.
+        * Test passed.
+3. addIngredientField
+    * Click on plus button in add recipe page to see if new ingredient field is added.
+        * Test passed.
+    * Fill in ingredients field and click on plus button to see if new field is added.
+        * Test failed - new field were added, but all filled in fields are cleared.
+        * Fix: replace innerHtml by appenChild.
+    * Repeat second test.
+        * Test passed.
+4. removeIngredientField
+    * Click on minus button to see if ingredient field is removed.
+        * Test passed in 90% - new fields are removed automatically, but for 3 fields which are on the page from beggining, need to click double time to remove it.
+5. addStepField
+    * Click on plus button in add recipe page to see if new step field is added.
+        * Test passed.
+    * Fill in preparation steps field and click on plus button to see if new field is added.
+        * Test failed - new field were added, but all text from other fields is cleared.
+        * Fix: replace innerHtml by insertAdjacentHTML. I decide to use different way than in point 3 to practice skills.
+    * Repeat second test.
+        * Test passed.
+6. removeStepField
+    * Click on minus button to see if ingredient field is removed.
+        * Test passed in 90% - new fields are removed automatically, but for 3 fields which are on the page from beggining, need to click double time to remove it.
+7. PreviewImage
+    * Upload image and check if appear in preview box.
+        * Test passed.
+8. openNav
+    * Click on mobile navigation button to see if mobile menu is openning.
+        * Test passed.
+9. closeNav
+    * Click on X button in navigation menu to see if menu is closed.
+        * Test passed
+10. printRecipe
+    * Click on printRecipeButton to see if print window is open.
+        * Test failed - Print window is open, but in printPreview are navigation bar and footer - i don't want force user to print all this, when he want to print recipe.
+            * Fix - adjust function to open new window and place to it only the part with recipe. Then open print preview.
+        * Repeat test.
+            * Test passed.
+11. showConfirmMsg
+    * Click on remove rcipe button in single recipe page to see if message with warning and buttons will popup.
+        * Test passed.
+12. closeConfirmMsg 
+    * Click on 'Cancel delete recip' button which has in text 'I will think about it' to see if popup warning message will dissappear.
+        * Test passed.
 
+### Test python functionality
+
+1. home route
+    1. Check if link to home page is work from all other pages:
+        -   click on home link in footer in different type of page: add recipe, home, single recipe, edit recipe, to see if web browser is directing to home page,
+        -   click on logo link in navigation bar in different type of page: add recipe, home, single recipe, edit recipe, to see if web browser is directing to home page,
+        -   click on home link in mobile menu in different type of page: add recipe, home, single recipe, edit recipe, to see if web browser is directing to home page
+        * Test passed for all 3 links.
+    2. Check if all recipes are populated from database and displayed in home page.
+        * Test passed.
+    3. Check if all data about recipes are displayed.
+        * Test passed.
+    4. Check if all recipe data are displayed correctly.
+        * Test failed:
+            -   icons which descripe type of meal are not displayed.
+            -   Fix: category names in database are different than in function for displaying meal icons; change the values for the same ones.
+        * 2nd test passed.
+2. displayCategory route
+    1. Click on each category name to see if different (corrected) meals are displayed.
+        * Test failed:
+            -   select option in add recipe page has value different than displayed text. Category links are build base on displayed text, recipes in database has values of select options.
+            -   Fix: change the names of values and displayed values to the same ones. Populate the category buttons from the same list which is used to the add recipe form in case of new category it could be added in one place instead of many. Apply fix also to mobile links.
+        * 2nd test passed.
+    2. Click on each category name in mobile view to see if different (corrected) meals are displayed.
+        * Test passed.
+3. add_recipe
+    1. Click on 4 different links(mobile menu, navigation bar, button in home page, footer menu) Add recipe in navigation bar to see if add recipe page is open.
+        * Test passed
+    2. Check if correct form and with all fields as wanted is displayed. Check if correct ad as expected fields are displayed.
+        * Test failed:
+            -   I excpect that Ingredient field will be displayed as list to easly style it in line. I also expect to have object ingredient which will have 3 items (name, amount and measure). I got Ingredient-0-name, ingredient-0-amount, ingredient-0-measure, and numbers are grow.
+                *  Fix: I find that i can loop thru the list items in form.ingredients and display each in seperate html element. I use it to display ingredients fields in responsive columns and in effect i can have all in one line on big screens or/and name in one line + amount and measure in second line in small screens.
+            -   I have the same issue and same fix for preparation steps field.
+        *   2nd test passed.
+4. insert_recipe
+    1.  Try to add new recipe with default fields (3 ingredient fields, 1 preparation field)
+        *   Test passed.
+    2.  Try to add new recipe with additional fields.
+        *   Test passed.
+    3.  Try to insert recipe with empty fields.
+        *   Test passed - is not possible to add empty fields (except the description which has optional validator)
+    4.  Insert recipe with name already used.
+        *   Test passed.
+5. single_recipe
+    1.  Click on recipe link in home page to see if is opening as new page.
+        *   Test failed - error, cannot build link as there is not variable contactForm;
+            -   contact form is in base.html, so is needed in all extesnsions of base.html -  add variable to all routes which are extension of the base.html
+        *   2nd test passed.
+    2.  Try to open recipe with the same name as other.
+        *   Test failed - instead of the clicked recipe is opened the first recipe with the same name.
+            -   fix by change the variable recipe_name to recipe_id and find recipe by id in database.
+        *   2nd test passed.
+6. delete_recipe
+    1.  Go to single recipe page and try to delete one, by click on Remove recipe.
+        *   Test passed, home page displayed and flash message shows that recipe is removed.
+    2.  Check if all recipe data is removed - go to mongoDB and check the collection.
+        *   Test passed in 80% - all data is removed from database, but file with image still exist.
+            -   Fix: add function to remove file.
+        *   2nd Test passed.
+7. edit_recipe
+    1.  Go to single recipe page and click on edit button.
+        *   Link work form for editing recipe displayed.
+    2.  Check if all data is populated correctly to the form.
+        *   Test failed - the way which i use to display ingredient fields in add_recipe page doesn't work here.
+            -   Fix: populate data manually in edit_recipe page - instead of using {{form.ingredients}} use the html displayed by the {{form.ingredients}} - <input....>
+        *   2nd Test failed - all text and number data is populated, but all data which is an option in select input are incorrect.
+            -   Fix: I couldn't find better way to do it, than insert one more select option with the data from database. In effect i have doubled value which was selected:
+                - example: If meal type is Warm meals, then in meal type option i have selected Warm meals and in options to select i have again Warm meals. I think that this is still good solution.
+        *   3rd test failed - the meal image is not populated to file input and either to preview.
+            -   fix: add image to the image preview.
+8. update_recipe
+    1.  Edit recipe name, recipe description, edit ingredients name, amount and measure, edit preparation steps and click update. Check if data is changed.
+        *   Test passed - all data is changed correctly.
+    2.  Add new ingredient, add new preparation step and click on update recipe button. Check if new data is added to recipe.
+        *   Test failed - new data is added, but is not displayed correctly. New preparation step is displayed as should be. New ingredient were added to database in different direction - in database first is amount, then measure and name as last. In effect in single recipe page the list with ingredient doesn't display information correctly.
+            -   Try to fix by changing the way of displaying information. 
+    3.  Remove ingredient and preparation step and click update button. Check if data is removed from recipe.
+        *   Test failed - removed data is still in database.
+            -   Fix: change the update_one function to replace_one
+            -   Fix is resolving the 3rd and 2nd issue.
+        *   2nd Test failed-  error no 'meal_image' value in recipe object.
+            - Fix: add manually the meal_image to recipe to make quick fix to have displayed recipe.
+            - Try to remove ingredients and preparation steps, update image by click on insert image picture to test ingredients first and leave image for later test.
+        *   3rd test passed - removed ingredients and preparation steps are not visible in recipe anymore.
+    4.  Test if not updated image is in recipe object after update recipe - click on update recipe button in single recipe page, don't insert image and click on update recipe button.
+        *   Test failed - recipe object has no meal_image value.
+            -   Fix: add to update function if statement to see if new file is added, if there is not new file, then rewrite meal_image value from the first recipe object.
+            -   Test by update recipe without meal_image.
+        *   2nd test passed - image were not updated, but image exist in recipe object.
+    5.  Test if meal_image can be updated - click on update recipe button, click on insert image button, click on update recipe button.
+        *   Test passed in 40% - new image is uploaded and is visible in recipe object, is visible in home page and recipe page, but old image still exist and in edit recipe page when click on insert image, image is not visible in image preview square.
+            -   Fix 1: Adjust js function to instead of set src in preview img, first check if src exist and clear before setting new value.
+            -   Fix 2: add to update recipe python route, function to remove old picture in case new is not selected.
+        *   2nd test passed 
+9. contact
+    1.  Fill in contact form and click on send button.
+        *   Test passed.
+10. send_mail_recipe
+    1.  fill in the email address in single recipe page and click on send button; check if recipe is received on email.
+        *   Test passed.
+11. pdf_template
+    1.  In single recipe page click on download pdf button
+        *   Test failed - no 'b' in wkhtmltopdf error
+            -   i try several solutions on this issue which i find in web, but none works. In end i hide the button and leave only print as there is possibility to instead of print save as pdf.
+12. handle_bad_request
+    1.  Try to write in web address https://cdins-msp3-recipe-book.herokuapp.com/home/anything to see if error.html page is displayed.
+        *   Test passed.
+
+### End test
+
+1.  Add new recipe.
+    * Test passed
+2.  Update recipe with image, without image, by removing fields, by adding fields, by changing fields.
+    * All tests passed.
+3.  Remove recipe from database.
+    * Test passed.
+4.  Check all endpoints by clicking on different links in different pages.
+    * Test passed.
 
 ## Deployment
 
@@ -250,7 +419,7 @@ Website is hosted in heroku - [RecipeBook](https://cdins-msp3-recipe-book.heroku
 
 ### Content
 
-* Recipes was taken from private collection of my mum and sister. 
+* Recipes was taken from private collection of my mother and sister. 
 
 ### Media
 
@@ -259,7 +428,7 @@ Website is hosted in heroku - [RecipeBook](https://cdins-msp3-recipe-book.heroku
 
 ### Support and advises
 
-* Thanks to my mentor Reuben for support, patient, time and advises.
+* Thanks to my mentor Reuben for support, patient, time and advises. Especially the design advices after which my page looks much better.
 * Thanks to my sister for testing and inserting recipes to page.
 * Thanks to my wife for support, advice and testing visual part of the web.
-
+* Thanks to code institute to give me possibility to postponed the project submission date.
