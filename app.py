@@ -218,7 +218,7 @@ def contact():
         mailMsg = Message(subject=subject, sender=email, recipients=['deosiecki@gmail.com'])
         mailMsg.body = 'You receive messaege: ' + message + ' from ' + name + ' who use email address ' + email
         mail.send(mailMsg)
-        flash('Thank you for your message')
+        flash('Message send succesfully. Thank you!', 'success')
         return redirect(url_for('home'))
     flash("Something went wrong, message doesn't send. Please try again", 'warning')
     return redirect(url_for('home'))
