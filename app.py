@@ -246,12 +246,9 @@ def send_mail_recipe(recipe_id):
 def handle_bad_request(e):
     """ Error handling: will catch these errors and display the play messages to error.html """
     if type(AttributeError):
-        flash('Recipe doesn\'t exist. You can add one.', 'info')
-        print(type(e))
-        return redirect(url_for('home'))
+        return render_template("error.html")
     flash('This action occur error. Please try different one', 'info')
-    print(type(e))
-    return url_for("/eror.html")
+    return render_template("error.html")
 
 
 
