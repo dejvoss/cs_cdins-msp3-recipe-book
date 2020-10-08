@@ -112,17 +112,6 @@ function printRecipe() {
     printWindow.print();
 }
 
-// warining messages in update recipe page - show when user click on meail image or meal name - this is not allowed to update
-
-function showWarnImgMessage() {
-    var DivAlertConent = 'Updating image is not allowed. Please remove recipe and add new one instead.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
-    document.getElementById("flash-msg").insertAdjacentHTML('beforeend', '<div class="alert alert-warning alert-dismissible fade show" role="alert">' + DivAlertConent + '</div>')    
-};
-function showWarnRecNmgMessage() {
-    var DivAlertConent = 'Updating recipe name is not allowed. Please remove recipe and add new one instead.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
-    document.getElementById("flash-msg").insertAdjacentHTML('beforeend', '<div class="alert alert-warning alert-dismissible fade show" role="alert">' + DivAlertConent + '</div>')    
-};
-
 // show confirmation message when click on remove recipe button in single recipe page
 
 function showConfirmMsg() {
