@@ -198,7 +198,7 @@ def update_recipe(recipe_id):
         # update database by replacing old recipe object
         recipe_base.replace_one({'_id': ObjectId(recipe_id)}, new_recipe)   # replace recipe object by new one
         flash('Recipe updated. Thank you!', 'success')
-        return redirect(url_for('home'))    
+        return redirecturl_for('single_recipe', recipe_id=recipe._id)  
     flash('Something went wrong. Please try again.', 'warning')
     return redirect(url_for('edit_recipe', recipe_id=recipe_id))
         
