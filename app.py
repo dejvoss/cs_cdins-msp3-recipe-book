@@ -198,7 +198,7 @@ def update_recipe(recipe_id):
         # update database by replacing old recipe object
         recipe_base.replace_one({'_id': ObjectId(recipe_id)}, new_recipe)   # replace recipe object by new one
         flash('Recipe updated. Thank you!', 'success')
-        return redirect(url_for('single_recipe', recipe_id=recipe._id))  
+        return redirect(url_for('single_recipe', recipe_id=recipe_id))  
     flash('Something went wrong. Please try again.', 'warning')
     return redirect(url_for('edit_recipe', recipe_id=recipe_id))
         
@@ -241,16 +241,16 @@ def send_mail_recipe(recipe_id):
     return redirect(url_for('single_recipe', recipe_id=recipe_id))
 
 #show flash message for user in case of errors and return to home page
-@app.errorhandler(Exception)
-def handle_bad_request(e):
-    """ Error handling: will catch these errors and display the play messages to error.html """
-    if type(AttributeError):
-        flash('Recipe doesn\'t exist. You can add one.', 'info')
-        print(type(e))
-        return redirect(url_for('home'))
-    flash('This action occur error. Please try different one', 'info')
-    print(type(e))
-    return url_for("home")
+# @app.errorhandler(Exception)
+# def handle_bad_request(e):
+#     """ Error handling: will catch these errors and display the play messages to error.html """
+#     if type(AttributeError):
+#         flash('Recipe doesn\'t exist. You can add one.', 'info')
+#         print(type(e))
+#         return redirect(url_for('home'))
+#     flash('This action occur error. Please try different one', 'info')
+#     print(type(e))
+#     return url_for("home")
 
 
 
