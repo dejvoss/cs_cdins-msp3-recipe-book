@@ -10,7 +10,7 @@ The main goal of this project is to give for the users nice looked website with 
 
 #### User Stories:
 
-I identified 3 group of user for my project. People between the age of 25 and 45 and people over the age of 45. My user stories are pieces of conversation about a website.
+I identified 2 group of user for my project. People between the age of 25 and 45 and people over the age of 45. My user stories are pieces of conversation about a website.
 
 #### People between the age of 25 and 45:
 
