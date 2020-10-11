@@ -183,6 +183,8 @@ def update_recipe(recipe_id):
             new_recipe["meal_image"] = old_filename  
         # if new file is selected, update database accordingly
         if file and allowed_file(file.filename):
+            old_file_path=os.path.join(app.config['UPLOAD_FOLDER'], old_filename)     # remove old file as new will be saved
+            os.remove(old_file_path)
             filename = secure_filename(file.filename)
             meal_name = request.form['recipe_name']
             saved_filename = meal_name + '_' + filename # create a filename base on the file name and recipe name
@@ -190,8 +192,7 @@ def update_recipe(recipe_id):
             path=os.path.join(app.config['UPLOAD_FOLDER'], saved_filename)
             file.save(path)
             new_recipe["meal_image"] = saved_filename  
-            old_file_path=os.path.join(app.config['UPLOAD_FOLDER'], old_filename)     # remove old file as new was saved
-            os.remove(old_file_path)
+            
         # save old file in other cases
         else:                         
             new_recipe["meal_image"] = old_filename
