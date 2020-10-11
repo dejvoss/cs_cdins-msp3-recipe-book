@@ -191,10 +191,7 @@ def update_recipe(recipe_id):
             file.save(path)
             new_recipe["meal_image"] = saved_filename  
             old_file_path=os.path.join(app.config['UPLOAD_FOLDER'], old_filename)     # remove old file as new was saved
-            try:
-                os.remove(old_file_path)
-            except:
-                print('nofile')
+            os.remove(old_file_path)
         # save old file in other cases
         else:                         
             new_recipe["meal_image"] = old_filename
