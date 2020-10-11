@@ -173,14 +173,17 @@ def update_recipe(recipe_id):
         old_recipe = recipe_base.find_one({'_id': ObjectId(recipe_id)}) 
         old_filename = old_recipe['meal_image'] 
         if 'meal_image' not in request.files:   # if there is no new file, save old file in new recipe object                           
-            new_recipe["meal_image"] = old_filename  
+            new_recipe["meal_image"] = old_filename
+            print("meal not in request files")  
         file = request.files['meal_image']
         # if selected  file has wrong extension display flash message
         if file and not allowed_file(file.filename):
             flash('It looks like you want to update meal image, but you didn\'t select correct file', 'warning')
+            print("file and not allowed file")
             return redirect(url_for('edit_recipe', recipe_id=recipe_id))
         if file.filename == '':              # if new file is not selected, save old file in new recipe object                           
             new_recipe["meal_image"] = old_filename  
+            print("filename empty")
         # if new file is selected, update database accordingly
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
@@ -190,11 +193,12 @@ def update_recipe(recipe_id):
             path=os.path.join(app.config['UPLOAD_FOLDER'], saved_filename)
             file.save(path)
             new_recipe["meal_image"] = saved_filename  
-            path=os.path.join(app.config['UPLOAD_FOLDER'], old_filename)     # remove old file as new was saved
-            os.remove(path)
+            old_file_path=os.path.join(app.config['UPLOAD_FOLDER'], old_filename)     # remove old file as new was saved
+            os.remove(old_file_path)
         # save old file in other cases
         else:                         
             new_recipe["meal_image"] = old_filename
+            print("else")
         # update database by replacing old recipe object
         recipe_base.replace_one({'_id': ObjectId(recipe_id)}, new_recipe)   # replace recipe object by new one
         flash('Recipe updated. Thank you!', 'success')
@@ -241,7 +245,7 @@ def send_mail_recipe(recipe_id):
     flash('Somethin went wrong, check your email address and try again.', 'warning')
     return redirect(url_for('single_recipe', recipe_id=recipe_id))
 
-# show flash message for user in case of errors and return to home page
+# show error page in case of errors
 @app.errorhandler(Exception)
 def handle_bad_request(e):
     """ Error handling: will catch these errors and display the play messages to error.html """
