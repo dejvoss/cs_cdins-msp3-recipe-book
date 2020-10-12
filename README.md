@@ -398,6 +398,8 @@ I use github to keep my repository remotly. I use VSCode to writing the code and
 
 Website is hosted in heroku - [RecipeBook](https://cdins-msp3-recipe-book.herokuapp.com/)
 
+*Storing files in heroku can be only temporarly and is work till the app is not restarted. Due to this all recipes created on live page hosted in heroku will have no images visible. This is applied also for updating images for existed recipes.*
+
 ### To run this project locally, follow below steps:
 
 1. Open my Github Repository [RecipeBook - github Repo](https://github.com/dejvoss/cdins-msp3-recipe-book)

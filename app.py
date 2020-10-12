@@ -141,7 +141,11 @@ def delete_recipe(recipe_id):
     if 'meal_image' in recipe:
         recipe_img = recipe['meal_image']
         path=os.path.join(app.config['UPLOAD_FOLDER'], recipe_img)
-        os.remove(path)
+        # if old_file exist then remove it - avoid issues when the file was updated in local server and is not visible in heroku
+        # allowed to remove/update recipes which are added in heroku live page and for which images are not saved
+        if os.path.exists(path):
+               os.remove(path)
+
         mongo.db.recipe_base.remove({'_id': ObjectId(recipe_id)})
         flash('Recipe ' + recipe_name + ' removed from database successfully.', 'success')
         return redirect(url_for('home'))
@@ -172,34 +176,45 @@ def update_recipe(recipe_id):
         new_recipe['amount_of_ingred'] = nr_of_ingredients # add number of ingredients to database to recipe object
         old_recipe = recipe_base.find_one({'_id': ObjectId(recipe_id)}) 
         old_filename = old_recipe['meal_image'] 
+        
         if 'meal_image' not in request.files:   # if there is no new file, save old file in new recipe object                           
             new_recipe["meal_image"] = old_filename
         file = request.files['meal_image']
+        
         # if selected  file has wrong extension display flash message
         if file and not allowed_file(file.filename):
             flash('It looks like you want to update meal image, but you didn\'t select correct file', 'warning')
             return redirect(url_for('edit_recipe', recipe_id=recipe_id))
+        
         if file.filename == '':              # if new file is not selected, save old file in new recipe object                           
             new_recipe["meal_image"] = old_filename  
         # if new file is selected, update database accordingly
+        
         if file and allowed_file(file.filename):
-            old_file_path=os.path.join(app.config['UPLOAD_FOLDER'], old_filename)     # remove old file as new will be saved
-            os.remove(old_file_path)
+            meal_name = request.form['recipe_name'] # take old file name
+            old_file_path=os.path.join(app.config['UPLOAD_FOLDER'], old_filename)     # remove old file as new was saved
+            # if old_file exist then remove it - avoid issues when the file was updated in local server and is not visible in heroku
+            # allowed to remove/update recipes which are added in heroku live page and for which images are not saved
+            if os.path.exists(old_file_path):
+                os.remove(old_file_path)
+            
             filename = secure_filename(file.filename)
-            meal_name = request.form['recipe_name']
             saved_filename = meal_name + '_' + filename # create a filename base on the file name and recipe name
             saved_filename = secure_filename(saved_filename)
             path=os.path.join(app.config['UPLOAD_FOLDER'], saved_filename)
             file.save(path)
-            new_recipe["meal_image"] = saved_filename  
+            new_recipe["meal_image"] = saved_filename
+            recipe_base.replace_one({'_id': ObjectId(recipe_id)}, new_recipe)   # replace recipe object by new one
+            flash('Recipe updated. Thank you!', 'success')
+            return redirect(url_for('single_recipe', recipe_id=recipe_id))   
             
         # save old file in other cases
         else:                         
             new_recipe["meal_image"] = old_filename
-        # update database by replacing old recipe object
-        recipe_base.replace_one({'_id': ObjectId(recipe_id)}, new_recipe)   # replace recipe object by new one
-        flash('Recipe updated. Thank you!', 'success')
-        return redirect(url_for('single_recipe', recipe_id=recipe_id))  
+            # update database by replacing old recipe object
+            recipe_base.replace_one({'_id': ObjectId(recipe_id)}, new_recipe)   # replace recipe object by new one
+            flash('Recipe updated. Thank you!', 'success')
+            return redirect(url_for('single_recipe', recipe_id=recipe_id))  
     flash('Something went wrong. Please try again.', 'warning')
     return redirect(url_for('edit_recipe', recipe_id=recipe_id))
         
@@ -248,7 +263,6 @@ def handle_bad_request(e):
     """ Error handling: will catch these errors and display the play messages to error.html """
     if type(AttributeError):
         return render_template("error.html")
-    flash('This action occur error. Please try different one', 'info')
     return render_template("error.html")
 
 
